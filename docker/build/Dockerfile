@@ -1,4 +1,5 @@
-FROM ubuntu:22.04
+# GLIBC 2.31のために固定
+FROM ubuntu:20.04
 
 # for timezone
 ENV DEBIAN_FRONTEND=noninteractive

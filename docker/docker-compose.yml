@@ -6,8 +6,7 @@ services:
     image: raptor_build_img
     container_name: 'raptor_dev'
     volumes:
-      - ../pycode:/var/www/nexa
-    ports:
-     - 8081:8080
+      - ../src:/home/nomura/src
+      - ../build:/home/nomura/build
     command: bash
     tty: true

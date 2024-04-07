@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  system:
+    restart: always
+    build: .
+    image: raptor_build_img
+    container_name: 'raptor_image_build'
+    command: bash
+    tty: true

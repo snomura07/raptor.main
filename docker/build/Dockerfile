@@ -12,6 +12,8 @@ RUN apt install -y  \
     nano \
     python3-pip \
     curl \
+    sudo \
+    unzip \
     g++-arm-linux-gnueabi
 
 # add sudo user

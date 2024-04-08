@@ -14,7 +14,32 @@ RUN apt install -y  \
     curl \
     sudo \
     unzip \
-    g++-arm-linux-gnueabi
+    g++-arm-linux-gnueabi \
+    libtool \
+    autoconf \
+    automake \
+    pkg-config
+
+# クロスコンパイル用の環境変数設定
+ENV CC=arm-linux-gnueabi-gcc \
+    CXX=arm-linux-gnueabi-g++ \
+    AR=arm-linux-gnueabi-ar \
+    RANLIB=arm-linux-gnueabi-ranlib \
+    LD=arm-linux-gnueabi-ld \
+    AS=arm-linux-gnueabi-as
+
+# ZMQのソースコードをダウンロード
+RUN git clone https://github.com/zeromq/libzmq.git /tmp/libzmq
+
+# コンパイルとインストール
+RUN cd /tmp/libzmq && \
+    ./autogen.sh && \
+    ./configure --host=arm-linux-gnueabi && \
+    make && \
+    make install
+
+# ライブラリパスの設定
+RUN ldconfig
 
 # add sudo user
 RUN groupadd -g 1000 developer && \

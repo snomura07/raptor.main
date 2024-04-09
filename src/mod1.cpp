@@ -1,15 +1,30 @@
 #include <iostream>
-#include "/usr/local/include/pigpio.h"
+// #include "/usr/local/include/pigpio.h"
 #include "/usr/local/include/zmq.h"
+#include <string>
 
-int main()
+int main() 
 {
     void* context = zmq_ctx_new();
-    if( gpioInitialise() >= 0 ){
-        std::cout << "OK!" << std::endl;
+    void* responder = zmq_socket(context, ZMQ_REP);
+    zmq_bind(responder, "tcp://*:5555");
+
+    std::cout << "Server started, waiting for messages..." << std::endl;
+
+    while (true) {
+        char buffer[256];
+        zmq_recv(responder, buffer, sizeof(buffer), 0);
+        std::string request = buffer;
+        std::cout << "Received request: " << request << std::endl;
+
+        // // Convert the received message to uppercase
+        // std::transform(request.begin(), request.end(), request.begin(), ::toupper);
+
+        // Send the response
+        zmq_send(responder, request.c_str(), request.size(), 0);
     }
-    else{
-        std::cout << "NG.." << std::endl;
-    }
+
+    zmq_close(responder);
+    zmq_ctx_destroy(context);
     return 0;
 }

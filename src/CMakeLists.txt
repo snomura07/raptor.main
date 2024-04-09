@@ -25,7 +25,7 @@ target_link_libraries(
     hoge
     PRIVATE
     pthread
-    pigpio
+    # pigpio
     zmq
 )
 

@@ -18,7 +18,8 @@ RUN apt install -y  \
     libtool \
     autoconf \
     automake \
-    pkg-config
+    pkg-config \
+    qemu-user-binfmt
 
 # install pigio for GPIO
 WORKDIR /package
@@ -62,3 +63,4 @@ WORKDIR /home/nomura
 
 # Add LD_LIBRARY_PATH to point to the cross-compiled libraries
 ENV LD_LIBRARY_PATH=/usr/local/lib
+RUN echo 'exec(){ qemu-arm -L /usr/arm-linux-gnueabi $@; }' >> .bashrc

@@ -20,6 +20,15 @@ RUN apt install -y  \
     automake \
     pkg-config
 
+# install pigio for GPIO
+WORKDIR /package
+RUN wget https://github.com/joan2937/pigpio/archive/master.zip
+RUN unzip master.zip
+WORKDIR  /package/pigpio-master
+RUN sed -i 's/^CROSS_PREFIX =.*/CROSS_PREFIX =arm-linux-gnueabi-/' Makefile
+RUN make install
+
+# ZMQインストール
 # クロスコンパイル用の環境変数設定
 ENV CC=arm-linux-gnueabi-gcc \
     CXX=arm-linux-gnueabi-g++ \
@@ -50,3 +59,6 @@ RUN echo 'nomura ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER nomura
 WORKDIR /home/nomura
+
+# Add LD_LIBRARY_PATH to point to the cross-compiled libraries
+ENV LD_LIBRARY_PATH=/usr/local/lib

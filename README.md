@@ -1,4 +1,9 @@
 # sandbox
+
+## ピンアサイン
+![ピンアサイン](https://hara-jp.com/images/_default/Topics/RaspPiZero/RaspPiZero.png)
+
+
 ## OTG設定
 - boot直下に空の「SSH」ファイルを作成
 - config.txtの末尾に、`dtoverlay=dwc2`を追記
@@ -45,6 +50,27 @@ dtoverlay=dwc2 <---追加
 
 ```make install```
 
-
 ## zmqインストール@ラズパイ
 ```sudo apt install libzmq3-dev```
+
+## デーモンの登録
+- サービスファイル作成@/etc/systemd/system/raptor.service
+
+``` sss
+[Unit]
+Description=Raptor Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/nomura/setup.bash
+WorkingDirectory=/home/nomura
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+- 有効化
+
+`sudo systemctl enable raptor.service`

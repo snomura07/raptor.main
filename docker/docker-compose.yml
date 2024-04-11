@@ -9,4 +9,6 @@ services:
       - ../src:/home/nomura/src
       - ../build:/home/nomura/build
     command: bash
+    ports:
+      - 5555:5555
     tty: true

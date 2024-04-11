@@ -1,53 +1,21 @@
 cmake_minimum_required(VERSION 3.0)
-project(mod1)
-
-include_directories(
-)
+project(Raptor)
 
 # クロスコンパイル用のツールチェインを指定
-set(CMAKE_C_COMPILER "arm-linux-gnueabi-gcc")
-set(CMAKE_CXX_COMPILER "arm-linux-gnueabi-g++")
+set(CMAKE_C_COMPILER /usr/bin/arm-linux-gnueabi-gcc)
+set(CMAKE_CXX_COMPILER /usr/bin/arm-linux-gnueabi-g++)
 
-# ソースファイルを追加
-add_executable(
-    hoge
-    mod1.cpp
-)
+# C++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-target_include_directories(
-    hoge
-    PRIVATE
-    /usr/local/include
-)
+# lib dirs
+set(LIB_DIRS /usr/local/include/)
 
-# 必要に応じてライブラリやリンクするものを追加
-target_link_libraries(
-    hoge
-    PRIVATE
-    pthread
-    # pigpio
-    zmq
-)
+# install
+set(CMAKE_INSTALL_PREFIX ../)
 
-##################
-
-# ソースファイルを追加
-add_executable(
-    hoge2
-    mod2.cpp
-)
-
-target_include_directories(
-    hoge2
-    PRIVATE
-    /usr/local/include
-)
-
-# 必要に応じてライブラリやリンクするものを追加
-target_link_libraries(
-    hoge2
-    PRIVATE
-    pthread
-    # pigpio
-    zmq
-)
+# add_subdirectory(proc)
+# add_subdirectory(utils)
+add_subdirectory(test)

@@ -1,9 +1,8 @@
 #include <iostream>
-// #include "/usr/local/include/pigpio.h"
-#include "/usr/local/include/zmq.h"
+#include <zmq.h>
 #include <string>
 
-int main() 
+int main()
 {
     void* context = zmq_ctx_new();
     void* responder = zmq_socket(context, ZMQ_REP);
@@ -16,9 +15,6 @@ int main()
         zmq_recv(responder, buffer, sizeof(buffer), 0);
         std::string request = buffer;
         std::cout << "Received request: " << request << std::endl;
-
-        // // Convert the received message to uppercase
-        // std::transform(request.begin(), request.end(), request.begin(), ::toupper);
 
         // Send the response
         zmq_send(responder, request.c_str(), request.size(), 0);

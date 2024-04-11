@@ -1,6 +1,5 @@
 #include <iostream>
-//#include "/usr/local/include/pigpio.h"
-#include "/usr/local/include/zmq.h"
+#include <zmq.h>
 #include <string>
 
 int main() {
@@ -21,4 +20,3 @@ int main() {
     zmq_ctx_destroy(context);
     return 0;
 }
-

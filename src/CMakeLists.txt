@@ -10,12 +10,15 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# lib dirs
-set(LIB_DIRS /usr/local/include/)
+# include dirs
+set(INCLUDE_DIRS /usr/local/include/)
 
-# install
+# install prefix
 set(CMAKE_INSTALL_PREFIX ../)
+set(PROTC_INSTALL_PREFIX src/protobuf/)
+
 
 # add_subdirectory(proc)
 # add_subdirectory(utils)
+add_subdirectory(protobuf)
 add_subdirectory(test)

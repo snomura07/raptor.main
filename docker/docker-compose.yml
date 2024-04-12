@@ -8,6 +8,8 @@ services:
     volumes:
       - ../src:/home/nomura/src
       - ../build:/home/nomura/build
+      - ../bin:/home/nomura/bin
+      - ../lib:/home/nomura/lib
     command: bash
     ports:
       - 5555:5555

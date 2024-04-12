@@ -29,7 +29,7 @@ WORKDIR  /package/pigpio-master
 RUN sed -i 's/^CROSS_PREFIX =.*/CROSS_PREFIX =arm-linux-gnueabi-/' Makefile
 RUN make install
 
-# ZMQインストール
+# ライブラリビルド＆インストール
 # クロスコンパイル用の環境変数設定
 ENV CC=arm-linux-gnueabi-gcc \
     CXX=arm-linux-gnueabi-g++ \
@@ -38,15 +38,23 @@ ENV CC=arm-linux-gnueabi-gcc \
     LD=arm-linux-gnueabi-ld \
     AS=arm-linux-gnueabi-as
 
-# ZMQのソースコードをダウンロード
+# ZMQ
 RUN git clone https://github.com/zeromq/libzmq.git /tmp/libzmq
-
-# コンパイルとインストール
 RUN cd /tmp/libzmq && \
     ./autogen.sh && \
     ./configure --host=arm-linux-gnueabi && \
     make && \
     make install
+
+# protobuf
+RUN git clone --branch v3.7.1 https://github.com/protocolbuffers/protobuf.git /tmp/protobuf
+RUN cd /tmp/protobuf && \
+    git submodule update --init --recursive && \
+    ./autogen.sh && \
+    ./configure --host=arm-linux-gnueabi --prefix=/usr/arm-linux-gnueabi && \
+    make && \
+    make install
+
 
 # ライブラリパスの設定
 RUN ldconfig
@@ -63,4 +71,5 @@ WORKDIR /home/nomura
 
 # Add LD_LIBRARY_PATH to point to the cross-compiled libraries
 ENV LD_LIBRARY_PATH=/usr/local/lib
+ENV LD_LIBRARY_PATH=/home/nomura/lib:$LD_LIBRARY_PATH
 RUN echo 'exec(){ qemu-arm -L /usr/arm-linux-gnueabi $@; }' >> .bashrc

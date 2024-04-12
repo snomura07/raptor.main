@@ -1,7 +1,7 @@
 project(ZmqTest)
 
 include_directories(
-    ${LIB_DIRS}
+    ${INCLUDE_DIRS}
 )
 
 add_executable(

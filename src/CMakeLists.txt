@@ -18,7 +18,8 @@ set(CMAKE_INSTALL_PREFIX ../)
 set(PROTC_INSTALL_PREFIX src/protobuf/)
 
 
-# add_subdirectory(proc)
 # add_subdirectory(utils)
+add_subdirectory(core)
+add_subdirectory(common)
 add_subdirectory(protobuf)
 add_subdirectory(test)

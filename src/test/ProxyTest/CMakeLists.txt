@@ -1,4 +1,4 @@
-project(ZmqTest)
+project(ProxyTest)
 
 include_directories(
     ${INCLUDE_DIRS}
@@ -6,17 +6,17 @@ include_directories(
 )
 
 add_executable(
-    server
-    server.cpp
+    ${PROJECT_NAME}Pub
+    pub.cpp
 )
 
 target_include_directories(
-    server
+    ${PROJECT_NAME}Pub
     PRIVATE
 )
 
 target_link_libraries(
-    server
+    ${PROJECT_NAME}Pub
     PRIVATE
     pthread
     zmq
@@ -27,18 +27,18 @@ target_link_libraries(
 
 # ソースファイルを追加
 add_executable(
-    client
-    client.cpp
+    ${PROJECT_NAME}Sub
+    sub.cpp
 )
 
 target_include_directories(
-    client
+    ${PROJECT_NAME}Sub
     PRIVATE
 )
 
 # 必要に応じてライブラリやリンクするものを追加
 target_link_libraries(
-    client
+    ${PROJECT_NAME}Sub
     PRIVATE
     pthread
     zmq
@@ -47,7 +47,7 @@ target_link_libraries(
 
 INSTALL(
     TARGETS
-    server
-    client
+    ${PROJECT_NAME}Sub
+    ${PROJECT_NAME}Pub
     RUNTIME DESTINATION bin
 )

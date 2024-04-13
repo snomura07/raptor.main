@@ -1,25 +1,26 @@
-project(ZmqTest)
+project(ZmqWrapperTest)
 
 include_directories(
     ${INCLUDE_DIRS}
     ${CMAKE_SOURCE_DIR}/protobuf
+    ${CMAKE_SOURCE_DIR}/common
 )
 
 add_executable(
-    server
+    ${PROJECT_NAME}Server
     server.cpp
 )
 
 target_include_directories(
-    server
+    ${PROJECT_NAME}Server
     PRIVATE
 )
 
 target_link_libraries(
-    server
+    ${PROJECT_NAME}Server
     PRIVATE
     pthread
-    zmq
+    ZmqWrapper
     protobuf-example
 )
 
@@ -27,27 +28,28 @@ target_link_libraries(
 
 # ソースファイルを追加
 add_executable(
-    client
+    ${PROJECT_NAME}Client
     client.cpp
 )
 
 target_include_directories(
-    client
+    ${PROJECT_NAME}Client
     PRIVATE
+    pthread
 )
 
 # 必要に応じてライブラリやリンクするものを追加
 target_link_libraries(
-    client
+    ${PROJECT_NAME}Client
     PRIVATE
     pthread
-    zmq
+    ZmqWrapper
     protobuf-example
 )
 
 INSTALL(
     TARGETS
-    server
-    client
+    ${PROJECT_NAME}Server
+    ${PROJECT_NAME}Client
     RUNTIME DESTINATION bin
 )

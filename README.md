@@ -18,40 +18,56 @@ dtoverlay=dwc2 <---追加
     - https://www.catalog.update.microsoft.com/Search.aspx?q=Ethernet%2FRNDIS%20Gadget
 
 ## 初期設定@ラズパイ
-```sudo apt update```
-
-```sudo apt upgrade```
+```
+sudo apt update
+sudo apt upgrade
+```
 
 ## pigpioインストール@ラズパイ
 - 依存関係1 @ コンテナ（pythonのバージョンを合わせるため）
-
-```sudo apt download python3-lib2to3```
-
-```sudo apt download python3-distutils```
+```
+sudo apt download python3-lib2to3
+sudo apt download python3-distutils
+```
 
 - 依存関係2 @ ラズパイ
-
-```sudo dpkg -i python3-lib2to3パッケージ名```
-
-```sudo dpkg -i python3-distutilsパッケージ名```
+```
+sudo dpkg -i python3-lib2to3パッケージ名
+sudo dpkg -i python3-distutilsパッケージ名
+```
 
 
 - packageダウンロード @ホストPC
-
-```wget https://github.com/joan2937/pigpio/archive/master.zip```
+```
+wget https://github.com/joan2937/pigpio/archive/master.zip
+```
 
 - packageコピー @ホストPC to ラズパイ
-
-```scp master.zip pi@192.168.137.xxx```
+```
+scp master.zip pi@192.168.137.xxx
+```
 
 - 展開後make @ラズパイ
-
-```unzip master.zip```
-
-```make install```
+```
+unzip master.zip
+make install
+```
 
 ## zmqインストール@ラズパイ
-```sudo apt install libzmq3-dev```
+```
+sudo apt install libzmq3-dev
+```
+
+## protobufインストール@ラズパイ
+```
+git clone --branch v3.7.1 https://github.com/protocolbuffers/protobuf.git
+cd protobuf
+git submodule update --init --recursive
+./autogen.sh
+./configure
+make
+make install
+```
 
 ## デーモンの登録
 - サービスファイル作成@/etc/systemd/system/raptor.service
@@ -73,4 +89,9 @@ WantedBy=multi-user.target
 
 - 有効化
 
-`sudo systemctl enable raptor.service`
+```
+sudo systemctl enable raptor.service
+```
+
+## コーディングについて
+- クロスコンパイルしている都合で、動的ライブラリ(.so)は設定が大変なので静的ライブラリ(.a)を使用する

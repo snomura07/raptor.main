@@ -3,3 +3,4 @@ build/*
 *.pb.h
 .vscode/*
 bin/*
+lib/*

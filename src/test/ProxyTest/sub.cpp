@@ -7,12 +7,10 @@ int main()
 {
     void *context = zmq_ctx_new();
     void *subscriber = zmq_socket(context, ZMQ_SUB);
+    std::string topic_filter = "important";
+    zmq_setsockopt(subscriber, ZMQ_SUBSCRIBE, topic_filter.c_str(), topic_filter.length());
     zmq_connect(subscriber, "tcp://localhost:5555");
 
-    // トピックを指定してsub
-    const char *topic_filter = "important";
-    zmq_setsockopt(subscriber, ZMQ_SUBSCRIBE, topic_filter, strlen(topic_filter));
-    // zmq_setsockopt(subscriber, ZMQ_SUBSCRIBE, "", 0);
 
     while (true) {
         char buffer[256];

@@ -8,7 +8,7 @@
 int main(int argc, char **argv)
 {
     ZmqWrapper zmq;
-    zmq.registerSession("127.0.0.1", 5555, ZmqWrapper::zmqPatternEnum::REQUEST);
+    zmq.registerSession("127.0.0.1", 5555, ZmqWrapper::zmqPatternEnum::REQUEST, "TEST");
 
     std::string msg = "{1,2,3,4,5,6,7777}";
     for(int i=0; i<10; i++){

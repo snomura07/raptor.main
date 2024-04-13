@@ -12,10 +12,7 @@ int main()
 
     while (true) {
         std::string msg = "";
-        auto res = zmq.pollMessage(msg, 10);
-        if(res < 0){
-            continue;
-        }
+        auto res = zmq.pollMessage(msg, -1);
 
         raptor::protobuf::Person parsedPerson;
         parsedPerson.ParseFromString(msg);

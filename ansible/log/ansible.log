@@ -1,0 +1,60 @@
+2024-04-14 14:29:33,934 p=139588 u=snomura n=ansible | [WARNING]: Unable to parse /home/snomura/workspace/raptor/sandbox/ansible/hosts.yml as an inventory source
+
+2024-04-14 14:29:33,935 p=139588 u=snomura n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2024-04-14 14:29:33,937 p=139588 u=snomura n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2024-04-14 14:30:06,459 p=139783 u=snomura n=ansible | [WARNING]: Unable to parse /home/snomura/workspace/raptor/sandbox/ansible/hosts.yml as an inventory source
+
+2024-04-14 14:30:06,459 p=139783 u=snomura n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2024-04-14 14:30:06,461 p=139783 u=snomura n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2024-04-14 14:30:54,840 p=140129 u=snomura n=ansible | nserver | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: snomura@100.64.1.59: Permission denied (publickey,password).",
+    "unreachable": true
+}
+2024-04-14 14:31:23,706 p=140294 u=snomura n=ansible | pi | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: snomura@100.64.1.59: Permission denied (publickey,password).",
+    "unreachable": true
+}
+2024-04-14 14:31:37,601 p=140378 u=snomura n=ansible | pi | CHANGED | rc=0 >>
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        16G  2.9G   12G  20% /
+devtmpfs         91M     0   91M   0% /dev
+tmpfs           226M     0  226M   0% /dev/shm
+tmpfs            91M  951k   90M   2% /run
+tmpfs           5.3M  4.1k  5.3M   1% /run/lock
+/dev/mmcblk0p1  268M   53M  215M  20% /boot
+tmpfs            46M     0   46M   0% /run/user/1000
+
+2024-04-14 14:33:06,420 p=140961 u=snomura n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: nserver
+
+2024-04-14 14:33:06,421 p=140961 u=snomura n=ansible | PLAY [nserver.] ******************************************************************************************************************************************************
+2024-04-14 14:33:06,421 p=140961 u=snomura n=ansible | skipping: no hosts matched
+2024-04-14 14:33:06,421 p=140961 u=snomura n=ansible | PLAY RECAP ***********************************************************************************************************************************************************
+2024-04-14 14:33:23,326 p=141073 u=snomura n=ansible | PLAY [pi.] ***********************************************************************************************************************************************************
+2024-04-14 14:33:23,332 p=141073 u=snomura n=ansible | TASK [Gathering Facts] ***********************************************************************************************************************************************
+2024-04-14 14:33:34,964 p=141073 u=snomura n=ansible | ok: [pi]
+2024-04-14 14:33:34,987 p=141073 u=snomura n=ansible | TASK [Synchronize bin] ***********************************************************************************************************************************************
+2024-04-14 14:33:36,100 p=141073 u=snomura n=ansible | ok: [pi]
+2024-04-14 14:33:36,111 p=141073 u=snomura n=ansible | PLAY RECAP ***********************************************************************************************************************************************************
+2024-04-14 14:33:36,111 p=141073 u=snomura n=ansible | pi                         : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2024-04-14 14:34:20,208 p=141526 u=snomura n=ansible | PLAY [pi.] ******************************************************************************************************************************
+2024-04-14 14:34:20,213 p=141526 u=snomura n=ansible | TASK [Gathering Facts] ******************************************************************************************************************
+2024-04-14 14:34:30,792 p=141526 u=snomura n=ansible | ok: [pi]
+2024-04-14 14:34:30,816 p=141526 u=snomura n=ansible | TASK [Synchronize bin] ******************************************************************************************************************
+2024-04-14 14:34:31,973 p=141526 u=snomura n=ansible | changed: [pi]
+2024-04-14 14:34:32,004 p=141526 u=snomura n=ansible | PLAY RECAP ******************************************************************************************************************************
+2024-04-14 14:34:32,005 p=141526 u=snomura n=ansible | pi                         : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2024-04-14 14:34:53,902 p=141817 u=snomura n=ansible | PLAY [pi.] ******************************************************************************************************************************
+2024-04-14 14:34:53,908 p=141817 u=snomura n=ansible | TASK [Gathering Facts] ******************************************************************************************************************
+2024-04-14 14:35:04,627 p=141817 u=snomura n=ansible | ok: [pi]
+2024-04-14 14:35:04,637 p=141817 u=snomura n=ansible | TASK [Synchronize bin] ******************************************************************************************************************
+2024-04-14 14:35:05,691 p=141817 u=snomura n=ansible | ok: [pi]
+2024-04-14 14:35:05,699 p=141817 u=snomura n=ansible | TASK [Synchronize lib] ******************************************************************************************************************
+2024-04-14 14:35:06,731 p=141817 u=snomura n=ansible | changed: [pi]
+2024-04-14 14:35:06,753 p=141817 u=snomura n=ansible | PLAY RECAP ******************************************************************************************************************************
+2024-04-14 14:35:06,753 p=141817 u=snomura n=ansible | pi                         : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   

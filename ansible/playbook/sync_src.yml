@@ -1,0 +1,17 @@
+- name: pi.
+  hosts: pi
+
+  tasks:
+    - name: Synchronize bin
+      synchronize:
+        src: /home/snomura/workspace/raptor/sandbox/bin
+        dest: /home/pi/
+        checksum: yes
+        times: no
+
+    - name: Synchronize lib
+      synchronize:
+        src: /home/snomura/workspace/raptor/sandbox/lib
+        dest: /home/pi/
+        checksum: yes
+        times: no

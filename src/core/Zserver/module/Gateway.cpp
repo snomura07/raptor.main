@@ -12,7 +12,5 @@ std::string Gateway::routeRequest(std::string msg)
     std::vector<std::string> segments;
     split(msg, "/", segments);
 
-
-
-
+    auto res = this->router.callMethod(segments);
 }

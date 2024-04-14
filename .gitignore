@@ -4,5 +4,3 @@ build/*
 .vscode/*
 bin/*
 lib/*
-.log
-ansible/inventory/hosts.yml

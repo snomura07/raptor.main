@@ -6,3 +6,4 @@ file(GLOB_RECURSE targets *.proto)
 set(PROTO_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_subdirectory(example)
+add_subdirectory(ZserverMsg)

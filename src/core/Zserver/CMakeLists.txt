@@ -26,6 +26,7 @@ target_link_libraries(
     pthread
     Gpio
     ZmqWrapper
+    protobuf-ZserverMsg
 )
 
 INSTALL(

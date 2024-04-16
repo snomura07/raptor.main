@@ -1,8 +1,11 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <ZmqWrapper/ZmqWrapper.h>
+#include <ZserverMsg/ZserverMsg.pb.h>
 #include "Zserver.h"
 #include "Gateway.h"
+
 
 Zserver::Zserver(int port)
 {
@@ -20,7 +23,12 @@ bool Zserver::run()
     std::string request = "";
     this->zmq.pollMessage(request, -1);
 
-    std::string rmsg = gateway.routeRequest(request);
+    raptor::protobuf::ZserverMsg zserverMsg;
+    zserverMsg.ParseFromString(request);
+    std::string path = zserverMsg.path();
+    std::vector<int> params(zserverMsg.params().begin(), zserverMsg.params().end());
+
+    std::string rmsg = gateway.routeRequest(path, params);
     this->zmq.sendMessage("Accept!");
 
     // if(!request.empty()){

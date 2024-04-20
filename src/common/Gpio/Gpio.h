@@ -14,6 +14,9 @@ public:
     void chModeInput(int pinNo);
     void setHigh(int pinNo);
     void setLow(int pinNo);
+
+private:
+    bool isDevelop;
 };
 
 #endif

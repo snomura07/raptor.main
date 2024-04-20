@@ -1,14 +1,13 @@
-project(Gpio)
+project(UtilsTest)
 
 include_directories(
     ${INCLUDE_DIRS}
     ${CMAKE_SOURCE_DIR}/utils
 )
 
-add_library(
+add_executable(
     ${PROJECT_NAME}
-    STATIC
-    ${PROJECT_NAME}.cpp
+    main.cpp
 )
 
 target_include_directories(
@@ -19,12 +18,10 @@ target_include_directories(
 target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
-    pthread
-    pigpio
 )
 
 INSTALL(
     TARGETS
     ${PROJECT_NAME}
-    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin
 )

@@ -1,14 +1,24 @@
 #include "Gpio.h"
 #include <iostream>
 #include <pigpio.h>
+#include <env.hpp>
 
-Gpio::Gpio(){}
+Gpio::Gpio()
+{
+    this->isDevelop = isDevEnv();
+}
 
 Gpio::~Gpio(){
-    gpioTerminate();
+    if(!this->isDevelop){
+        gpioTerminate();
+    }
 }
 
 int Gpio::init(){
+    if(this->isDevelop){
+        return 0;
+    }
+
     if (gpioInitialise() < 0) {
         std::cerr << "pigpio initialization failed" << std::endl;
         return -1;
@@ -17,17 +27,25 @@ int Gpio::init(){
 }
 
 void Gpio::chModeOutput(int pinNo){
-    gpioSetMode(pinNo, PI_OUTPUT);
+    if(!this->isDevelop){
+        gpioSetMode(pinNo, PI_OUTPUT);
+    }
 }
 
 void Gpio::chModeInput(int pinNo){
-    gpioSetMode(pinNo, PI_INPUT);
+    if(!this->isDevelop){
+        gpioSetMode(pinNo, PI_INPUT);
+    }
 }
 
 void Gpio::setHigh(int pinNo){
-    gpioWrite(pinNo, 1);
+    if(!this->isDevelop){
+        gpioWrite(pinNo, 1);
+    }
 }
 
 void Gpio::setLow(int pinNo){
-    gpioWrite(pinNo, 0);
+    if(!this->isDevelop){
+        gpioWrite(pinNo, 0);
+    }
 }

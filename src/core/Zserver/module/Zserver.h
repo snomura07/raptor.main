@@ -2,6 +2,7 @@
 #define INCLUDED_ZSERVER
 
 #include <string>
+#include <vector>
 #include <ZmqWrapper/ZmqWrapper.h>
 
 class Zserver
@@ -21,7 +22,7 @@ public:
   Zclient(int port);
   ~Zclient();
 
-  std::string run(std::string msg);
+  std::string run(std::string path, std::vector<int> params);
 
   ZmqWrapper zmq;
 };

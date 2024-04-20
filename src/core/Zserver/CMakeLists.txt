@@ -12,16 +12,37 @@ add_executable(
     module/${PROJECT_NAME}.cpp
     module/Gateway.cpp
     module/Router.cpp
+    controller/GpioController.cpp
     runner/${PROJECT_NAME}Runner.cpp
 )
-
 target_include_directories(
     ${PROJECT_NAME}
     PRIVATE
 )
-
 target_link_libraries(
     ${PROJECT_NAME}
+    PRIVATE
+    pthread
+    Gpio
+    ZmqWrapper
+    protobuf-ZserverMsg
+)
+
+#######################################
+add_executable(
+    Zclient
+    module/${PROJECT_NAME}.cpp
+    module/Gateway.cpp
+    module/Router.cpp
+    controller/GpioController.cpp
+    runner/ZclientRunner.cpp
+)
+target_include_directories(
+    Zclient
+    PRIVATE
+)
+target_link_libraries(
+    Zclient
     PRIVATE
     pthread
     Gpio
@@ -32,5 +53,6 @@ target_link_libraries(
 INSTALL(
     TARGETS
     ${PROJECT_NAME}
+    Zclient
     RUNTIME DESTINATION bin
 )

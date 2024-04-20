@@ -28,16 +28,10 @@ bool Zserver::run()
     std::string path = zserverMsg.path();
     std::vector<int> params(zserverMsg.params().begin(), zserverMsg.params().end());
 
+    std::cout << path << " " << params.front() << std::endl;
+
     std::string rmsg = gateway.routeRequest(path, params);
     this->zmq.sendMessage("Accept!");
-
-    // if(!request.empty()){
-    //   std::cout << request << std::endl;
-    //   if(request == "STOP"){
-    //     isRunning = false;
-    //   }
-    //   this->zmq.sendMessage("Accept!");
-    // }
   }
 
   return isRunning;
@@ -51,12 +45,19 @@ Zclient::Zclient(int port)
 
 Zclient::~Zclient(){}
 
-std::string Zclient::run(std::string msg)
+std::string Zclient::run(std::string path, std::vector<int> params)
 {
-  this->zmq.sendMessage(msg);
+  raptor::protobuf::ZserverMsg zserverMsg;
+  zserverMsg.set_path(path);
+  for (int param : params) {
+    zserverMsg.add_params(param);
+  }
+  std::string serializedMsg;
+  zserverMsg.SerializeToString(&serializedMsg);
+  this->zmq.sendMessage(serializedMsg);
 
   std::string rmsg = "";
-  auto res = this->zmq.pollMessage(rmsg, 1000);
+  auto res = this->zmq.pollMessage(rmsg, -1);
   std::cout << "received: " << rmsg << std::endl;
 
   return rmsg;

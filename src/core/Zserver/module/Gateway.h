@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "Router.h"
+#include "../controller/GpioController.h"
 
 class Gateway
 {
@@ -13,6 +14,7 @@ public:
 
 private:
     Router router;
+    GpioController gpioController;
 };
 
 #endif

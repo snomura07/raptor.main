@@ -15,3 +15,16 @@
         dest: /home/pi/
         checksum: yes
         times: no
+
+    - name: Synchronize config
+      synchronize:
+        src: /home/snomura/workspace/raptor/sandbox/config
+        dest: /usr/local/
+        checksum: yes
+        times: no
+
+    - name: Replace environment in env file
+      ansible.builtin.replace:
+        path: /usr/local/config/env
+        regexp: '^ENV=.*$'
+        replace: 'ENV=raspberrypi'

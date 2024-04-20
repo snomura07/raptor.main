@@ -10,6 +10,8 @@ services:
       - ../build:/home/nomura/build
       - ../bin:/home/nomura/bin
       - ../lib:/home/nomura/lib
+      - ../config:/usr/local/config
+
     command: bash
     ports:
       - 5555:5555

@@ -13,22 +13,19 @@ std::string Gateway::routeRequest(std::string path, std::vector<int> params)
     this->router.registRequestPath(path);
     if(router.get("test")){
     }
-    else if(router.get("gpio/chmode/input")){
-        if(params.size()<1)
-            return "";
-
+    else if(router.get("gpio/chmode/input", params, true)){
         int pinNo = params.front();
         this->gpioController.chModeInput(pinNo);
     }
-    else if(router.get("gpio/chmode/output")){
+    else if(router.get("gpio/chmode/output", params, true)){
         int pinNo = params.front();
         this->gpioController.chModeOutput(pinNo);
     }
-    else if(router.get("gpio/setio/high")){
+    else if(router.get("gpio/setio/high", params, true)){
         int pinNo = params.front();
         this->gpioController.setHigh(pinNo);
     }
-    else if(router.get("gpio/setio/low")){
+    else if(router.get("gpio/setio/low", params, true)){
         int pinNo = params.front();
         this->gpioController.setLow(pinNo);
     }

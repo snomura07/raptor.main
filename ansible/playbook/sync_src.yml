@@ -1,5 +1,6 @@
 - name: pi.
   hosts: pi
+  become: yes
 
   tasks:
     - name: Synchronize bin
@@ -15,6 +16,7 @@
         dest: /home/pi/
         checksum: yes
         times: no
+      become: yes
 
     - name: Synchronize config
       synchronize:
@@ -22,9 +24,11 @@
         dest: /usr/local/
         checksum: yes
         times: no
+      become: yes
 
     - name: Replace environment in env file
       ansible.builtin.replace:
         path: /usr/local/config/env
         regexp: '^ENV=.*$'
         replace: 'ENV=raspberrypi'
+      become: yes

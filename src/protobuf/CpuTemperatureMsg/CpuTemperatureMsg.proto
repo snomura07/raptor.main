@@ -1,0 +1,9 @@
+// example.proto
+syntax = "proto3";
+
+package raptor.protobuf;
+
+message CpuTemperatureMsg {
+  string viewName1 = 1;
+  int32 cpuTemperature = 2;
+}

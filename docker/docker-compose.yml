@@ -11,6 +11,7 @@ services:
       - ../bin:/home/nomura/bin
       - ../lib:/home/nomura/lib
       - ../config:/usr/local/config
+      - ../resource/thermal_zone0:/home/nomura/thermal_zone0
 
     command: bash
     ports:

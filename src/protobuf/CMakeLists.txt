@@ -7,3 +7,4 @@ set(PROTO_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_subdirectory(example)
 add_subdirectory(ZserverMsg)
+add_subdirectory(CpuTemperatureMsg)

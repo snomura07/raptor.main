@@ -1,4 +1,4 @@
-
+# find_package(Protobuf REQUIRED)
 
 include_directories(
 	${PROTO_DIR}
@@ -8,7 +8,7 @@ link_directories(
     ${PROTO_DIR}
 )
 
-set(target ${PROTO_DIR}/ZserverMsg/ZserverMsg.proto)
+set(target ${PROTO_DIR}/CpuTemperatureMsg/CpuTemperatureMsg.proto)
 
 
 get_filename_component(base_name ${target} NAME_WE)
@@ -20,6 +20,7 @@ add_custom_command(
     COMMENT "Generating ${base_name}.pb.cc, ${base_name}.pb.h from ${base_name}.proto"
     VERBATIM
 )
+
 
 add_library(
     protobuf-${base_name}

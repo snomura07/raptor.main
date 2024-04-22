@@ -10,8 +10,10 @@ services:
       - ../build:/home/nomura/build
       - ../bin:/home/nomura/bin
       - ../lib:/home/nomura/lib
+      - ../script:/home/nomura/script
       - ../config:/usr/local/config
       - ../resource/thermal_zone0:/home/nomura/thermal_zone0
+      - ../resource/msgs:/var/opt/msgs
 
     command: bash
     ports:

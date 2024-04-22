@@ -15,8 +15,9 @@ set(INCLUDE_DIRS /usr/local/include/)
 
 # install prefix
 set(CMAKE_INSTALL_PREFIX ../)
-set(PROTC_INSTALL_PREFIX src/protobuf/)
 
+# script path
+set(SCRIPT_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../script/)
 
 # add_subdirectory(utils)
 add_subdirectory(core)

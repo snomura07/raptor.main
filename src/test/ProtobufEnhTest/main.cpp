@@ -44,6 +44,18 @@ int main()
             std::cout << "cpuTemperature field not found" << std::endl;
         }
 
+
+        // const google::protobuf::FieldDescriptor* cpuutilization_field_descriptor = descriptor->FindFieldByName("cpuutilization");
+        // if (cpuutilization_field_descriptor) {
+        //     int size = reflection->FieldSize(cpu_temperature_msg, cpuutilization_field_descriptor);
+        //     std::cout << "cpuutilization values:" << std::endl;
+        //     for (int i = 0; i < size; ++i) {
+        //         int32_t value = reflection->GetRepeatedInt32(cpu_temperature_msg, cpuutilization_field_descriptor, i);
+        //         std::cout << "- " << value << std::endl;
+        //     }
+        // } else {
+        //     std::cout << "cpuutilization field not found" << std::endl;
+        // }
     }
 
     return 0;

@@ -37,6 +37,27 @@ void ZmqWrapper::registerSession(std::string ip, int port, zmqPatternEnum patter
         zmq_connect(this->socket, address.c_str());
     }
 }
+void ZmqWrapper::registerSession(std::string ip, int port, zmqPatternEnum pattern, std::string topic, const CallbackFunction& callback)
+{
+    std::string address = "tcp://" + ip + ":" + std::to_string(port);
+
+    this->context            = zmq_ctx_new();
+    this->socket             = zmq_socket (this->context, pattern);
+    this->topic              = topic;
+    this->callbackMap[topic] = callback;
+
+    if(pattern == SUBSCRIBE){
+        zmq_setsockopt(this->socket, ZMQ_SUBSCRIBE, topic.c_str(), topic.length());
+    }
+
+    if(ip == "*"){
+        zmq_bind (this->socket, address.c_str());
+    }
+    else{
+        zmq_connect(this->socket, address.c_str());
+    }
+}
+
 
 int ZmqWrapper::pollMessage(std::string &msg, int timeout)
 {
@@ -65,6 +86,12 @@ int ZmqWrapper::pollMessage(std::string &msg, int timeout)
         std::string topic = data.substr(0, data.find('$'));
         std::string message_content = data.substr(data.find('$') + 1);
         msg = message_content;
+
+        if (auto it = callbackMap.find(topic); it != callbackMap.end()) {
+            it->second(msg, topic);
+        } else {
+            //Callback function not found for topic
+        }
     }
 
     return 0;

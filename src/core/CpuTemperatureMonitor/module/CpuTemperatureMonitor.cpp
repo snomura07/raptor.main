@@ -8,6 +8,13 @@
 
 CpuTemperatureMonitor::CpuTemperatureMonitor()
 {
+    // base用の設定
+    this->modName  = "CpuTemperatureMonitor";
+    this->commPort = 5590;
+    this->runKeepAliveServer();
+
+
+    // 開発環境では仮の温度ファイルを読み込む
     if(isDevEnv()){
         this->tempFilePath = "/home/nomura/thermal_zone0/temp";
     }

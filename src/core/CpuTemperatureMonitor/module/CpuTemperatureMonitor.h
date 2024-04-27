@@ -1,6 +1,7 @@
 #include <string>
+#include <RaptorBase/RaptorBase.h>
 
-class CpuTemperatureMonitor{
+class CpuTemperatureMonitor : public RaptorBase{
 public:
     CpuTemperatureMonitor();
     ~CpuTemperatureMonitor();

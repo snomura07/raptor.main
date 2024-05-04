@@ -1,0 +1,5 @@
+{
+    "modName" : "",
+    "healthCheckPort" : 5590,
+    "publishTopic":"CPUTEMPERATURE"    
+}

@@ -1,0 +1,9 @@
+// example.proto
+syntax = "proto3";
+
+package raptor.protobuf;
+
+message CounterMsg {
+  string viewName1 = 1;
+  int32 counter = 2;
+}

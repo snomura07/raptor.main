@@ -1,5 +1,5 @@
 {
-    "modName" : "",
+    "modName" : "CpuTemperatureMonitor",
     "healthCheckPort" : 5590,
     "publishTopic":"CPUTEMPERATURE"    
 }

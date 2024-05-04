@@ -1,0 +1,5 @@
+{
+    "modName" : "Counter",
+    "healthCheckPort" : 5591,
+    "publishTopic":"COUNTER"
+}

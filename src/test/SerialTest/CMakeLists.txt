@@ -1,4 +1,4 @@
-project(GpioTest)
+project(SerialTest)
 
 include_directories(
     ${INCLUDE_DIRS}
@@ -18,7 +18,7 @@ target_include_directories(
 target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
-    Gpio
+    pigpio
 )
 
 INSTALL(

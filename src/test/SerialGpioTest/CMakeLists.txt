@@ -1,0 +1,47 @@
+project(SerialGpioTest)
+
+include_directories(
+    ${INCLUDE_DIRS}
+    ${CMAKE_SOURCE_DIR}/common
+    ${CMAKE_SOURCE_DIR}/utils
+)
+
+add_executable(
+    ${PROJECT_NAME}Write
+    write.cpp
+)
+
+target_include_directories(
+    ${PROJECT_NAME}Write
+    PRIVATE
+)
+
+target_link_libraries(
+    ${PROJECT_NAME}Write
+    PRIVATE
+    Gpio
+)
+
+#############################
+add_executable(
+    ${PROJECT_NAME}Read
+    read.cpp
+)
+
+target_include_directories(
+    ${PROJECT_NAME}Read
+    PRIVATE
+)
+
+target_link_libraries(
+    ${PROJECT_NAME}Read
+    PRIVATE
+    Gpio
+)
+
+INSTALL(
+    TARGETS
+    ${PROJECT_NAME}Write
+    ${PROJECT_NAME}Read
+    RUNTIME DESTINATION bin/test
+)

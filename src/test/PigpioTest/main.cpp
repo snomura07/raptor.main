@@ -9,11 +9,11 @@ int main() {
         return 1;
     }
 
-    // GPIO 14ピンを出力モードに設定する
-    gpioSetMode(14, PI_OUTPUT);
+    // GPIO 17ピンを出力モードに設定する
+    gpioSetMode(17, PI_OUTPUT);
 
-    // GPIO 14ピンをOFFにする
-    gpioWrite(14, 0);
+    // GPIO 17ピンをOFFにする
+    gpioWrite(17, 0);
 
     // 1秒待つ
     usleep(1000000);

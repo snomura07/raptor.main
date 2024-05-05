@@ -1,6 +1,6 @@
-#include <pigpio.h>
 #include <iostream>
 #include <Gpio/Gpio.h>
+#include <msleep.hpp>
 
 int main() {
     Gpio gpio;
@@ -9,8 +9,13 @@ int main() {
         return 0;
     }
 
-    gpio.chModeOutput(17);
-    gpio.setHigh(17);
+    if(gpio.openSerialDevice(38400) < 0){
+        std::cout << "Serial open error!" << std::endl;
+        return 0;
+    }
+
+    gpio.serialRead();
+
 
     return 0;
 }

@@ -1,5 +1,6 @@
 #include <string>
 #include <RaptorBase/RaptorBase.h>
+#include <Gpio/Gpio.h>
 
 class Stm32Linker{
 public:
@@ -8,5 +9,5 @@ public:
     bool run();
 
 private:
-
+    Gpio gpio;
 };

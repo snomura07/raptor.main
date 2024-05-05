@@ -93,5 +93,23 @@ WantedBy=multi-user.target
 sudo systemctl enable raptor.service
 ```
 
+## シリアル通信の有効化
+- raspi-configの設定
+```
+sudo raspi-config
+ > 3 Interface Options
+ > I6 Serial Port
+ > yesを押下後に再起動
+ls -l /dev/serial*
+```
+- udevに権限付与
+```
+nano .bashrc
+ > sudo chmod 666 /dev/ttyS0
+source .bashrc
+```
+
+
+
 ## コーディングについて
 - クロスコンパイルしている都合で、動的ライブラリ(.so)は設定が大変なので静的ライブラリ(.a)を使用する

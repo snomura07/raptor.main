@@ -3,6 +3,7 @@ project(SerialTest)
 include_directories(
     ${INCLUDE_DIRS}
     ${CMAKE_SOURCE_DIR}/common
+    ${CMAKE_SOURCE_DIR}/utils
 )
 
 add_executable(

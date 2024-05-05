@@ -109,6 +109,20 @@ nano .bashrc
 source .bashrc
 ```
 
+- 不要なデーモンを上書き
+```
+sudo mkdir /etc/systemd/system/serial-getty@ttyS0.service.d
+cd /etc/systemd/system/serial-getty@ttyS0.service.d
+sudo nano override.conf
+
+    [Service]
+    ExecStart=
+    ExecStart=-/sbin/agetty --keep-baud 115200,38400,9600 %I $TERM
+
+sudo systemctl daemon-reload
+sudo systemctl stop serial-getty@ttyS0.service
+sudo systemctl disable serial-getty@ttyS0.service
+```
 
 
 ## コーディングについて

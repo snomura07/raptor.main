@@ -8,11 +8,12 @@
 
 CpuTemperatureMonitor::CpuTemperatureMonitor()
 {
-    // base用の設定
-    this->modName  = "CpuTemperatureMonitor";
-    this->commPort = 5590;
-    this->runKeepAliveServer();
+    this->config.read();
 
+    // base用の設定
+    this->modName  = this->config.modName;
+    this->commPort = this->config.healthCheckcPort;
+    this->runKeepAliveServer();
 
     // 開発環境では仮の温度ファイルを読み込む
     if(isDevEnv()){
@@ -29,7 +30,7 @@ bool CpuTemperatureMonitor::run()
 {
     bool isRunning = true;
     ZmqWrapper zmq;
-    zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, "CPUTEMPERATURE");
+    zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, this->config.publishTopic);
 
     while(isRunning){
         double cpuTemperature = this->getTemperature();

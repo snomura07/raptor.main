@@ -1,4 +1,4 @@
-project(CpuTemperatureMonitor)
+project(Counter)
 
 include_directories(
     ${INCLUDE_DIRS}
@@ -24,9 +24,8 @@ target_link_libraries(
     pthread
     RaptorBase
     ZmqWrapper
-    protobuf-CpuTemperatureMsg
+    protobuf-CounterMsg
 )
-
 
 INSTALL(
     TARGETS

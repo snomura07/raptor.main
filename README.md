@@ -124,6 +124,11 @@ sudo systemctl stop serial-getty@ttyS0.service
 sudo systemctl disable serial-getty@ttyS0.service
 ```
 
+## openCVのインストール
+```
+sudo apt update
+sudo apt install libopencv-dev
+```
 
 ## コーディングについて
 - クロスコンパイルしている都合で、動的ライブラリ(.so)は設定が大変なので静的ライブラリ(.a)を使用する

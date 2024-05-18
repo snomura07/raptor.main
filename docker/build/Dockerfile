@@ -19,7 +19,8 @@ RUN apt install -y  \
     autoconf \
     automake \
     pkg-config \
-    qemu-user-binfmt
+    qemu-user-binfmt \
+    libopencv-dev
 
 # install pigio for GPIO
 WORKDIR /package

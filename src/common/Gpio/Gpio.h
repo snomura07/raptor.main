@@ -19,9 +19,9 @@ public:
     void setLow(int pinNo);
 
     int openSerialDevice(int baudRate);
-    void serialRead();
+    int serialRead(char *bytes, int readSize);
     int serialRead1Byte(char &data);
-    void serialWrite(std::string msg);
+    void serialWrite(char *bytes, int size);
 
 private:
     bool isDevelop;

@@ -69,20 +69,8 @@ int Gpio::openSerialDevice(int baudRate){
     return 1;
 }
 
-void Gpio::serialRead(){
-    while (true) {
-        // char data;
-        // int result = serRead(this->serialHandle, &data, 1);
-        char data = 0;
-        int res   = this->serialRead1Byte(data);
-        if(data == 0xAA){
-            std::cout << "find start bit!" << std::endl;
-        }
-        if(data == 0x55){
-            std::cout << "find end bit!" << std::endl;
-        }
-        std::cout << "res:" << res << " " << data << std::endl;
-    }
+int Gpio::serialRead(char *bytes, int readSize){
+    return serRead(this->serialHandle, bytes, readSize);
 }
 
 int Gpio::serialRead1Byte(char &data){
@@ -91,6 +79,6 @@ int Gpio::serialRead1Byte(char &data){
 }
 
 
-void Gpio::serialWrite(std::string msg){
-    serWrite(this->serialHandle, const_cast<char*>(msg.c_str()), msg.length());
+void Gpio::serialWrite(char *bytes, int size){
+    serWrite(this->serialHandle, bytes, size);
 }

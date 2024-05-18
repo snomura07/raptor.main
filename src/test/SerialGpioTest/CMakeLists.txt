@@ -39,9 +39,27 @@ target_link_libraries(
     Gpio
 )
 
+#############################
+add_executable(
+    ${PROJECT_NAME}ReadWrite
+    readwrite.cpp
+)
+
+target_include_directories(
+    ${PROJECT_NAME}ReadWrite
+    PRIVATE
+)
+
+target_link_libraries(
+    ${PROJECT_NAME}ReadWrite
+    PRIVATE
+    Gpio
+)
+
 INSTALL(
     TARGETS
     ${PROJECT_NAME}Write
     ${PROJECT_NAME}Read
+    ${PROJECT_NAME}ReadWrite
     RUNTIME DESTINATION bin/test
 )

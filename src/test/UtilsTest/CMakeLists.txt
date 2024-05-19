@@ -3,6 +3,7 @@ project(UtilsTest)
 include_directories(
     ${INCLUDE_DIRS}
     ${CMAKE_SOURCE_DIR}/utils
+    ${CMAKE_SOURCE_DIR}/common
 )
 
 add_executable(
@@ -18,6 +19,7 @@ target_include_directories(
 target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
+    Env
 )
 
 INSTALL(

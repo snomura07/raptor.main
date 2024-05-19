@@ -2,6 +2,7 @@ project(CpuTemperatureMonitor)
 
 include_directories(
     ${INCLUDE_DIRS}
+    ${CMAKE_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/protobuf
     ${CMAKE_SOURCE_DIR}/common
     ${CMAKE_SOURCE_DIR}/utils
@@ -22,6 +23,7 @@ target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
     pthread
+    Env
     RaptorBase
     ZmqWrapper
     protobuf-CpuTemperatureMsg

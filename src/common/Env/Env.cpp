@@ -1,8 +1,4 @@
-#ifndef INCLUDE_ENV
-#define INCLUDE_ENV
-
-#include <fstream>
-#include <string>
+#include "Env.h"
 
 bool isDevEnv()
 {
@@ -21,5 +17,3 @@ bool isDevEnv()
 
     return false;
 }
-
-#endif

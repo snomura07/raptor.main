@@ -12,6 +12,8 @@ add_executable(
     ${PROJECT_NAME}
     config/AppConfig.cpp
     module/${PROJECT_NAME}.cpp
+    module/ReadData.cpp
+    module/SendData.cpp
     runner/${PROJECT_NAME}Runner.cpp
 )
 target_include_directories(
@@ -37,4 +39,3 @@ INSTALL(
     FILES ${CMAKE_CURRENT_SOURCE_DIR}/config/${PROJECT_NAME}.json
     DESTINATION /usr/local/config
 )
-

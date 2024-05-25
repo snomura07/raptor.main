@@ -1,0 +1,5 @@
+{
+    "modName" : "Stm32Linker",
+    "healthCheckPort" : 5592,
+    "publishTopic":"STM32DATA"
+}

@@ -2,6 +2,8 @@
 #include <RaptorBase/RaptorBase.h>
 #include <Gpio/Gpio.h>
 #include "../config/AppConfig.h"
+#include "SendData.h"
+#include "ReadData.h"
 
 class Stm32Linker : public RaptorBase{
 public:
@@ -13,4 +15,7 @@ public:
 private:
     Gpio gpio;
     AppConfig config;
+    SendData sendData;
+    ReadData readData;
+
 };

@@ -70,7 +70,9 @@ int Gpio::openSerialDevice(int baudRate){
 }
 
 int Gpio::serialRead(char *bytes, int readSize){
-    return serRead(this->serialHandle, bytes, readSize);
+    if(!this->isDevelop){
+        return serRead(this->serialHandle, bytes, readSize);
+    }
 }
 
 int Gpio::serialRead1Byte(char &data){
@@ -80,5 +82,7 @@ int Gpio::serialRead1Byte(char &data){
 
 
 void Gpio::serialWrite(char *bytes, int size){
-    serWrite(this->serialHandle, bytes, size);
+    if(!this->isDevelop){
+        serWrite(this->serialHandle, bytes, size);
+    }
 }

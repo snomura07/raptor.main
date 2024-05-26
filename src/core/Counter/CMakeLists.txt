@@ -37,3 +37,7 @@ INSTALL(
     FILES ${CMAKE_CURRENT_SOURCE_DIR}/config/${PROJECT_NAME}.json
     DESTINATION /usr/local/config
 )
+
+execute_process(
+    COMMAND sh -c "echo /usr/local/config/${PROJECT_NAME}.json >> ${CONF_SUMMARY}"
+)

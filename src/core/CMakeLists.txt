@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 3.0)
 
+set(CONF_SUMMARY /usr/local/config/ConfSummary)
+if(EXISTS ${CONF_SUMMARY})
+    file(REMOVE ${CONF_SUMMARY})
+endif()
+file(WRITE ${CONF_SUMMARY} "")
+
 add_subdirectory(ProxyServer)
 add_subdirectory(Zserver)
 add_subdirectory(CpuTemperatureMonitor)

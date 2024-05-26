@@ -14,6 +14,7 @@ Counter::Counter():
     this->modName  = this->config.modName;
     this->commPort = this->config.healthCheckcPort;
     this->runKeepAliveServer();
+    this->showActivatedSign();
 }
 
 Counter::~Counter(){}

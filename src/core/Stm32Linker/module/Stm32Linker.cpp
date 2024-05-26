@@ -9,7 +9,9 @@ Stm32Linker::Stm32Linker()
     // base用の設定
     modName  = config.modName;
     commPort = config.healthCheckcPort;
-    // runKeepAliveServer();
+    runKeepAliveServer();
+
+    showActivatedSign();
 }
 
 Stm32Linker::~Stm32Linker(){}

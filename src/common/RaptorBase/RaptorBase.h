@@ -13,6 +13,7 @@ public:
     RaptorBase();
     ~RaptorBase();
     bool runKeepAliveServer();
+    void showActivatedSign();
 
 private:
     ZmqWrapper zmq;

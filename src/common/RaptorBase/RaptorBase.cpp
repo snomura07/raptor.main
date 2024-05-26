@@ -1,3 +1,4 @@
+#include <iostream>
 #include <thread>
 #include <string>
 #include "RaptorBase.h"
@@ -22,6 +23,11 @@ bool RaptorBase::runKeepAliveServer()
         }
     });
 
-    th.join();
+    th.detach();
     return true;
+}
+
+void RaptorBase::showActivatedSign()
+{
+    std::cout << "[@] " << modName << " start!" << std::endl;
 }

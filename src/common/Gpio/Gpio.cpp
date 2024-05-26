@@ -60,6 +60,10 @@ void Gpio::setLow(int pinNo){
 }
 
 int Gpio::openSerialDevice(int baudRate){
+    if(this->isDevelop){
+        return 0;
+    }
+
     this->serialHandle = serOpen(UDEV, baudRate, 0);
     if (this->serialHandle < 0) {
         std::cerr << "Unable to open serial device" << std::endl;

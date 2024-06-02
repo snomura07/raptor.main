@@ -5,7 +5,7 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update
-RUN apt install -y  \
+RUN apt install -y --fix-missing \
     cmake \
     git \
     wget \
@@ -19,8 +19,7 @@ RUN apt install -y  \
     autoconf \
     automake \
     pkg-config \
-    qemu-user-binfmt \
-    libopencv-dev
+    qemu-user-binfmt
 
 # install pigio for GPIO
 WORKDIR /package
@@ -56,6 +55,21 @@ RUN cd /tmp/protobuf && \
     make && \
     make install
 
+# opencv
+# 静的ライブラリとしてビルド
+RUN wget https://github.com/opencv/opencv/archive/4.2.0.zip -O /tmp/opencv.zip && \
+    unzip /tmp/opencv.zip -d /tmp && \
+    mv /tmp/opencv-4.2.0 /tmp/opencv && \
+    cd /tmp/opencv && \
+    mkdir build && \
+    cd build && \
+    cmake -D CMAKE_BUILD_TYPE=Release \
+          -D CMAKE_TOOLCHAIN_FILE=../platforms/linux/arm-gnueabi.toolchain.cmake \
+          -D CMAKE_INSTALL_PREFIX=/usr/local \
+          -DBUILD_SHARED_LIBS=OFF \
+          .. && \
+    make -j$(nproc) && \
+    make install
 
 # ライブラリパスの設定
 RUN ldconfig

@@ -1,0 +1,5 @@
+{
+    "modName" : "CameraCapture",
+    "healthCheckPort" : 5593,
+    "publishTopic":"CAMERACAPUTURE"
+}

@@ -17,6 +17,11 @@ dtoverlay=dwc2 <---追加
 - OTGdriverをインストール
     - https://www.catalog.update.microsoft.com/Search.aspx?q=Ethernet%2FRNDIS%20Gadget
 
+- ssh
+```
+ssh pi@raspberrypi.local
+```
+
 ## 初期設定@ラズパイ
 ```
 sudo apt update

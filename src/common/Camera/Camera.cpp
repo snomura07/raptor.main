@@ -7,16 +7,36 @@
 
 Camera::Camera()
 {
-    this->isDevelop = isDevEnv();
-
-    cv::VideoCapture cap(0); // Open the default camera
-    if (!cap.isOpened()) {
-        std::cerr << "Failed to open camera" << std::endl;
-        // Handle error
-    }
+    isDevelop = isDevEnv();
 }
-
 
 Camera::~Camera()
 {
+    cap.release();
+    cv::destroyAllWindows();
+}
+
+int Camera::init()
+{
+    if (isDevelop) {
+        return 0;
+    }
+
+    cap.open(0);
+    if (!cap.isOpened()) {
+        std::cerr << "Failed to open camera" << std::endl;
+        return -1;
+    }
+
+    return 0;
+}
+
+void Camera::capture()
+{
+    cap >> frame;
+}
+
+void Camera::save(const std::string& filename)
+{
+    cv::imwrite(filename, frame);
 }

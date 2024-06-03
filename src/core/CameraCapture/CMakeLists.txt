@@ -1,4 +1,5 @@
 project(CameraCapture)
+find_package(OpenCV REQUIRED)
 
 include_directories(
     ${INCLUDE_DIRS}
@@ -17,6 +18,7 @@ add_executable(
 target_include_directories(
     ${PROJECT_NAME}
     PRIVATE
+    ${OpenCV_INCLUDE_DIRS}
 )
 target_link_libraries(
     ${PROJECT_NAME}
@@ -24,6 +26,7 @@ target_link_libraries(
     pthread
     RaptorBase
     ZmqWrapper
+    ${OpenCV_LIBS}
     Camera
     # protobuf-CounterMsg
 )

@@ -2,6 +2,7 @@
 #define INCLUDED_RAPTORBASE
 
 #include <string>
+#include <thread>
 #include <ZmqWrapper/ZmqWrapper.h>
 
 class RaptorBase {
@@ -17,6 +18,7 @@ public:
 
 private:
     ZmqWrapper zmq;
+    std::thread th;
 };
 
 #endif

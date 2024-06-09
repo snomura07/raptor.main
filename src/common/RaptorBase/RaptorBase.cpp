@@ -6,7 +6,13 @@
 RaptorBase::RaptorBase():
     modName(""),
     commPort(0){}
-RaptorBase::~RaptorBase(){}
+    
+RaptorBase::~RaptorBase()
+{
+    if(th.joinable()){
+        th.join();
+    }
+}
 
 bool RaptorBase::runKeepAliveServer()
 {
@@ -15,7 +21,7 @@ bool RaptorBase::runKeepAliveServer()
     }
 
     zmq.registerSession("*", this->commPort, ZmqWrapper::zmqPatternEnum::REPLY, "HELTHCHECK");
-    std::thread th([&]() {
+    th = std::thread([&]() {
         while (true) {
             std::string msg = "";
             auto res = zmq.pollMessage(msg, -1);
@@ -23,7 +29,6 @@ bool RaptorBase::runKeepAliveServer()
         }
     });
 
-    th.detach();
     return true;
 }
 

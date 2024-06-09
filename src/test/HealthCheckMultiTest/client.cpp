@@ -50,10 +50,10 @@ int main(int argc, char **argv)
                 std::cout << " isDead!!!!!!!!!!!!!!! " << std::endl;
             }
             else{
-                // std::cout << " alive!! " << std::endl;
+                std::cout << " alive!! " << std::endl;
             }
-            std::this_thread::sleep_for(std::chrono::seconds(1));
         }
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
     return 0;
 }

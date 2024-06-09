@@ -19,14 +19,7 @@ RUN apt install -y --fix-missing \
     autoconf \
     automake \
     pkg-config \
-    qemu-user-binfmt \
-    gstreamer1.0-tools \
-    gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-good \
-    gstreamer1.0-plugins-bad \
-    gstreamer1.0-plugins-ugly \
-    libgstreamer1.0-dev \
-    libgstreamer-plugins-base1.0-dev
+    qemu-user-binfmt
 
     # install pigio for GPIO
 WORKDIR /package
@@ -74,7 +67,6 @@ RUN wget https://github.com/opencv/opencv/archive/4.2.0.zip -O /tmp/opencv.zip &
           -D CMAKE_TOOLCHAIN_FILE=../platforms/linux/arm-gnueabi.toolchain.cmake \
           -D CMAKE_INSTALL_PREFIX=/usr/local \
           -DBUILD_SHARED_LIBS=OFF \
-          -DWITH_GSTREAMER=ON \
           .. && \
     make -j$(nproc) && \
     make install

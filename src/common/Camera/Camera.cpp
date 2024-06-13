@@ -19,6 +19,11 @@ Camera::~Camera()
 int Camera::init()
 {
     if (isDevelop) {
+        frame = cv::imread("/home/nomura/image/test.png");
+        if (frame.empty()) {
+            std::cerr << "Failed to load image" << std::endl;
+            return -1;
+        }
         return 0;
     }
 
@@ -33,10 +38,23 @@ int Camera::init()
 
 void Camera::capture()
 {
-    cap >> frame;
+    if (!isDevelop) {
+        cap >> frame;
+    }
 }
 
 void Camera::save(const std::string& filename)
 {
     cv::imwrite(filename, frame);
+}
+
+std::string Camera::encode()
+{
+    int width   = frame.cols;
+    int height  = frame.rows;
+    int channel = frame.channels();
+    int size    = width * height * channel;
+    std::string data_str(reinterpret_cast<char const*>(frame.data), size);
+
+    return data_str;
 }

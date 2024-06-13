@@ -3,7 +3,7 @@
 #include "CameraCapture.h"
 #include <ZmqWrapper/ZmqWrapper.h>
 #include <Camera/Camera.h>
-// #include <CounterMsg/CounterMsg.pb.h>
+#include <CamMsg/CamMsg.pb.h>
 #include <msleep.hpp>
 
 CameraCapture::CameraCapture()
@@ -26,8 +26,16 @@ bool CameraCapture::run()
     zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, this->config.publishTopic);
 
     Camera camera;
-
     while(isRunning){
+        camera.capture();
+        camera.encode();
+        raptor::protobuf::CamMsg camMsg;
+        // cameraMsg.set_viewname1("CameraCapture");
+        // cameraMsg.set_image(camera.encode());
+
+        // std::string sMsg;
+        // cameraMsg.SerializeToString(&sMsg);
+        // zmq.sendMessage(sMsg);
 
         msleep(1000);
     }

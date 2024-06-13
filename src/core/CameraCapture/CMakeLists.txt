@@ -28,7 +28,7 @@ target_link_libraries(
     ZmqWrapper
     ${OpenCV_LIBS}
     Camera
-    # protobuf-CounterMsg
+    protobuf-CamMsg
 )
 
 INSTALL(

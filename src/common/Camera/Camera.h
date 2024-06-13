@@ -5,16 +5,21 @@
 class Camera
 {
 public:
+    using mat = cv::Mat;
+    using vc  = cv::VideoCapture;
+
+public:
     Camera();
     ~Camera();
     int init();
     void capture();
     void save(const std::string& filename);
+    std::string encode();
 
 private:
     bool isDevelop;
-    cv::VideoCapture cap;
-    cv::Mat frame;
+    vc  cap;
+    mat frame;
 };
 
 #endif

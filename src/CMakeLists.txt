@@ -10,6 +10,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Opencv
+set(OpenCV_DIR /usr/arm-linux-gnueabi/share/OpenCV)
+
 # include dirs
 set(INCLUDE_DIRS /usr/local/include/)
 
@@ -19,7 +22,6 @@ set(CMAKE_INSTALL_PREFIX ../)
 # script path
 set(SCRIPT_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../script/)
 
-# add_subdirectory(utils)
 add_subdirectory(core)
 add_subdirectory(common)
 add_subdirectory(protobuf)

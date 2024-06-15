@@ -65,7 +65,7 @@ sudo apt install libzmq3-dev
 
 ## protobufインストール@ラズパイ
 ```
-git clone --branch v3.7.1 https://github.com/protocolbuffers/protobuf.git
+git clone --branch v3.5.1 https://github.com/protocolbuffers/protobuf.git
 cd protobuf
 git submodule update --init --recursive
 ./autogen.sh

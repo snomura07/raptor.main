@@ -1,4 +1,4 @@
-# find_package(Protobuf REQUIRED)
+find_package(Protobuf 3.5.1 REQUIRED)
 
 include_directories(
 	${PROTO_DIR}

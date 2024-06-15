@@ -5,14 +5,14 @@
   tasks:
     - name: Synchronize bin
       synchronize:
-        src: /home/snomura/workspace/raptor/sandbox/bin
+        src: /home/snomura/workspace/raptor/raptor.main/bin
         dest: /home/pi/
         checksum: yes
         times: no
 
     - name: Synchronize lib
       synchronize:
-        src: /home/snomura/workspace/raptor/sandbox/lib
+        src: /home/snomura/workspace/raptor/raptor.main/lib
         dest: /home/pi/
         checksum: yes
         times: no
@@ -20,7 +20,7 @@
 
     - name: Synchronize config
       synchronize:
-        src: /home/snomura/workspace/raptor/sandbox/config
+        src: /home/snomura/workspace/raptor/raptor.main/config
         dest: /usr/local/
         checksum: yes
         times: no

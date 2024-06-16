@@ -58,22 +58,6 @@ unzip master.zip
 make install
 ```
 
-## zmqインストール@ラズパイ
-```
-sudo apt install libzmq3-dev
-```
-
-## protobufインストール@ラズパイ
-```
-git clone --branch v3.5.1 https://github.com/protocolbuffers/protobuf.git
-cd protobuf
-git submodule update --init --recursive
-./autogen.sh
-./configure
-make
-make install
-```
-
 ## デーモンの登録
 - サービスファイル作成@/etc/systemd/system/raptor.service
 
@@ -129,11 +113,27 @@ sudo systemctl stop serial-getty@ttyS0.service
 sudo systemctl disable serial-getty@ttyS0.service
 ```
 
+## コーディングについて
+- クロスコンパイルしている都合で、動的ライブラリ(.so)は設定が大変なので静的ライブラリ(.a)を使用する
+
 ## openCVのインストール
 ```
 sudo apt update
 sudo apt install libopencv-dev
 ```
 
-## コーディングについて
-- クロスコンパイルしている都合で、動的ライブラリ(.so)は設定が大変なので静的ライブラリ(.a)を使用する
+## zmqインストール@ラズパイ
+```
+sudo apt install libzmq3-dev
+```
+
+## protobufインストール@ラズパイ
+```
+git clone --branch v3.5.1 https://github.com/protocolbuffers/protobuf.git
+cd protobuf
+git submodule update --init --recursive
+./autogen.sh
+./configure
+make
+make install
+```

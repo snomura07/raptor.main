@@ -19,7 +19,8 @@ RUN apt install -y --fix-missing \
     autoconf \
     automake \
     pkg-config \
-    qemu-user-binfmt
+    qemu-user-binfmt \
+    libgtk2.0-dev
 
 # ホスト用Protobuf v3.5.1のインストール
 WORKDIR /tmp

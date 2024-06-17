@@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Opencv
-set(OpenCV_DIR /usr/arm-linux-gnueabi/share/OpenCV)
+set(OpenCV_DIR /usr/arm-linux-gnueabi/lib/cmake/opencv4)
 
 # include dirs
 set(INCLUDE_DIRS /usr/local/include/)

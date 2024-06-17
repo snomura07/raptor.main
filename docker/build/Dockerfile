@@ -72,19 +72,16 @@ RUN cd /tmp/libzmq && \
 
 # opencv
 # 静的ライブラリとしてビルド
-RUN wget https://github.com/opencv/opencv/archive/3.4.10.zip -O /tmp/opencv.zip && \
+RUN wget https://github.com/opencv/opencv/archive/4.2.0.zip -O /tmp/opencv.zip && \
     unzip /tmp/opencv.zip -d /tmp && \
-    mv /tmp/opencv-3.4.10 /tmp/opencv && \
+    mv /tmp/opencv-4.2.0 /tmp/opencv && \
     cd /tmp/opencv && \
     mkdir build && \
     cd build && \
     cmake -D CMAKE_BUILD_TYPE=Release \
           -D CMAKE_TOOLCHAIN_FILE=../platforms/linux/arm-gnueabi.toolchain.cmake \
           -D CMAKE_INSTALL_PREFIX=/usr/arm-linux-gnueabi \
-          -DBUILD_SHARED_LIBS=OFF \
-          -D Protobuf_INCLUDE_DIR=/usr/arm-linux-gnueabi/include \
-          -D Protobuf_LIBRARIES=/usr/arm-linux-gnueabi/lib/libprotobuf.a \
-          -D Protobuf_PROTOC_EXECUTABLE=/usr/arm-linux-gnueabi/bin/protoc \
+          -D OpenCV_DIR=/usr/arm-linux-gnueabi/lib/cmake/opencv4 \
           .. && \
     make -j$(nproc) && \
     make install

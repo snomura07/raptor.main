@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  system:
+    restart: always
+    build: .
+    image: raptor_x86_64_build_img

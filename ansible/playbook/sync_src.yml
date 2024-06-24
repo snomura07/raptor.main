@@ -21,14 +21,28 @@
     - name: Synchronize config
       synchronize:
         src: /home/snomura/workspace/raptor/raptor.main/config
-        dest: /usr/local/
+        dest: /home/pi/
+        checksum: yes
+        times: no
+      become: yes
+
+    - name: Ensure destination docker run exists
+      file:
+        path: /home/pi/docker/run
+        state: directory
+        mode: '0755'
+
+    - name: Synchronize docker run
+      synchronize:
+        src: /home/snomura/workspace/raptor/raptor.main/docker/run/release
+        dest: /home/pi/docker/run/
         checksum: yes
         times: no
       become: yes
 
     - name: Replace environment in env file
       ansible.builtin.replace:
-        path: /usr/local/config/env
+        path: /home/pi/config/env
         regexp: '^ENV=.*$'
         replace: 'ENV=raspberrypi'
       become: yes

@@ -4,4 +4,4 @@ services:
   system:
     restart: always
     build: .
-    image: raptor_x86_64_build_img
+    image: raptor_x86_64_base_img

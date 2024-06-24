@@ -4,4 +4,4 @@ services:
   system:
     restart: always
     build: .
-    image: raptor_armv6_img
+    image: raptor_develop_img

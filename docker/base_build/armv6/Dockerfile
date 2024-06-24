@@ -27,8 +27,8 @@ RUN wget https://github.com/protocolbuffers/protobuf/archive/v3.5.1.tar.gz && \
     cd protobuf-3.5.1 && \
     ./autogen.sh && \
     ./configure && \
-    make && \
-    make install && \
+    make -j$(nproc) && \
+    make -j$(nproc) install && \
     ldconfig
 
 # install pigio for GPIO
@@ -36,7 +36,7 @@ WORKDIR /tmp
 RUN wget https://github.com/joan2937/pigpio/archive/master.zip
 RUN unzip master.zip
 WORKDIR  /tmp/pigpio-master
-RUN make -j4 install
+RUN make -j$(nproc) install
 
 # ZMQ
 RUN git clone https://github.com/zeromq/libzmq.git /tmp/libzmq
@@ -44,7 +44,7 @@ RUN cd /tmp/libzmq && \
     ./autogen.sh && \
     ./configure && \
     make -j$(nproc) && \
-    make install
+    make -j$(nproc) install
 
 # opencv
 # 静的ライブラリとしてビルド
@@ -61,10 +61,11 @@ RUN wget https://github.com/opencv/opencv/archive/4.7.0.zip -O /tmp/opencv.zip &
           -DCMAKE_CXX_FLAGS="-latomic" \
           -DCMAKE_SHARED_LINKER_FLAGS="-latomic" \
           .. && \
-    make -j1 VERBOSE=1 && \
-    make install && \
+    make -j$(nproc) VERBOSE=1 && \
+    make -j$(nproc) install && \
     rm -rf /tmp/opencv* && \
     ldconfig
 
     # ライブラリパスの設定
 RUN ldconfig
+RUN ln -s /usr/lib/arm-linux-gnueabihf/ld-linux.so.3 /lib/ld-linux.so.3

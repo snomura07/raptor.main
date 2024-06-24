@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  dev:
+    restart: always
+    image: snomura07/raptor_release_img:latest
+    container_name: 'raptor_main'
+    privileged: true
+    devices:
+      - /dev/gpiomem:/dev/gpiomem
+      - /dev/video0:/dev/video0
+      - /dev/serial0:/dev/serial0
+      - /dev/ttyAMA0:/dev/ttyAMA0
+    volumes:
+      - ../../../src:/home/pi/src
+      - ../../../build:/home/pi/build
+      - ../../../bin:/home/pi/bin
+      - ../../../lib:/home/pi/lib
+      - ../../../script:/home/pi/script
+      - ../../../config:/usr/local/config
+      - ../../../resource/image:/home/pi/image
+      - ../../../resource/msgs:/var/opt/msgs
+      - /sys/class:/sys/class
+
+    command: bash
+    ports:
+      - 5555:5555
+    tty: true

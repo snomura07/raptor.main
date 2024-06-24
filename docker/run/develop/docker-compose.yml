@@ -3,7 +3,7 @@ version: '3'
 services:
   dev:
     restart: always
-    image: raptor_x86_64_img
+    image: snomura07/raptor_develop_img:latest
     container_name: 'raptor_dev'
     volumes:
       - ../../../src:/home/nomura/src

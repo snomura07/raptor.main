@@ -72,9 +72,9 @@ RUN cd /tmp/libzmq && \
 
 # opencv
 # 静的ライブラリとしてビルド
-RUN wget https://github.com/opencv/opencv/archive/4.2.0.zip -O /tmp/opencv.zip && \
+RUN wget https://github.com/opencv/opencv/archive/4.7.0.zip -O /tmp/opencv.zip && \
     unzip /tmp/opencv.zip -d /tmp && \
-    mv /tmp/opencv-4.2.0 /tmp/opencv && \
+    mv /tmp/opencv-4.7.0 /tmp/opencv && \
     cd /tmp/opencv && \
     mkdir build && \
     cd build && \

@@ -1,6 +1,6 @@
 
 # baseはbase_build/armv6内に記載
-FROM snomura07/raptor_armv6_build_img:latest
+FROM snomura07/raptor_armv6_base_img:latest
 
 # add sudo user
 RUN groupadd -g 1000 developer && \

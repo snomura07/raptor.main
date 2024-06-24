@@ -12,7 +12,7 @@ if [ "$1" == "--no-cache" ]; then
 fi
 
 # Docker Composeを使用してビルドおよび起動
-docker compose -f armv6-build.yml build $NO_CACHE_OPTION
+docker compose -f release-build.yml build $NO_CACHE_OPTION
 
 # ビルドと起動のステータスを表示
 if [ $? -eq 0 ]; then

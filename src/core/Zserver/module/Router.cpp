@@ -4,7 +4,7 @@ Router::Router(){}
 
 Router::~Router(){}
 
-void Router::registRequestPath(std::string requestPath)
+void Router::setRequestPath(std::string requestPath)
 {
     this->requestPath = requestPath;
 }

@@ -10,7 +10,7 @@ Gateway::~Gateway(){}
 
 std::string Gateway::routeRequest(std::string path, std::vector<int> params)
 {
-    this->router.registRequestPath(path);
+    this->router.setRequestPath(path);
     if(router.get("test")){
     }
     else if(router.get("gpio/chmode/input", params, true)){

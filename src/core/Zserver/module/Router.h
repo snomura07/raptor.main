@@ -8,7 +8,7 @@ class Router
 public:
     Router();
     ~Router();
-    void registRequestPath(std::string requestPath);
+    void setRequestPath(std::string requestPath);
     bool get(std::string routePath);
     bool get(std::string routePath, std::vector<int> params, bool paramRequired);
 

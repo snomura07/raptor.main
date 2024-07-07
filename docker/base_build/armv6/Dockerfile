@@ -18,7 +18,25 @@ RUN apt install -y --fix-missing \
     automake \
     pkg-config \
     libgtk2.0-dev \
-    build-essential
+    build-essential \
+    libatlas-base-dev \
+    gfortran \
+    python3-dev \
+    libtbb2 \
+    libtbb-dev \
+    libdc1394-22-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libtiff-dev \
+    libavcodec-dev \
+    libavformat-dev \
+    libswscale-dev \
+    libv4l-dev \
+    libxvidcore-dev \
+    libx264-dev \
+    libgtk2.0-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 
 # ホスト用Protobuf v3.5.1のインストール
 WORKDIR /tmp
@@ -58,6 +76,8 @@ RUN wget https://github.com/opencv/opencv/archive/4.7.0.zip -O /tmp/opencv.zip &
           -D CMAKE_INSTALL_PREFIX=/usr/local \
           -D BUILD_TESTS=OFF \
           -D BUILD_EXAMPLES=OFF \
+          -D WITH_V4L=ON \
+          -D WITH_LIBV4L=ON \
           -DCMAKE_CXX_FLAGS="-latomic" \
           -DCMAKE_SHARED_LINKER_FLAGS="-latomic" \
           .. && \

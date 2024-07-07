@@ -14,3 +14,6 @@ WORKDIR /home/pi
 
 # Add LD_LIBRARY_PATH to point to the cross-compiled libraries
 ENV LD_LIBRARY_PATH=/home/pi/lib:$LD_LIBRARY_PATH
+
+# setting alias
+RUN echo "alias ll='ls -l'" >> ~/.bashrc

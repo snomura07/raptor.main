@@ -16,3 +16,4 @@ WORKDIR /home/nomura
 ENV LD_LIBRARY_PATH=/home/nomura/lib:$LD_LIBRARY_PATH
 ENV LD_LIBRARY_PATH=/usr/arm-linux-gnueabi/lib:$LD_LIBRARY_PATH
 RUN echo "alias ll='ls -alF'" >> .bashrc
+RUN echo 'exec(){ qemu-arm -L /usr/arm-linux-gnueabi $@; }' >> .bashrc

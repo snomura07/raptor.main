@@ -16,7 +16,12 @@ services:
       - ../../../resource/image:/home/nomura/image
       - ../../../resource/msgs:/var/opt/msgs
 
-    command: bash
+    # command: bash
+    command: >
+      bash -c "
+        qemu-arm -L /usr/arm-linux-gnueabi /home/nomura/bin/Zserver
+        bash
+      "
     ports:
       - 5555:5555
     tty: true

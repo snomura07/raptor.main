@@ -24,8 +24,7 @@ add_custom_command(
 
 add_library(
     protobuf-${base_name}
-    # SHARED
-    STATIC
+    SHARED
     ${file_path}/${base_name}.pb.cc
 )
 

@@ -11,7 +11,7 @@ public:
 public:
     Camera();
     ~Camera();
-    int init();
+    int open();
     void capture();
     void save(const std::string& filename);
     std::string encode();

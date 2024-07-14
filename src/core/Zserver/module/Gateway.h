@@ -4,6 +4,7 @@
 #include <vector>
 #include "Router.h"
 #include "../controller/GpioController.h"
+#include "../controller/CameraController.h"
 
 class Gateway
 {
@@ -15,6 +16,7 @@ public:
 private:
     Router router;
     GpioController gpioController;
+    CameraController cameraController;
 };
 
 #endif

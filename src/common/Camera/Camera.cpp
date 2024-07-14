@@ -13,10 +13,12 @@ Camera::Camera()
 Camera::~Camera()
 {
     cap.release();
-    cv::destroyAllWindows();
+    if (!isDevelop) {
+        cv::destroyAllWindows();
+    }
 }
 
-int Camera::init()
+int Camera::open()
 {
     if (isDevelop) {
         frame = cv::imread("/home/nomura/image/test.png");

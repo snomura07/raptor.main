@@ -2,44 +2,39 @@
 #include <opencv2/opencv.hpp>
 
 int main() {
-    // Open the camera
     cv::VideoCapture cap(0);
     if (!cap.isOpened()) {
-        std::cout << "Failed to open the camera" << std::endl;
+        std::cerr << "Failed to open the camera on index 0" << std::endl;
         return -1;
+    } else {
+        std::cout << "Camera successfully opened on index 0" << std::endl;
     }
 
-    // Capture a frame
-    std::queue<cv::Mat> frameQueue;
-    while (true) {
-        // Capture a frame
-        cv::Mat frame;
-        cap >> frame;
-        if (frame.empty()) {
-            std::cout << "Failed to capture frame" << std::endl;
-            return -1;
-        }
+    // カメラ設定の例: フレームサイズ 640x480, フォーマット YUYV
+    cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
+    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+    cap.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('Y', 'U', 'Y', 'V'));
 
-        // Add the frame to the queue
-        frameQueue.push(frame);
+    std::cout << "Frame width: " << cap.get(cv::CAP_PROP_FRAME_WIDTH) << std::endl;
+    std::cout << "Frame height: " << cap.get(cv::CAP_PROP_FRAME_HEIGHT) << std::endl;
+    std::cout << "FourCC: " << cap.get(cv::CAP_PROP_FOURCC) << std::endl;
 
-        // Check if the queue size exceeds the maximum limit
-        if (frameQueue.size() > 10) {
-            // Remove the oldest frame from the queue
-            frameQueue.pop();
-        }
+    cv::Mat frame;
+    cap >> frame;
 
-        // Save the frame as a PNG file
-        std::string filename = "./test.png";
-        cv::imwrite(filename, frame);
+    if (frame.empty()) {
+        std::cerr << "Failed to capture frame" << std::endl;
+        return -1;
+    } else {
+        std::cout << "Frame captured successfully" << std::endl;
+    }
+
+    std::string filename = "./test.png";
+    if (!cv::imwrite(filename, frame)) {
+        std::cerr << "Failed to save image to " << filename << std::endl;
+    } else {
         std::cout << "Image saved as " << filename << std::endl;
-
-        // Delay for 1 second
-        cv::waitKey(1000);
     }
-
-    // Release the camera capture
-    cap.release();
 
     return 0;
 }

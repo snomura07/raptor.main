@@ -20,6 +20,23 @@ RUN apt install -y --fix-missing \
     automake \
     pkg-config \
     qemu-user-binfmt \
+    libgtk2.0-dev \
+    build-essential \
+    libatlas-base-dev \
+    gfortran \
+    python3-dev \
+    libtbb2 \
+    libtbb-dev \
+    libdc1394-22-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libtiff-dev \
+    libavcodec-dev \
+    libavformat-dev \
+    libswscale-dev \
+    libv4l-dev \
+    libxvidcore-dev \
+    libx264-dev \
     libgtk2.0-dev
 
 # ホスト用Protobuf v3.5.1のインストール
@@ -83,6 +100,10 @@ RUN wget https://github.com/opencv/opencv/archive/4.7.0.zip -O /tmp/opencv.zip &
           -D CMAKE_TOOLCHAIN_FILE=../platforms/linux/arm-gnueabi.toolchain.cmake \
           -D CMAKE_INSTALL_PREFIX=/usr/arm-linux-gnueabi \
           -D OpenCV_DIR=/usr/arm-linux-gnueabi/lib/cmake/opencv4 \
+          -D BUILD_TESTS=OFF \
+          -D BUILD_EXAMPLES=OFF \
+          -D WITH_V4L=ON \
+          -D WITH_LIBV4L=ON \
           .. && \
     make -j$(nproc) && \
     make install

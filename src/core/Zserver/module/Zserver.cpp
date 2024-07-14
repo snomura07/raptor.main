@@ -28,10 +28,10 @@ bool Zserver::run()
     std::string path = zserverMsg.path();
     std::vector<int> params(zserverMsg.params().begin(), zserverMsg.params().end());
 
-    std::cout << path << " " << params.front() << std::endl;
+    std::cout << path << " " << (params.size() > 0 ? params.front() : -1) << std::endl;
 
     std::string rmsg = gateway.routeRequest(path, params);
-    this->zmq.sendMessage("Accept!");
+    this->zmq.sendMessage(rmsg);
   }
 
   return isRunning;

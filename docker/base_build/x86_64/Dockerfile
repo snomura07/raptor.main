@@ -60,7 +60,8 @@ RUN wget https://github.com/joan2937/pigpio/archive/master.zip
 RUN unzip master.zip
 WORKDIR  /tmp/pigpio-master
 RUN sed -i 's/^CROSS_PREFIX =.*/CROSS_PREFIX =arm-linux-gnueabi-/' Makefile
-RUN make install PREFIX=/usr/arm-linux-gnueabi
+RUN sed -i 's|/usr/local|/usr/arm-linux-gnueabi|g' Makefile
+RUN make -j$(nproc) install
 
 # ZMQ
 RUN git clone https://github.com/zeromq/libzmq.git /tmp/libzmq

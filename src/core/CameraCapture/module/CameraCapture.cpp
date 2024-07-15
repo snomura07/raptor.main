@@ -15,6 +15,7 @@ CameraCapture::CameraCapture()
     this->commPort = this->config.healthCheckcPort;
     this->runKeepAliveServer();
     this->showActivatedSign();
+    this->initLogger();
 }
 
 CameraCapture::~CameraCapture(){}
@@ -28,14 +29,15 @@ bool CameraCapture::run()
     Camera camera;
     while(isRunning){
         camera.capture();
-        camera.encode();
-        raptor::protobuf::CamMsg camMsg;
-        // cameraMsg.set_viewname1("CameraCapture");
-        // cameraMsg.set_image(camera.encode());
 
-        // std::string sMsg;
-        // cameraMsg.SerializeToString(&sMsg);
-        // zmq.sendMessage(sMsg);
+        raptor::protobuf::CamMsg camMsg;
+        cameraMsg.set_viewname1("CameraCapture");
+        cameraMsg.set_image(camera.encode());
+
+        std::string sMsg;
+        cameraMsg.SerializeToString(&sMsg);
+        zmq.sendMessage(sMsg);
+        logger.writeInfoLog("data: " + frame);
 
         msleep(1000);
     }

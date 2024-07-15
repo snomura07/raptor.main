@@ -8,7 +8,7 @@ include_directories(
 
 add_library(
     ${PROJECT_NAME}
-    SHARED
+    STATIC
     ${PROJECT_NAME}.cpp
 )
 
@@ -22,6 +22,7 @@ target_link_libraries(
     PRIVATE
     pthread
     ZmqWrapper
+    Logger
 )
 
 INSTALL(

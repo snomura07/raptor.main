@@ -9,7 +9,7 @@ include_directories(
 
 add_library(
     ${PROJECT_NAME}
-    SHARED
+    STATIC
     ${PROJECT_NAME}.cpp
 )
 

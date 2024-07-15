@@ -6,12 +6,17 @@
 RaptorBase::RaptorBase():
     modName(""),
     commPort(0){}
-    
+
 RaptorBase::~RaptorBase()
 {
     if(th.joinable()){
         th.join();
     }
+}
+
+void RaptorBase::initLogger()
+{
+    logger.init(modName);
 }
 
 bool RaptorBase::runKeepAliveServer()

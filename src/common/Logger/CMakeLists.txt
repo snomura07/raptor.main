@@ -1,4 +1,4 @@
-project(Gpio)
+project(Logger)
 
 include_directories(
     ${INCLUDE_DIRS}
@@ -21,8 +21,6 @@ target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
     pthread
-    pigpio
-    Env
 )
 
 INSTALL(

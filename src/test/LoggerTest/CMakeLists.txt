@@ -1,4 +1,4 @@
-project(Gpio)
+project(LoggerTest)
 
 include_directories(
     ${INCLUDE_DIRS}
@@ -6,10 +6,9 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/common
 )
 
-add_library(
+add_executable(
     ${PROJECT_NAME}
-    STATIC
-    ${PROJECT_NAME}.cpp
+    main.cpp
 )
 
 target_include_directories(
@@ -20,13 +19,11 @@ target_include_directories(
 target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
-    pthread
-    pigpio
-    Env
+    Logger
 )
 
 INSTALL(
     TARGETS
     ${PROJECT_NAME}
-    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin/test
 )

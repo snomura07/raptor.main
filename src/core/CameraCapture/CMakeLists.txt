@@ -29,6 +29,7 @@ target_link_libraries(
     ${OpenCV_LIBS}
     Camera
     protobuf-CamMsg
+    Logger
 )
 
 INSTALL(

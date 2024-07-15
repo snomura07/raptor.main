@@ -24,6 +24,7 @@ target_link_libraries(
     pthread
     RaptorBase
     ZmqWrapper
+    Logger
     protobuf-CounterMsg
 )
 

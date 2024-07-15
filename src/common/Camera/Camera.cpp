@@ -30,7 +30,17 @@ int Camera::open()
     }
 
     cap.open(0);
-    if (!cap.isOpened()) {
+    if (cap.isOpened()) {
+        std::cout << "Camera successfully opened on index 0" << std::endl;
+        cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
+        cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+        cap.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('Y', 'U', 'Y', 'V'));
+
+        std::cout << "Frame width: " << cap.get(cv::CAP_PROP_FRAME_WIDTH) << std::endl;
+        std::cout << "Frame height: " << cap.get(cv::CAP_PROP_FRAME_HEIGHT) << std::endl;
+        std::cout << "FourCC: " << cap.get(cv::CAP_PROP_FOURCC) << std::endl;
+    }
+    else {
         std::cerr << "Failed to open camera" << std::endl;
         return -1;
     }
@@ -42,12 +52,23 @@ void Camera::capture()
 {
     if (!isDevelop) {
         cap >> frame;
+        if (!frame.empty()) {
+            std::cout << "Frame captured successfully" << std::endl;
+        }
+        else {
+            std::cerr << "Failed to capture frame" << std::endl;
+        }
     }
 }
 
 void Camera::save(const std::string& filename)
 {
-    cv::imwrite(filename, frame);
+    if (cv::imwrite(filename, frame)) {
+        std::cout << "Image saved as " << filename << std::endl;
+    }
+    else {
+        std::cerr << "Failed to save image to " << filename << std::endl;
+    }
 }
 
 std::string Camera::encode()

@@ -15,12 +15,18 @@ Counter::Counter():
     this->commPort = this->config.healthCheckcPort;
     this->runKeepAliveServer();
     this->showActivatedSign();
+    this->initLogger();
 }
 
-Counter::~Counter(){}
+Counter::~Counter()
+{
+    logger.writeInfoLog("finish!");
+}
 
 bool Counter::run()
 {
+    logger.writeInfoLog("start!");
+
     bool isRunning = true;
     ZmqWrapper zmq;
     zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, this->config.publishTopic);

@@ -15,13 +15,14 @@ services:
       - ../../../resource/thermal_zone0:/home/nomura/thermal_zone0
       - ../../../resource/image:/home/nomura/image
       - ../../../resource/msgs:/var/opt/msgs
+      - ../../../log:/usr/local/log
 
-    # command: bash
-    command: >
-      bash -c "
-        qemu-arm -L /usr/arm-linux-gnueabi /home/nomura/bin/Zserver
-        bash
-      "
+    command: bash
+    # command: >
+    #   bash -c "
+    #     qemu-arm -L /usr/arm-linux-gnueabi /home/nomura/bin/Zserver
+    #     bash
+    #   "
     ports:
       - 5555:5555
     tty: true

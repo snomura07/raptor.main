@@ -8,14 +8,14 @@
 Counter::Counter():
     count(0)
 {
-    this->config.read();
-
+    config.read();
+std::cout << config.master.subPort << " " << config.master.configPath << std::endl;
     // base用の設定
-    this->modName  = this->config.modName;
-    this->commPort = this->config.healthCheckcPort;
-    this->runKeepAliveServer();
-    this->showActivatedSign();
-    this->initLogger();
+    modName  = config.modName;
+    commPort = config.healthCheckcPort;
+    runKeepAliveServer();
+    showActivatedSign();
+    initLogger();
 }
 
 Counter::~Counter()
@@ -29,14 +29,14 @@ bool Counter::run()
 
     bool isRunning = true;
     ZmqWrapper zmq;
-    zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, this->config.publishTopic);
+    zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, config.publishTopic);
 
     while(isRunning){
         count++;
 
         raptor::protobuf::CounterMsg counterMsg;
         counterMsg.set_viewname1("counter");
-        counterMsg.set_counter(this->count);
+        counterMsg.set_counter(count);
 
         std::string sMsg;
         counterMsg.SerializeToString(&sMsg);

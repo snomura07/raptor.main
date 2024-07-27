@@ -20,9 +20,15 @@ services:
       - ../../../config:/usr/local/config
       - ../../../resource/image:/home/pi/image
       - ../../../resource/msgs:/var/opt/msgs
+      - ../../../log:/usr/local/log
       - /sys/class:/sys/class
 
-    command: bash
+    # command: bash
+    command: >
+      bash -c "
+      chmod -R a+w /usr/local/log;
+      chmod -R a+rw /dev/video0;
+      bash"
     ports:
       - 5555:5555
     tty: true

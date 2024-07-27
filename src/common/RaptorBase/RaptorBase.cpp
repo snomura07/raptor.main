@@ -21,11 +21,11 @@ void RaptorBase::initLogger()
 
 bool RaptorBase::runKeepAliveServer()
 {
-    if(this->commPort == 0){
+    if(commPort == 0){
         return false;
     }
 
-    zmq.registerSession("*", this->commPort, ZmqWrapper::zmqPatternEnum::REPLY, "HELTHCHECK");
+    zmq.registerSession("*", commPort, ZmqWrapper::zmqPatternEnum::REPLY, "HELTHCHECK");
     th = std::thread([&]() {
         while (true) {
             std::string msg = "";

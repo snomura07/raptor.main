@@ -12,13 +12,15 @@ AppConfig::AppConfig():
 AppConfig::~AppConfig(){}
 
 void AppConfig::read(){
-    std::ifstream jsonFile(this->jsonPath);
+    master.read();
+    jsonPath = master.configPath + "Counter.json";
+    std::ifstream jsonFile(jsonPath);
 
     if (jsonFile.is_open()) {
-        jsonFile >> this->jsonData;
-        this->modName          = this->jsonData["modName"];
-        this->healthCheckcPort = this->jsonData["healthCheckPort"];
-        this->publishTopic     = this->jsonData["publishTopic"];
+        jsonFile >> jsonData;
+        modName          = jsonData["modName"];
+        healthCheckcPort = jsonData["healthCheckPort"];
+        publishTopic     = jsonData["publishTopic"];
     }
     else{
         std::cerr << "file open error" << std::endl;
@@ -26,5 +28,5 @@ void AppConfig::read(){
 }
 
 void AppConfig::dump(){
-    std::cout << this->jsonData.dump() << std::endl;
+    std::cout << jsonData.dump() << std::endl;
 }

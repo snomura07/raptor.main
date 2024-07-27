@@ -8,19 +8,19 @@
 
 CpuTemperatureMonitor::CpuTemperatureMonitor()
 {
-    this->config.read();
+    config.read();
 
     // base用の設定
-    this->modName  = this->config.modName;
-    this->commPort = this->config.healthCheckcPort;
-    this->runKeepAliveServer();
+    modName  = config.modName;
+    commPort = config.healthCheckcPort;
+    runKeepAliveServer();
 
     // 開発環境では仮の温度ファイルを読み込む
     if(isDevEnv()){
-        this->tempFilePath = "/home/nomura/thermal_zone0/temp";
+        tempFilePath = "/home/nomura/thermal_zone0/temp";
     }
     else{
-        this->tempFilePath = "/sys/class/thermal/thermal_zone0/temp";
+        tempFilePath = "/sys/class/thermal/thermal_zone0/temp";
     }
 }
 
@@ -30,10 +30,10 @@ bool CpuTemperatureMonitor::run()
 {
     bool isRunning = true;
     ZmqWrapper zmq;
-    zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, this->config.publishTopic);
+    zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, config.publishTopic);
 
     while(isRunning){
-        double cpuTemperature = this->getTemperature();
+        double cpuTemperature = getTemperature();
 
         raptor::protobuf::CpuTemperatureMsg cpuTemperatureMsg;
         cpuTemperatureMsg.set_viewname1("cpuTemp");
@@ -51,7 +51,7 @@ bool CpuTemperatureMonitor::run()
 
 double CpuTemperatureMonitor::getTemperature()
 {
-    std::ifstream file(this->tempFilePath);
+    std::ifstream file(tempFilePath);
     if (!file) {
         std::cerr << "Error opening CPU temperature file" << std::endl;
         return -255.0;

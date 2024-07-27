@@ -6,12 +6,12 @@ Router::~Router(){}
 
 void Router::setRequestPath(std::string requestPath)
 {
-    this->requestPath = requestPath;
+    requestPath = requestPath;
 }
 
 bool Router::get(std::string routePath)
 {
-    return routePath == this->requestPath;
+    return routePath == requestPath;
 }
 
 bool Router::get(std::string routePath, std::vector<int> params, bool paramRequired)
@@ -20,5 +20,5 @@ bool Router::get(std::string routePath, std::vector<int> params, bool paramRequi
         return false;
     }
 
-    return routePath == this->requestPath;
+    return routePath == requestPath;
 }

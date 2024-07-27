@@ -26,6 +26,7 @@ target_link_libraries(
     Env
     RaptorBase
     ZmqWrapper
+    MasterConfig
     protobuf-CpuTemperatureMsg
 )
 

@@ -1,5 +1,6 @@
 #include <string>
 #include <nlohmann/json.hpp>
+#include <MasterConfig/MasterConfig.h>
 
 class AppConfig{
 public:
@@ -12,6 +13,7 @@ public:
     std::string modName;
     int healthCheckcPort;
     std::string publishTopic;
+    MasterConfig master;
 
 private:
     nlohmann::json jsonData;

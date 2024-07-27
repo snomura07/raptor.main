@@ -2,12 +2,12 @@
 
 CameraController::CameraController()
 {
-    this->camera.open();
+    camera.open();
 }
 
 CameraController::~CameraController(){}
 
 void CameraController::save(const std::string& filename){
-    this->camera.capture();
-    this->camera.save(filename);
+    camera.capture();
+    camera.save(filename);
 }

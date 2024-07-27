@@ -9,7 +9,7 @@
 
 Zserver::Zserver(int port)
 {
-  this->zmq.registerSession("*", port, ZmqWrapper::zmqPatternEnum::REPLY, "ZSERVER");
+  zmq.registerSession("*", port, ZmqWrapper::zmqPatternEnum::REPLY, "ZSERVER");
 }
 
 Zserver::~Zserver(){}
@@ -21,7 +21,7 @@ bool Zserver::run()
 
   while(isRunning){
     std::string request = "";
-    this->zmq.pollMessage(request, -1);
+    zmq.pollMessage(request, -1);
 
     raptor::protobuf::ZserverMsg zserverMsg;
     zserverMsg.ParseFromString(request);
@@ -31,7 +31,7 @@ bool Zserver::run()
     std::cout << path << " " << (params.size() > 0 ? params.front() : -1) << std::endl;
 
     std::string rmsg = gateway.routeRequest(path, params);
-    this->zmq.sendMessage(rmsg);
+    zmq.sendMessage(rmsg);
   }
 
   return isRunning;
@@ -40,7 +40,7 @@ bool Zserver::run()
 
 Zclient::Zclient(int port)
 {
-  this->zmq.registerSession("127.0.0.1", port, ZmqWrapper::zmqPatternEnum::REQUEST, "ZSERVER");
+  zmq.registerSession("127.0.0.1", port, ZmqWrapper::zmqPatternEnum::REQUEST, "ZSERVER");
 }
 
 Zclient::~Zclient(){}
@@ -54,10 +54,10 @@ std::string Zclient::run(std::string path, std::vector<int> params)
   }
   std::string serializedMsg;
   zserverMsg.SerializeToString(&serializedMsg);
-  this->zmq.sendMessage(serializedMsg);
+  zmq.sendMessage(serializedMsg);
 
   std::string rmsg = "";
-  auto res = this->zmq.pollMessage(rmsg, -1);
+  auto res = zmq.pollMessage(rmsg, -1);
   std::cout << "received: " << rmsg << std::endl;
 
   return rmsg;

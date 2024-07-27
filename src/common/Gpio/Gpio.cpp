@@ -7,16 +7,16 @@
 
 Gpio::Gpio()
 {
-    this->isDevelop = isDevEnv();
-    this->serialHandle = 0;
+    isDevelop = isDevEnv();
+    serialHandle = 0;
 }
 
 Gpio::~Gpio(){
-    if(!this->isDevelop){
+    if(!isDevelop){
         // serial terminate
-        if(this->serialHandle != 0){
+        if(serialHandle != 0){
             std::cerr << "close serial port" << std::endl;
-            serClose(this->serialHandle);
+            serClose(serialHandle);
         }
 
         gpioTerminate();
@@ -24,7 +24,7 @@ Gpio::~Gpio(){
 }
 
 int Gpio::init(){
-    if(this->isDevelop){
+    if(isDevelop){
         return 0;
     }
 
@@ -36,36 +36,36 @@ int Gpio::init(){
 }
 
 void Gpio::chModeOutput(int pinNo){
-    if(!this->isDevelop){
+    if(!isDevelop){
         gpioSetMode(pinNo, PI_OUTPUT);
     }
 }
 
 void Gpio::chModeInput(int pinNo){
-    if(!this->isDevelop){
+    if(!isDevelop){
         gpioSetMode(pinNo, PI_INPUT);
     }
 }
 
 void Gpio::setHigh(int pinNo){
-    if(!this->isDevelop){
+    if(!isDevelop){
         gpioWrite(pinNo, 1);
     }
 }
 
 void Gpio::setLow(int pinNo){
-    if(!this->isDevelop){
+    if(!isDevelop){
         gpioWrite(pinNo, 0);
     }
 }
 
 int Gpio::openSerialDevice(int baudRate){
-    if(this->isDevelop){
+    if(isDevelop){
         return 0;
     }
 
-    this->serialHandle = serOpen(UDEV, baudRate, 0);
-    if (this->serialHandle < 0) {
+    serialHandle = serOpen(UDEV, baudRate, 0);
+    if (serialHandle < 0) {
         std::cerr << "Unable to open serial device" << std::endl;
         return -1;
     }
@@ -74,19 +74,19 @@ int Gpio::openSerialDevice(int baudRate){
 }
 
 int Gpio::serialRead(char *bytes, int readSize){
-    if(!this->isDevelop){
-        return serRead(this->serialHandle, bytes, readSize);
+    if(!isDevelop){
+        return serRead(serialHandle, bytes, readSize);
     }
 }
 
 int Gpio::serialRead1Byte(char &data){
-    int res = serRead(this->serialHandle, &data, 1);
+    int res = serRead(serialHandle, &data, 1);
     return res;
 }
 
 
 void Gpio::serialWrite(char *bytes, int size){
-    if(!this->isDevelop){
-        serWrite(this->serialHandle, bytes, size);
+    if(!isDevelop){
+        serWrite(serialHandle, bytes, size);
     }
 }

@@ -1,0 +1,8 @@
+{
+    "subPort" : 5555,
+    "pubPort" : 5556,
+    "path":{
+        "config" : "/usr/local/config/"
+    }
+
+}

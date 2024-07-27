@@ -8,7 +8,7 @@
 int main()
 {
     ZmqWrapper zmq;
-    zmq.registerSession("127.0.0.1", 5555, ZmqWrapper::zmqPatternEnum::SUBSCRIBE, "important");
+    zmq.registerSession("127.0.0.1", 5555, ZmqWrapper::zmqPatternEnum::SUBSCRIBE, "PROXTEST");
 
     while (true) {
         std::string msg = "";

@@ -10,7 +10,7 @@
 int main()
 {
     ZmqWrapper zmq;
-    zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, "important");
+    zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, "PROXTEST");
 
     while (true) {
         raptor::protobuf::Person person;
@@ -21,6 +21,8 @@ int main()
         person.SerializeToString(&serialized);
 
         zmq.sendMessage(serialized);
+
+        std::cout << "test" << std::endl;
 
         // 一定時間待機
         std::this_thread::sleep_for(std::chrono::seconds(1));

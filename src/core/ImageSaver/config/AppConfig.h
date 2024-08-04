@@ -12,7 +12,7 @@ public:
 public:
     std::string modName;
     int healthCheckcPort;
-    std::string publishTopic;
+    std::string subscribeTopic;
     MasterConfig master;
 
 private:

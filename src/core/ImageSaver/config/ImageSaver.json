@@ -1,0 +1,5 @@
+{
+    "modName" : "ImageSaver",
+    "healthCheckPort" : 5594,
+    "subscribeTopic":"CAMERACAPUTURE"
+}

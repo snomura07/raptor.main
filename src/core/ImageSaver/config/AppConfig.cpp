@@ -4,23 +4,23 @@
 #include <nlohmann/json.hpp>
 
 AppConfig::AppConfig():
-    jsonPath("/usr/local/config/CameraCapture.json"),
+    jsonPath("/usr/local/config/ImageSaver.json"),
     modName(""),
     healthCheckcPort(0),
-    publishTopic("")
+    subscribeTopic("")
 {}
 AppConfig::~AppConfig(){}
 
 void AppConfig::read(){
     master.read();
-    jsonPath = master.configPath + "CameraCapture.json";
+    jsonPath = master.configPath + "ImageSaver.json";
 
     std::ifstream jsonFile(jsonPath);
     if (jsonFile.is_open()) {
         jsonFile >> jsonData;
         modName          = jsonData["modName"];
         healthCheckcPort = jsonData["healthCheckPort"];
-        publishTopic     = jsonData["publishTopic"];
+        subscribeTopic   = jsonData["subscribeTopic"];
     }
     else{
         std::cerr << "file open error" << std::endl;

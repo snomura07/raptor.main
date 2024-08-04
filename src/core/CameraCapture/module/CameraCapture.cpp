@@ -27,6 +27,7 @@ bool CameraCapture::run()
     zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, config.publishTopic);
 
     Camera camera;
+    camera.open();
     while(isRunning){
         camera.capture();
 
@@ -37,7 +38,6 @@ bool CameraCapture::run()
         std::string sMsg;
         cameraMsg.SerializeToString(&sMsg);
         zmq.sendMessage(sMsg);
-        // logger.writeInfoLog("data: " + frame);
 
         msleep(1000);
     }

@@ -1,12 +1,4 @@
 project(Zserver)
-find_package(OpenCV REQUIRED)
-
-include_directories(
-    ${INCLUDE_DIRS}
-    ${CMAKE_SOURCE_DIR}/protobuf
-    ${CMAKE_SOURCE_DIR}/common
-    ${CMAKE_SOURCE_DIR}/utils
-)
 
 add_executable(
     ${PROJECT_NAME}
@@ -20,7 +12,6 @@ add_executable(
 target_include_directories(
     ${PROJECT_NAME}
     PRIVATE
-    ${OpenCV_INCLUDE_DIRS}
 )
 target_link_libraries(
     ${PROJECT_NAME}
@@ -46,7 +37,6 @@ add_executable(
 target_include_directories(
     Zclient
     PRIVATE
-    ${OpenCV_INCLUDE_DIRS}
 )
 target_link_libraries(
     Zclient

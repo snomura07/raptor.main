@@ -22,6 +22,17 @@ set(CMAKE_INSTALL_PREFIX ../)
 # script path
 set(SCRIPT_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../script/)
 
+# common include directories
+find_package(OpenCV REQUIRED)
+include_directories(
+    ${INCLUDE_DIRS}
+    ${CMAKE_SOURCE_DIR}/protobuf
+    ${CMAKE_SOURCE_DIR}/common
+    ${CMAKE_SOURCE_DIR}/utils
+    ${CMAKE_SOURCE_DIR}/third_party/json/single_include
+    ${OpenCV_INCLUDE_DIRS}
+)
+
 add_subdirectory(core)
 add_subdirectory(common)
 add_subdirectory(protobuf)

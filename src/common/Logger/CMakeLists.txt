@@ -1,11 +1,5 @@
 project(Logger)
 
-include_directories(
-    ${INCLUDE_DIRS}
-    ${CMAKE_SOURCE_DIR}/utils
-    ${CMAKE_SOURCE_DIR}/common
-)
-
 add_library(
     ${PROJECT_NAME}
     STATIC

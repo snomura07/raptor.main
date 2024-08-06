@@ -1,11 +1,5 @@
 project(JsonTest)
 
-include_directories(
-    ${INCLUDE_DIRS}
-    ${CMAKE_SOURCE_DIR}/utils
-    ${CMAKE_SOURCE_DIR}/third_party/json/single_include
-)
-
 add_executable(
     ${PROJECT_NAME}
     main.cpp

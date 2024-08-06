@@ -1,9 +1,5 @@
 project(ZmqWrapper)
 
-include_directories(
-    ${INCLUDE_DIRS}
-)
-
 add_library(
     ${PROJECT_NAME}
     STATIC

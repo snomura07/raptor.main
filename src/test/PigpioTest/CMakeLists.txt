@@ -1,9 +1,5 @@
 project(PigpioTest)
 
-include_directories(
-    ${INCLUDE_DIRS}
-)
-
 add_executable(
     ${PROJECT_NAME}
     main.cpp

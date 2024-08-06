@@ -1,11 +1,5 @@
 project(ZmqWrapperTest)
 
-include_directories(
-    ${INCLUDE_DIRS}
-    ${CMAKE_SOURCE_DIR}/protobuf
-    ${CMAKE_SOURCE_DIR}/common
-)
-
 add_executable(
     ${PROJECT_NAME}Server
     server.cpp

@@ -2,6 +2,7 @@
 #define INCLUDED_IMAGE
 #include <string>
 #include <memory>
+#include <opencv2/opencv.hpp>
 
 class Image{
 public:

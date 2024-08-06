@@ -1,9 +1,5 @@
 project(ProxyServer)
 
-include_directories(
-    ${INCLUDE_DIRS}
-)
-
 add_executable(
     ${PROJECT_NAME}
     ${PROJECT_NAME}.cpp

@@ -18,6 +18,7 @@ int main() {
 
     Image image4;
     image4.readFromBinary(encodedImage);
+    image4.setTime();
     image4.saveAsPng("/home/nomura/image/hhh.png");
 
     return 0;

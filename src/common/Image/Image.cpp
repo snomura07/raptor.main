@@ -1,6 +1,9 @@
 #include "Image.h"
 #include <iostream>
 #include <cstring>
+#include <chrono>
+#include <iomanip>
+#include <sstream>
 #include <opencv2/opencv.hpp>
 
 class Image::Impl{
@@ -101,4 +104,37 @@ void Image::decode(const std::string& bin)
     } else {
         std::cerr << "Failed to decode image from binary." << std::endl;
     }
+}
+
+void Image::setTime()
+{
+    // 現在の日時を取得
+    auto now = std::chrono::system_clock::now();
+    auto in_time_t = std::chrono::system_clock::to_time_t(now);
+
+    // ローカルタイムに変換
+    struct tm buf;
+    localtime_r(&in_time_t, &buf);
+
+    // 日時を文字列形式でフォーマット
+    std::ostringstream ss;
+    ss << std::put_time(&buf, "%Y/%m/%d %H:%M:%S");
+
+    std::string timeText = ss.str();
+    cv::Point textOrg(10, 30);  // テキストの位置
+    int fontFace = cv::FONT_HERSHEY_SIMPLEX;
+    double fontScale = 0.7;
+    int thickness = 1;
+    cv::Scalar textColor(255, 255, 255); // テキストの色（白）
+    cv::Scalar backgroundColor(0, 0, 0); // 背景色（黒）
+
+    // テキストのサイズとベースラインを取得
+    int baseline = 0;
+    cv::Size textSize = cv::getTextSize(timeText, fontFace, fontScale, thickness, &baseline);
+
+    // 背景の黒長方形を描画
+    cv::rectangle(pImpl->frame, textOrg + cv::Point(0, baseline), textOrg + cv::Point(textSize.width, -textSize.height), backgroundColor, cv::FILLED);
+
+    // テキストを描画
+    cv::putText(pImpl->frame, timeText, textOrg, fontFace, fontScale, textColor, thickness);
 }

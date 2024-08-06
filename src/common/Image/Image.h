@@ -3,8 +3,9 @@
 #include <string>
 #include <memory>
 
-class Image {
+class Image{
 public:
+    Image();
     Image(const std::string& imgFilePath);
     ~Image();
     int width();
@@ -12,22 +13,18 @@ public:
     int channel();
     int size();
     const unsigned char* data();
-private:
-    class Impl;
-    std::unique_ptr<Impl> pImpl;
-};
 
-class ImageMagic {
 public:
-    ImageMagic();
-    ~ImageMagic();
-    void image2Bytes(Image &image, std::string &bytes);
-    void writePng(Image &image, std::string filename);
+    void readFromFile(const std::string& imgFilePath);
+    void readFromBinary(const std::string& bin);
+    void saveAsPng(const std::string& filename);
+    std::string encode();
+    void decode(const std::string& bin);
+    void setTime();
 
 private:
     class Impl;
     std::unique_ptr<Impl> pImpl;
 };
-
 
 #endif

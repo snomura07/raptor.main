@@ -3,10 +3,18 @@
 #include <cstring>
 #include <opencv2/opencv.hpp>
 
-class Image::Impl {
+class Image::Impl{
 public:
+    Impl()
+        : width(0), height(0), channel(0), size(0) {
+    }
     Impl(const std::string& imgFilePath)
         : width(0), height(0), channel(0), size(0) {
+        readFromFile(imgFilePath);
+    }
+
+    void readFromFile(const std::string& imgFilePath)
+    {
         frame = cv::imread(imgFilePath);
         if (!frame.empty()) {
             width   = frame.cols;
@@ -18,6 +26,21 @@ public:
         }
     }
 
+    void readFromBinary(const std::string& bin)
+    {
+        std::vector<uchar> buf(bin.begin(), bin.end());
+        cv::Mat decodedImage = cv::imdecode(buf, cv::IMREAD_ANYCOLOR);
+        if (!decodedImage.empty()) {
+            frame   = decodedImage;
+            width   = frame.cols;
+            height  = frame.rows;
+            channel = frame.channels();
+            size    = width * height * channel;
+        } else {
+            std::cerr << "Failed to decode image from binary." << std::endl;
+        }
+    }
+
     int width;
     int height;
     int channel;
@@ -25,37 +48,57 @@ public:
     cv::Mat frame;
 };
 
+Image::Image()
+    : pImpl(std::make_unique<Impl>()) {}
 Image::Image(const std::string& imgFilePath)
     : pImpl(std::make_unique<Impl>(imgFilePath)) {}
 Image::~Image() = default;
-
-int Image::width()   { return pImpl->width; }
-int Image::height()  { return pImpl->height; }
-int Image::channel() { return pImpl->channel; }
-int Image::size()    { return pImpl->size; }
+int Image::width()                 { return pImpl->width; }
+int Image::height()                { return pImpl->height; }
+int Image::channel()               { return pImpl->channel; }
+int Image::size()                  { return pImpl->size; }
 const unsigned char* Image::data() { return pImpl->frame.data; }
 
-
-class ImageMagic::Impl {
-public:
-    Impl(){}
-};
-ImageMagic::ImageMagic()
-    : pImpl() {}
-ImageMagic::~ImageMagic() = default;
-
-void ImageMagic::image2Bytes(Image &image, std::string &bytes)
+void Image::readFromFile(const std::string& imgFilePath)
 {
-    std::string dataStr(reinterpret_cast<char const*>(image.data()), image.size());
-    bytes = dataStr;
+    pImpl->readFromFile(imgFilePath);
 }
 
-void ImageMagic::writePng(Image &image, std::string filename)
+void Image:: readFromBinary(const std::string& bin)
 {
-    if (cv::imwrite(filename, frame)) {
-        std::cout << "Image saved as " << filename << std::endl;
+    pImpl->readFromBinary(bin);
+}
+
+void Image::saveAsPng(const std::string& filename) {
+    if (!pImpl->frame.empty()) {
+        if (cv::imwrite(filename, pImpl->frame)) {
+            std::cout << "Image saved as " << filename << std::endl;
+        } else {
+            std::cerr << "Failed to save image to " << filename << std::endl;
+        }
+    } else {
+        std::cerr << "No image to save." << std::endl;
     }
-    else {
-        std::cerr << "Failed to save image to " << filename << std::endl;
+}
+
+std::string Image::encode()
+{
+    std::vector<uchar> buf;
+    cv::imencode(".png", pImpl->frame, buf);
+    return std::string(buf.begin(), buf.end());
+}
+
+void Image::decode(const std::string& bin)
+{
+    std::vector<uchar> buf(bin.begin(), bin.end());
+    cv::Mat decodedImage = cv::imdecode(buf, cv::IMREAD_ANYCOLOR);
+    if (!decodedImage.empty()) {
+        pImpl->frame   = decodedImage;
+        pImpl->width   = pImpl->frame.cols;
+        pImpl->height  = pImpl->frame.rows;
+        pImpl->channel = pImpl->frame.channels();
+        pImpl->size    = pImpl->width * pImpl->height * pImpl->channel;
+    } else {
+        std::cerr << "Failed to decode image from binary." << std::endl;
     }
 }

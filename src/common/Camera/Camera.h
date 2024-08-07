@@ -1,6 +1,7 @@
 #ifndef INCLUDED_CAMERA
 #define INCLUDED_CAMERA
 #include <opencv2/opencv.hpp>
+#include <Image/Image.h>
 
 class Camera
 {
@@ -20,6 +21,7 @@ private:
     bool isDevelop;
     vc  cap;
     mat frame;
+    Image image;
 };
 
 #endif

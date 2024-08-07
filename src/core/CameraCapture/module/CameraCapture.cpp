@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "CameraCapture.h"
 #include <ZmqWrapper/ZmqWrapper.h>
 #include <Camera/Camera.h>
@@ -24,16 +25,18 @@ bool CameraCapture::run()
 {
     bool isRunning = true;
     ZmqWrapper zmq;
-    zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, config.publishTopic);
+    zmq.registerSession("127.0.0.1", config.master.pubPort, ZmqWrapper::zmqPatternEnum::PUBLISH, config.publishTopic);
 
     Camera camera;
     camera.open();
     while(isRunning){
         camera.capture();
+        std::string encodedImage = camera.encode();
+        std::cout << "size: " << encodedImage.size() << std::endl;
 
         raptor::protobuf::CamMsg cameraMsg;
         cameraMsg.set_viewname1("CameraCapture");
-        cameraMsg.set_img(camera.encode());
+        cameraMsg.set_img(encodedImage);
 
         std::string sMsg;
         cameraMsg.SerializeToString(&sMsg);

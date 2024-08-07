@@ -16,7 +16,20 @@ public:
         readFromFile(imgFilePath);
     }
 
-    void readFromFile(const std::string& imgFilePath)
+    void readFromMat(const cv::Mat &mat)
+    {
+        frame = mat;
+        if (!frame.empty()) {
+            width   = frame.cols;
+            height  = frame.rows;
+            channel = frame.channels();
+            size    = width * height * channel;
+        } else {
+            std::cerr << "Failed to load image from mat"<< std::endl;
+        }
+    }
+
+    void readFromFile(const std::string &imgFilePath)
     {
         frame = cv::imread(imgFilePath);
         if (!frame.empty()) {
@@ -29,7 +42,7 @@ public:
         }
     }
 
-    void readFromBinary(const std::string& bin)
+    void readFromBinary(const std::string &bin)
     {
         std::vector<uchar> buf(bin.begin(), bin.end());
         cv::Mat decodedImage = cv::imdecode(buf, cv::IMREAD_ANYCOLOR);
@@ -62,17 +75,22 @@ int Image::channel()               { return pImpl->channel; }
 int Image::size()                  { return pImpl->size; }
 const unsigned char* Image::data() { return pImpl->frame.data; }
 
-void Image::readFromFile(const std::string& imgFilePath)
+void Image::readFromMat(const cv::Mat &mat)
+{
+    pImpl->readFromMat(mat);
+}
+
+void Image::readFromFile(const std::string &imgFilePath)
 {
     pImpl->readFromFile(imgFilePath);
 }
 
-void Image:: readFromBinary(const std::string& bin)
+void Image:: readFromBinary(const std::string &bin)
 {
     pImpl->readFromBinary(bin);
 }
 
-void Image::saveAsPng(const std::string& filename) {
+void Image::saveAsPng(const std::string &filename) {
     if (!pImpl->frame.empty()) {
         if (cv::imwrite(filename, pImpl->frame)) {
             std::cout << "Image saved as " << filename << std::endl;
@@ -87,13 +105,21 @@ void Image::saveAsPng(const std::string& filename) {
 std::string Image::encode()
 {
     std::vector<uchar> buf;
-    cv::imencode(".png", pImpl->frame, buf);
+    bool success = cv::imencode(".png", pImpl->frame, buf);
+    if (!success) {
+        std::cerr << "Failed to encode image." << std::endl;
+        return "";
+    }
     return std::string(buf.begin(), buf.end());
 }
 
-void Image::decode(const std::string& bin)
+void Image::decode(const std::string &bin)
 {
     std::vector<uchar> buf(bin.begin(), bin.end());
+    if (buf.empty()) {
+        std::cerr << "Received empty binary data." << std::endl;
+        return;
+    }
     cv::Mat decodedImage = cv::imdecode(buf, cv::IMREAD_ANYCOLOR);
     if (!decodedImage.empty()) {
         pImpl->frame   = decodedImage;

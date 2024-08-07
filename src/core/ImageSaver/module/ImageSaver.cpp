@@ -2,9 +2,9 @@
 #include <fstream>
 #include "ImageSaver.h"
 #include <ZmqWrapper/ZmqWrapper.h>
-#include <Camera/Camera.h>
 #include <CamMsg/CamMsg.pb.h>
 #include <msleep.hpp>
+#include <Image/Image.h>
 
 ImageSaver::ImageSaver()
 {
@@ -27,19 +27,27 @@ bool ImageSaver::run()
 
     bool isRunning = true;
     ZmqWrapper zmq;
-    zmq.registerSession("127.0.0.1", subPort , ZmqWrapper::zmqPatternEnum::SUBSCRIBE, topic);
+    zmq.registerSession("127.0.0.1", subPort , ZmqWrapper::zmqPatternEnum::SUBSCRIBE, topic, std::bind(&ImageSaver::receiveMsg, this, std::placeholders::_1, std::placeholders::_1));
 
-    Camera camera;
     while(isRunning){
         std::string msg = "";
-        auto res = zmq.pollMessage(msg, -1);
-
-        raptor::protobuf::CamMsg protoMsg;
-        protoMsg.ParseFromString(msg);
-
-        std::cout << "@" << protoMsg.viewname1() << std::endl;
-        std::cout << "img: " << protoMsg.img() << std::endl;
+        auto res = zmq.pollMessage(msg, -1);        
     }
 
     return isRunning;
+}
+
+void ImageSaver::receiveMsg(std::string msg, std::string topic)
+{
+    raptor::protobuf::CamMsg protoMsg;
+    protoMsg.ParseFromString(msg);
+    std::cout << topic << " " << protoMsg.viewname1() << std::endl;
+
+    std::string imgs = protoMsg.img();
+    std::cout << imgs.size() << std::endl;
+
+    Image image;
+    image.readFromBinary(protoMsg.img());
+    image.setTime();
+    image.saveAsPng("/home/nomura/image/mmm.png");
 }

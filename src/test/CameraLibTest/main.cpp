@@ -7,12 +7,12 @@ int main() {
     Camera camera;
     camera.open();
 
-    while(1){
+    for(int i=0; i<10; i++){
         camera.capture();
-        std::string frame = camera.encode();
-        std::cout << frame << std::endl;
+        // std::string frame = camera.encode();
+        // std::cout << frame << std::endl;
+        camera.save("/home/nomura/image/"+std::to_string(i)+".png");
         msleep(1000);
     }
-    // camera.save("/home/nomura/image/ggg.png");
     return 0;
 }

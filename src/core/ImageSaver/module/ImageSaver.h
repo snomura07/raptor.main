@@ -9,5 +9,8 @@ public:
     bool run();
 
 private:
+    void receiveMsg(std::string msg, std::string topic);
+
+private:
     AppConfig config;
 };

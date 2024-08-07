@@ -17,7 +17,7 @@ target_link_libraries(
     RaptorBase
     ZmqWrapper
     ${OpenCV_LIBS}
-    Camera
+    Image
     protobuf-CamMsg
     Logger
     MasterConfig

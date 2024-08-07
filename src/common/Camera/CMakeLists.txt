@@ -17,6 +17,7 @@ target_link_libraries(
     PRIVATE
     pthread
     Env
+    Image
     ${OpenCV_LIBS}
 )
 

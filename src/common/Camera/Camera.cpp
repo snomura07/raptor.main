@@ -26,6 +26,7 @@ int Camera::open()
             std::cerr << "Failed to load image" << std::endl;
             return -1;
         }
+        image.readFromMat(frame);
         return 0;
     }
 
@@ -54,6 +55,7 @@ void Camera::capture()
         cap >> frame;
         if (!frame.empty()) {
             std::cout << "Frame captured successfully" << std::endl;
+            image.readFromMat(frame);
         }
         else {
             std::cerr << "Failed to capture frame" << std::endl;
@@ -63,21 +65,11 @@ void Camera::capture()
 
 void Camera::save(const std::string& filename)
 {
-    if (cv::imwrite(filename, frame)) {
-        std::cout << "Image saved as " << filename << std::endl;
-    }
-    else {
-        std::cerr << "Failed to save image to " << filename << std::endl;
-    }
+    image.setTime();
+    image.saveAsPng(filename);
 }
 
 std::string Camera::encode()
 {
-    int width   = frame.cols;
-    int height  = frame.rows;
-    int channel = frame.channels();
-    int size    = width * height * channel;
-    std::string data_str(reinterpret_cast<char const*>(frame.data), size);
-
-    return data_str;
+    return image.encode();
 }

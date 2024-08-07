@@ -16,11 +16,12 @@ public:
     const unsigned char* data();
 
 public:
-    void readFromFile(const std::string& imgFilePath);
-    void readFromBinary(const std::string& bin);
-    void saveAsPng(const std::string& filename);
+    void readFromMat(const cv::Mat &mat);
+    void readFromFile(const std::string &imgFilePath);
+    void readFromBinary(const std::string &bin);
+    void saveAsPng(const std::string &filename);
     std::string encode();
-    void decode(const std::string& bin);
+    void decode(const std::string &bin);
     void setTime();
 
 private:

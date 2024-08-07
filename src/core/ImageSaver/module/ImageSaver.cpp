@@ -31,7 +31,7 @@ bool ImageSaver::run()
 
     while(isRunning){
         std::string msg = "";
-        auto res = zmq.pollMessage(msg, -1);        
+        auto res = zmq.pollMessage(msg, -1);
     }
 
     return isRunning;

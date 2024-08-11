@@ -14,6 +14,8 @@ public:
     int subPort;
     int pubPort;
     std::string configPath;
+    std::string imagePath;
+    std::string logPath;
 
 private:
     nlohmann::json jsonData;

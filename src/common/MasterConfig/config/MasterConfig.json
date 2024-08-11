@@ -2,7 +2,8 @@
     "subPort" : 5555,
     "pubPort" : 5556,
     "path":{
-        "config" : "/usr/local/config/"
+        "config" : "/usr/local/config/",
+        "image"  : "/usr/local/image/",
+        "log"    : "/usr/local/log/"
     }
-
 }

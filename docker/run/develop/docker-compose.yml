@@ -11,11 +11,12 @@ services:
       - ../../../bin:/home/nomura/bin
       - ../../../lib:/home/nomura/lib
       - ../../../script:/home/nomura/script
-      - ../../../config:/usr/local/config
       - ../../../resource/thermal_zone0:/home/nomura/thermal_zone0
-      - ../../../resource/image:/home/nomura/image
-      - ../../../resource/msgs:/var/opt/msgs
-      - ../../../log:/usr/local/log
+
+      - ../../../resource/image:/usr/local/image:rw
+      - ../../../config:/usr/local/config:rw
+      - ../../../log:/usr/local/log:rw
+      - ../../../resource/msgs:/var/opt/msgs:rw
 
     # command: bash
     command: >

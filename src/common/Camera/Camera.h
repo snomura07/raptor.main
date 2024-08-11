@@ -2,6 +2,7 @@
 #define INCLUDED_CAMERA
 #include <opencv2/opencv.hpp>
 #include <Image/Image.h>
+#include <MasterConfig/MasterConfig.h>
 
 class Camera
 {
@@ -22,6 +23,7 @@ private:
     vc  cap;
     mat frame;
     Image image;
+    MasterConfig masterConf;
 };
 
 #endif

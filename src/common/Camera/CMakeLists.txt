@@ -18,6 +18,7 @@ target_link_libraries(
     pthread
     Env
     Image
+    MasterConfig
     ${OpenCV_LIBS}
 )
 

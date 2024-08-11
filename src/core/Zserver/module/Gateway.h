@@ -2,6 +2,7 @@
 #define INCLUDED_GATEWAY
 #include <string>
 #include <vector>
+#include <MasterConfig/MasterConfig.h>
 #include "Router.h"
 #include "../controller/GpioController.h"
 #include "../controller/CameraController.h"
@@ -17,6 +18,7 @@ private:
     Router router;
     GpioController gpioController;
     CameraController cameraController;
+    MasterConfig masterConf;
 };
 
 #endif

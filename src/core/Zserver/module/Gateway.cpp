@@ -1,11 +1,15 @@
 #include "Gateway.h"
 #include "Router.h"
 #include <iostream>
+#include <string>
 #include <vector>
 #include <regex>
 #include <str.hpp>
 
-Gateway::Gateway(){}
+Gateway::Gateway()
+{
+    masterConf.read();
+}
 
 Gateway::~Gateway(){}
 
@@ -35,7 +39,8 @@ std::string Gateway::routeRequest(std::string path, std::vector<int> params)
         gpioController.setLow(pinNo);
     }
     else if(router.get("camera/capture/save", params, true)){
-        cameraController.save("/home/nomura/image/ttt.png");
+        std::string imagePath = masterConf.imagePath + "ttt.png";
+        cameraController.save(imagePath);
     }
 
 

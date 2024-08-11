@@ -49,5 +49,7 @@ void ImageSaver::receiveMsg(std::string msg, std::string topic)
     Image image;
     image.readFromBinary(protoMsg.img());
     image.setTime();
-    image.saveAsPng("/home/nomura/image/mmm.png");
+
+    std::string imagePath = config.master.imagePath + "/mmm.png";
+    image.saveAsPng(imagePath);
 }

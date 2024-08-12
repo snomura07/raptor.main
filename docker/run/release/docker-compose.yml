@@ -28,6 +28,7 @@ services:
       bash -c "
       chmod -R a+w /usr/local/log;
       chmod -R a+rw /dev/video0;
+      /home/pi/bin/ProxyServer
       bash"
     ports:
       - 5555:5555

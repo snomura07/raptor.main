@@ -4,6 +4,18 @@
 ![ピンアサイン](https://hara-jp.com/images/_default/Topics/RaspPiZero/RaspPiZero.png)
 
 
+## IP固定
+
+```
+sudo nano /etc/dhcpcd.conf
+```
+- 以下を追記
+```
+interface wlan0
+static ip_address=100.64.1.200/24
+static routers=100.64.1.1
+static domain_name_servers=100.64.1.1 8.8.8.8
+```
 ## OTG設定
 - boot直下に空の「SSH」ファイルを作成
 - config.txtの末尾に、`dtoverlay=dwc2`を追記

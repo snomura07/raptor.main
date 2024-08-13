@@ -2,6 +2,7 @@
 #include <thread>
 #include <string>
 #include "RaptorBase.h"
+#include <print.hpp>
 
 RaptorBase::RaptorBase():
     modName(""),
@@ -39,5 +40,5 @@ bool RaptorBase::runKeepAliveServer()
 
 void RaptorBase::showActivatedSign()
 {
-    std::cout << "[@] " << modName << " start!" << std::endl;
+    print("[@]", modName, "start!");
 }

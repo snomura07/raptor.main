@@ -95,7 +95,7 @@ void Image:: readFromBinary(const std::string &bin)
 void Image::saveAsPng(const std::string &filename) {
     if (!pImpl->frame.empty()) {
         if (cv::imwrite(filename, pImpl->frame)) {
-            std::cout << "Image saved as " << filename << std::endl;
+            print("Image saved as", filename);
         } else {
             std::cerr << "Failed to save image to " << filename << std::endl;
         }

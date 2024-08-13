@@ -4,6 +4,7 @@
 #include <cstring>
 #include <CamMsg/CamMsg.pb.h>
 #include <ZmqWrapper/ZmqWrapper.h>
+#include <print.hpp>
 #include "../config/AppConfig.h"
 
 void receiveMsg(std::string msg, std::string topic)
@@ -11,8 +12,8 @@ void receiveMsg(std::string msg, std::string topic)
     raptor::protobuf::CamMsg protoMsg;
     protoMsg.ParseFromString(msg);
 
-    std::cout << "@" << protoMsg.viewname1() << std::endl;
-    std::cout << "img: " << protoMsg.img() << std::endl;
+    print("@", protoMsg.viewname1());
+    print("img:", protoMsg.img());
 }
 
 int main()

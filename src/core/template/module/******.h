@@ -2,10 +2,10 @@
 #include <RaptorBase/RaptorBase.h>
 #include "../config/AppConfig.h"
 
-class Counter : public RaptorBase{
+class ****** : public RaptorBase{
 public:
-    Counter();
-    ~Counter();
+    ******();
+    ~******();
     bool run();
 
 private:

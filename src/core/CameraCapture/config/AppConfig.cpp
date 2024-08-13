@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <nlohmann/json.hpp>
+#include <print.hpp>
 
 AppConfig::AppConfig():
     jsonPath("/usr/local/config/CameraCapture.json"),
@@ -28,5 +29,5 @@ void AppConfig::read(){
 }
 
 void AppConfig::dump(){
-    std::cout << jsonData.dump() << std::endl;
+    print(jsonData.dump());
 }

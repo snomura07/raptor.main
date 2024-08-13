@@ -3,6 +3,7 @@
 #include <cstring>
 #include <Env/Env.h>
 #include <msleep.hpp>
+#include <print.hpp>
 #include <opencv2/opencv.hpp>
 
 Camera::Camera()
@@ -34,14 +35,14 @@ int Camera::open()
 
     cap.open(0);
     if (cap.isOpened()) {
-        std::cout << "Camera successfully opened on index 0" << std::endl;
+        print("Camera successfully opened on index 0");
         cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
         cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
         cap.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('Y', 'U', 'Y', 'V'));
 
-        std::cout << "Frame width: " << cap.get(cv::CAP_PROP_FRAME_WIDTH) << std::endl;
-        std::cout << "Frame height: " << cap.get(cv::CAP_PROP_FRAME_HEIGHT) << std::endl;
-        std::cout << "FourCC: " << cap.get(cv::CAP_PROP_FOURCC) << std::endl;
+        print("Frame width:", cap.get(cv::CAP_PROP_FRAME_WIDTH));
+        print("Frame height:", cap.get(cv::CAP_PROP_FRAME_HEIGHT));
+        print("FourCC:", cap.get(cv::CAP_PROP_FOURCC));
     }
     else {
         std::cerr << "Failed to open camera" << std::endl;

@@ -10,7 +10,7 @@
 template<typename... Args>
 void print(const Args&... args) {
     std::ostringstream oss;
-    oss << DateTime::getFormattedDateTime();
+    oss << "[" << DateTime::getFormattedDateTime() << "]";
 
     ((oss << " " << args), ...);
 

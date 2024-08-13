@@ -8,6 +8,7 @@
 Camera::Camera()
 {
     isDevelop = isDevEnv();
+    masterConf.read();
 }
 
 Camera::~Camera()
@@ -21,7 +22,8 @@ Camera::~Camera()
 int Camera::open()
 {
     if (isDevelop) {
-        frame = cv::imread("/home/nomura/image/test.png");
+        std::string imagePath = masterConf.imagePath + "/test.png";
+        frame = cv::imread(imagePath);
         if (frame.empty()) {
             std::cerr << "Failed to load image" << std::endl;
             return -1;
@@ -54,7 +56,6 @@ void Camera::capture()
     if (!isDevelop) {
         cap >> frame;
         if (!frame.empty()) {
-            std::cout << "Frame captured successfully" << std::endl;
             image.readFromMat(frame);
         }
         else {

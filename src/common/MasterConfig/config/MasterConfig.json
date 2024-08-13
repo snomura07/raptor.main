@@ -1,8 +1,12 @@
 {
-    "subPort" : 5555,
-    "pubPort" : 5556,
+    "localhost" : "127.0.0.1",
+    "raptorIp"  : "100.64.1.200",
+    "subPort"   : 5555,
+    "pubPort"   : 5556,
     "path":{
-        "config" : "/usr/local/config/"
+        "config" : "/usr/local/config/",
+        "image"  : "/usr/local/image/",
+        "camera" : "/usr/local/image/camera/",
+        "log"    : "/usr/local/log/"
     }
-
 }

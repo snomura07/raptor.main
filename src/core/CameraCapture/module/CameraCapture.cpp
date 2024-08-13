@@ -32,7 +32,6 @@ bool CameraCapture::run()
     while(isRunning){
         camera.capture();
         std::string encodedImage = camera.encode();
-        std::cout << "size: " << encodedImage.size() << std::endl;
 
         raptor::protobuf::CamMsg cameraMsg;
         cameraMsg.set_viewname1("CameraCapture");

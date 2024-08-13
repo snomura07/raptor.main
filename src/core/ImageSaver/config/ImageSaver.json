@@ -1,5 +1,6 @@
 {
     "modName" : "ImageSaver",
     "healthCheckPort" : 5594,
-    "subscribeTopic":"CAMERACAPUTURE"
+    "subscribeTopic":"CAMERACAPUTURE",
+    "clientIp" : "localhost"
 }

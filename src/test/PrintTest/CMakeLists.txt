@@ -1,10 +1,8 @@
-project(Camera)
-find_package(OpenCV REQUIRED)
+project(PrintTest)
 
-add_library(
+add_executable(
     ${PROJECT_NAME}
-    STATIC
-    ${PROJECT_NAME}.cpp
+    main.cpp
 )
 
 target_include_directories(
@@ -15,15 +13,10 @@ target_include_directories(
 target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
-    pthread
-    Env
-    Image
-    MasterConfig
-    ${OpenCV_LIBS}
 )
 
 INSTALL(
     TARGETS
     ${PROJECT_NAME}
-    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin/test
 )

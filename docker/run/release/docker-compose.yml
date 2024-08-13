@@ -4,6 +4,8 @@ services:
   dev:
     restart: always
     image: snomura07/raptor_release_img:latest
+    environment:
+      - TZ=Asia/Tokyo
     container_name: 'raptor_main'
     privileged: true
     devices:
@@ -17,10 +19,10 @@ services:
       - ../../../bin:/home/pi/bin
       - ../../../lib:/home/pi/lib
       - ../../../script:/home/pi/script
-      - ../../../config:/usr/local/config
-      - ../../../resource/image:/home/pi/image
-      - ../../../resource/msgs:/var/opt/msgs
-      - ../../../log:/usr/local/log
+      - ../../../resource/image:/usr/local/image:rw
+      - ../../../config:/usr/local/config:rw
+      - ../../../log:/usr/local/log:rw
+      - ../../../resource/msgs:/var/opt/msgs:rw
       - /sys/class:/sys/class
 
     # command: bash
@@ -28,6 +30,7 @@ services:
       bash -c "
       chmod -R a+w /usr/local/log;
       chmod -R a+rw /dev/video0;
+      /home/pi/bin/ProxyServer
       bash"
     ports:
       - 5555:5555

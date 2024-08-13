@@ -20,6 +20,7 @@ target_link_libraries(
     Gpio
     Camera
     ZmqWrapper
+    MasterConfig
     protobuf-ZserverMsg
     ${OpenCV_LIBS}
 )

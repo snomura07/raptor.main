@@ -11,7 +11,7 @@ int main() {
         camera.capture();
         // std::string frame = camera.encode();
         // std::cout << frame << std::endl;
-        camera.save("/home/nomura/image/"+std::to_string(i)+".png");
+        camera.save("/usr/local/image/"+std::to_string(i)+".png");
         msleep(1000);
     }
     return 0;

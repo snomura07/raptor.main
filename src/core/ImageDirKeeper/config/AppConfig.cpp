@@ -4,25 +4,23 @@
 #include <nlohmann/json.hpp>
 
 AppConfig::AppConfig():
-    jsonPath("/usr/local/config/ImageSaver.json"),
+    jsonPath("/usr/local/config/ImageDirKeeper.json"),
     modName(""),
     healthCheckcPort(0),
-    subscribeTopic(""),
-    clientIp("")
+    sizeThre(0)
 {}
 AppConfig::~AppConfig(){}
 
 void AppConfig::read(){
     master.read();
-    jsonPath = master.configPath + "ImageSaver.json";
+    jsonPath = master.configPath + "ImageDirKeeper.json";
 
     std::ifstream jsonFile(jsonPath);
     if (jsonFile.is_open()) {
         jsonFile >> jsonData;
         modName          = jsonData["modName"];
         healthCheckcPort = jsonData["healthCheckPort"];
-        subscribeTopic   = jsonData["subscribeTopic"];
-        clientIp         = jsonData["clientIp"];
+        sizeThre         = jsonData["sizeThre"];
     }
     else{
         std::cerr << "file open error" << std::endl;

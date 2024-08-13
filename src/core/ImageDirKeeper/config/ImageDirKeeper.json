@@ -1,0 +1,5 @@
+{
+    "modName" : "ImageDirKeeper",
+    "healthCheckPort" : 5595,
+    "sizeThre" : 60
+}

@@ -78,19 +78,29 @@ int ZmqWrapper::pollMessage(std::string &msg, int timeout)
     }
 
     if (items[0].revents & ZMQ_POLLIN) {
-        long buff_size = 1024;
-        std::shared_ptr<char> buff(new char[buff_size], std::default_delete<char[]>());
-        zmq_recv(this->socket, buff.get(), buff_size, 0);
-        std::string data(buff.get());
+        zmq_msg_t message;
+        zmq_msg_init(&message);
+        if (zmq_msg_recv(&message, this->socket, 0) == -1) {
+            std::cerr << "Failed to receive message." << std::endl;
+            zmq_msg_close(&message);
+            return -1;
+        }
+        std::string data(static_cast<char*>(zmq_msg_data(&message)), zmq_msg_size(&message));
+        zmq_msg_close(&message);
 
-        std::string topic = data.substr(0, data.find('$'));
-        std::string message_content = data.substr(data.find('$') + 1);
-        msg = message_content;
+        auto delimiter_pos = data.find('$');
+        if (delimiter_pos != std::string::npos) {
+            std::string topic = data.substr(0, delimiter_pos);
+            std::string message_content = data.substr(delimiter_pos + 1);
+            msg = message_content;
 
-        if (auto it = callbackMap.find(topic); it != callbackMap.end()) {
-            it->second(msg, topic);
+            if (auto it = callbackMap.find(topic); it != callbackMap.end()) {
+                it->second(msg, topic);
+            } else {
+                std::cerr << "Callback function not found for topic: " << topic << std::endl;
+            }
         } else {
-            //Callback function not found for topic
+            std::cerr << "Delimiter not found in received message." << std::endl;
         }
     }
 
@@ -100,7 +110,12 @@ int ZmqWrapper::pollMessage(std::string &msg, int timeout)
 int ZmqWrapper::sendMessage(std::string msg)
 {
     std::string taggedMsg = this->topic + '$' + msg;
-    int len = zmq_send(this->socket, taggedMsg.c_str(), taggedMsg.length(), 0);
+    int len = zmq_send(this->socket, taggedMsg.c_str(), taggedMsg.size(), 0);
+
+    if (len == -1) {
+        std::cerr << "Failed to send message." << std::endl;
+        return -1;
+    }
 
     return 0;
 }

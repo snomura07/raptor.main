@@ -7,7 +7,8 @@ AppConfig::AppConfig():
     jsonPath("/usr/local/config/ImageSaver.json"),
     modName(""),
     healthCheckcPort(0),
-    subscribeTopic("")
+    subscribeTopic(""),
+    clientIp("")
 {}
 AppConfig::~AppConfig(){}
 
@@ -21,6 +22,7 @@ void AppConfig::read(){
         modName          = jsonData["modName"];
         healthCheckcPort = jsonData["healthCheckPort"];
         subscribeTopic   = jsonData["subscribeTopic"];
+        clientIp         = jsonData["clientIp"];
     }
     else{
         std::cerr << "file open error" << std::endl;

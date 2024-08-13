@@ -13,6 +13,7 @@ public:
     std::string modName;
     int healthCheckcPort;
     std::string subscribeTopic;
+    std::string clientIp;
     MasterConfig master;
 
 private:

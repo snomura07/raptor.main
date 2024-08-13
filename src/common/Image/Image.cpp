@@ -5,6 +5,8 @@
 #include <iomanip>
 #include <sstream>
 #include <opencv2/opencv.hpp>
+#include <datetime.hpp>
+#include <print.hpp>
 
 class Image::Impl{
 public:
@@ -134,19 +136,7 @@ void Image::decode(const std::string &bin)
 
 void Image::setTime()
 {
-    // 現在の日時を取得
-    auto now = std::chrono::system_clock::now();
-    auto in_time_t = std::chrono::system_clock::to_time_t(now);
-
-    // ローカルタイムに変換
-    struct tm buf;
-    localtime_r(&in_time_t, &buf);
-
-    // 日時を文字列形式でフォーマット
-    std::ostringstream ss;
-    ss << std::put_time(&buf, "%Y/%m/%d %H:%M:%S");
-
-    std::string timeText = ss.str();
+    std::string timeText = DateTime::getFormattedDateTime();
     cv::Point textOrg(10, 30);  // テキストの位置
     int fontFace = cv::FONT_HERSHEY_SIMPLEX;
     double fontScale = 0.7;

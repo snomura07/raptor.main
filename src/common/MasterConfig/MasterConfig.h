@@ -15,6 +15,7 @@ public:
     int pubPort;
     std::string configPath;
     std::string imagePath;
+    std::string cameraPath;
     std::string logPath;
 
 private:

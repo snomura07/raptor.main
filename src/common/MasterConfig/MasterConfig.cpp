@@ -9,6 +9,7 @@ MasterConfig::MasterConfig():
     pubPort(0),
     configPath("/usr/local/config/"),
     imagePath("/usr/local/image/"),
+    cameraPath("/usr/local/image/camera/"),
     logPath("/usr/local/log/")
 {}
 
@@ -24,6 +25,7 @@ void MasterConfig::read(){
         pubPort    = jsonData["pubPort"];
         configPath = jsonData["path"]["config"];
         imagePath  = jsonData["path"]["image"];
+        cameraPath = jsonData["path"]["camera"];
         logPath    = jsonData["path"]["log"];
     }
     else{

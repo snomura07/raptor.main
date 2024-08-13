@@ -5,16 +5,33 @@
 #include <iomanip>
 #include <ctime>
 #include <sstream>
+#include <datetime.hpp>
 
 template<typename... Args>
 void print(const Args&... args) {
-    std::time_t now = std::time(nullptr);
-    std::tm* localTime = std::localtime(&now);
-
     std::ostringstream oss;
-    oss << std::put_time(localTime, "%Y/%m/%d %H:%M:%S");
+    oss << DateTime::getFormattedDateTime();
 
     ((oss << " " << args), ...);
+
+    std::cout << oss.str() << std::endl;
+}
+
+template<typename... Args>
+void printe(const Args&... args) {
+    std::ostringstream oss;
+    oss << DateTime::getFormattedDateTime();
+
+    ((oss << " " << args), ...);
+
+    std::cerr << oss.str() << std::endl;
+}
+
+template<typename... Args>
+void gprint(const Args&... args) {
+    std::ostringstream oss;
+
+    ((oss << " \033[92m" << args << "\033[0m"), ...);
 
     std::cout << oss.str() << std::endl;
 }

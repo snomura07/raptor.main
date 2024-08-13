@@ -4,6 +4,7 @@
 #include <ZmqWrapper/ZmqWrapper.h>
 #include <CamMsg/CamMsg.pb.h>
 #include <msleep.hpp>
+#include <datetime.hpp>
 #include <Image/Image.h>
 
 ImageSaver::ImageSaver()
@@ -27,7 +28,7 @@ bool ImageSaver::run()
 
     bool isRunning = true;
     ZmqWrapper zmq;
-    zmq.registerSession("127.0.0.1", subPort , ZmqWrapper::zmqPatternEnum::SUBSCRIBE, topic, std::bind(&ImageSaver::receiveMsg, this, std::placeholders::_1, std::placeholders::_1));
+    zmq.registerSession("100.64.1.200", subPort , ZmqWrapper::zmqPatternEnum::SUBSCRIBE, topic, std::bind(&ImageSaver::receiveMsg, this, std::placeholders::_1, std::placeholders::_1));
 
     while(isRunning){
         std::string msg = "";
@@ -50,6 +51,6 @@ void ImageSaver::receiveMsg(std::string msg, std::string topic)
     image.readFromBinary(protoMsg.img());
     image.setTime();
 
-    std::string imagePath = config.master.imagePath + "/mmm.png";
+    std::string imagePath = config.master.cameraPath + DateTime::getCompactDateTime() + ".png";
     image.saveAsPng(imagePath);
 }

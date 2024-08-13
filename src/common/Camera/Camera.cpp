@@ -56,7 +56,6 @@ void Camera::capture()
     if (!isDevelop) {
         cap >> frame;
         if (!frame.empty()) {
-            std::cout << "Frame captured successfully" << std::endl;
             image.readFromMat(frame);
         }
         else {

@@ -26,7 +26,6 @@ void split(std::string msg, std::string separator, std::vector<std::string> &sep
     while ( getline(ss, str_, separator_) ){
         sep_list.push_back(str_);
     }
-
 }
 
 #endif

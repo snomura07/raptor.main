@@ -11,6 +11,7 @@ public:
     void read();
 
 public:
+    std::string raptorIp;
     int subPort;
     int pubPort;
     std::string configPath;

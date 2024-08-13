@@ -5,6 +5,7 @@
 
 MasterConfig::MasterConfig():
     jsonPath("/usr/local/config/MasterConfig.json"),
+    raptorIp(""),
     subPort(0),
     pubPort(0),
     configPath("/usr/local/config/"),
@@ -21,6 +22,7 @@ void MasterConfig::read(){
 
     if (jsonFile.is_open()) {
         jsonFile >> jsonData;
+        raptorIp   = jsonData["raptorIp"];
         subPort    = jsonData["subPort"];
         pubPort    = jsonData["pubPort"];
         configPath = jsonData["path"]["config"];

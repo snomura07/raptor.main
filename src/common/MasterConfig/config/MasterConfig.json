@@ -1,6 +1,7 @@
 {
-    "subPort" : 5555,
-    "pubPort" : 5556,
+    "raptorIp" : "100.64.1.200",
+    "subPort"  : 5555,
+    "pubPort"  : 5556,
     "path":{
         "config" : "/usr/local/config/",
         "image"  : "/usr/local/image/",

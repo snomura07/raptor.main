@@ -13,6 +13,8 @@ MasterConfig::MasterConfig():
     imagePath("/usr/local/image/"),
     cameraPath("/usr/local/image/camera/"),
     logPath("/usr/local/log/"),
+    apiHost(""),
+    apiPort(0),
     mapFmt()
 {}
 
@@ -32,6 +34,8 @@ void MasterConfig::read(){
         imagePath  = jsonData["path"]["image"];
         cameraPath = jsonData["path"]["camera"];
         logPath    = jsonData["path"]["log"];
+        apiHost    = jsonData["api"]["host"];
+        apiPort    = jsonData["api"]["port"];
 
         mapFmt["localhost"]  = localhost;
         mapFmt["raptorIp"]   = raptorIp;
@@ -41,6 +45,8 @@ void MasterConfig::read(){
         mapFmt["imagePath"]  = imagePath;
         mapFmt["cameraPath"] = cameraPath;
         mapFmt["logPath"]    = logPath;
+        mapFmt["apiHost"]    = apiHost;
+        mapFmt["apiPort"]    = apiPort;
     }
     else{
         std::cerr << "file open error" << std::endl;

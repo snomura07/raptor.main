@@ -8,4 +8,4 @@ add_subdirectory(Camera)
 add_subdirectory(Logger)
 add_subdirectory(MasterConfig)
 add_subdirectory(Image)
-
+add_subdirectory(ApiClient)

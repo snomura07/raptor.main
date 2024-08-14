@@ -24,6 +24,8 @@ public:
     std::string imagePath;
     std::string cameraPath;
     std::string logPath;
+    std::string apiHost;
+    int apiPort;
 
 private:
     nlohmann::json jsonData;

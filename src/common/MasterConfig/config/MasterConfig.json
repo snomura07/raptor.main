@@ -8,5 +8,9 @@
         "image"  : "/usr/local/image/",
         "camera" : "/usr/local/image/camera/",
         "log"    : "/usr/local/log/"
+    },
+    "api":{
+        "host" : "chat",
+        "port" : 5000
     }
 }

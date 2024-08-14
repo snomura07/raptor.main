@@ -15,6 +15,7 @@ target_link_libraries(
     PRIVATE
     pthread
     RaptorBase
+    MasterConfig
 )
 
 INSTALL(

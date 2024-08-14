@@ -30,6 +30,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/common
     ${CMAKE_SOURCE_DIR}/utils
     ${CMAKE_SOURCE_DIR}/third_party/json/single_include
+    ${CMAKE_SOURCE_DIR}/third_party/cpp-httplib
     ${OpenCV_INCLUDE_DIRS}
 )
 

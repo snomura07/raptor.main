@@ -2,6 +2,7 @@
 #define INCLUDED_LOGGER
 #include <fstream>
 #include <string>
+#include <MasterConfig/MasterConfig.h>
 
 class Logger {
 public:
@@ -13,10 +14,10 @@ public:
 
 private:
     void writeLog(std::string level, std::string msg);
-    std::string getTime();
 
 private:
     std::ofstream ofs;
+    MasterConfig masterConf;
 };
 
 

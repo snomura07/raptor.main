@@ -16,3 +16,9 @@ target_link_libraries(
     pthread
     ZmqWrapper
 )
+
+INSTALL(
+    TARGETS
+    ${PROJECT_NAME}
+    RUNTIME DESTINATION bin/test
+)

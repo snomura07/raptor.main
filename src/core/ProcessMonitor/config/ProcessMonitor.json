@@ -1,0 +1,4 @@
+{
+    "modName" : "ProcessMonitor",
+    "healthCheckPort" : 5596
+}

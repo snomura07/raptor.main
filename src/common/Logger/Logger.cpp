@@ -3,16 +3,21 @@
 #include <ctime>
 #include <iomanip>
 #include <sstream>
+#include <datetime.hpp>
 
 Logger::Logger(){}
 Logger::~Logger(){
     ofs.close();
 }
 
-void Logger::init(std::string name){
+void Logger::init(std::string name)
+{
+    masterConf.read();
     std::string fileName = name + ".log";
-    std::string filePath = "/usr/local/log/" + fileName;
+    std::string filePath = masterConf.logPath + fileName;
     ofs.open(filePath, std::ios::app);
+
+    writeInfoLog(name+" start");
 }
 
 void Logger::writeInfoLog(std::string msg){
@@ -24,14 +29,6 @@ void Logger::writeErrorLog(std::string msg){
 }
 
 void Logger::writeLog(std::string level, std::string msg){
-    ofs << getTime();
+    ofs << DateTime::getFormattedDateTime();
     ofs << " [" << level << "] : " << msg << std::endl;
-}
-
-std::string Logger::getTime(){
-    std::time_t now = std::time(nullptr);
-    std::tm tm_now = *std::localtime(&now);
-    std::ostringstream oss;
-    oss << std::put_time(&tm_now, "%Y/%m/%d %H:%M:%S");
-    return oss.str();
 }

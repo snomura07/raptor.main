@@ -97,7 +97,7 @@ int ZmqWrapper::pollMessage(std::string &msg, int timeout)
             if (auto it = callbackMap.find(topic); it != callbackMap.end()) {
                 it->second(msg, topic);
             } else {
-                std::cerr << "Callback function not found for topic: " << topic << std::endl;
+                // std::cerr << "Callback function not found for topic: " << topic << std::endl;
             }
         } else {
             std::cerr << "Delimiter not found in received message." << std::endl;

@@ -22,6 +22,7 @@ ImageDirKeeper::~ImageDirKeeper(){}
 
 void ImageDirKeeper::run()
 {
+    logger.writeInfoLog("start run");
     while(1){
         scanFiles(config.master.cameraPath);
         removeOldFiles();
@@ -67,6 +68,8 @@ void ImageDirKeeper::removeOldFiles()
         try {
             std::filesystem::remove(files.front().name);
             std::cout << "Deleted file: " << files.front().name << std::endl;
+            logger.writeInfoLog("Deleted file: " + files.front().name);
+
             files.erase(files.begin());  // 削除後、リストからも削除
         } catch (const std::filesystem::filesystem_error& e) {
             printe("Failed to delete file:", e.what());

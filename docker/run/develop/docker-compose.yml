@@ -26,9 +26,18 @@ services:
     # command: bash
     command: >
       bash -c "
-        qemu-arm -L /usr/arm-linux-gnueabi /home/nomura/bin/ProxyServer
+        qemu-arm -L /usr/arm-linux-gnueabi /home/nomura/bin/ProxyServer &
+        qemu-arm -L /usr/arm-linux-gnueabi /home/nomura/bin/ImageDirKeeper &
+        wait
         bash
       "
+    networks:
+      - raptorlink
     ports:
       - 5555:5555
     tty: true
+
+networks:
+  raptorlink:
+    external: true
+    name: "RaptorLink"

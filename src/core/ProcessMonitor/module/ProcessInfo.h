@@ -6,13 +6,15 @@ class ProcessInfo{
 public:
     ProcessInfo(std::string jsonPath);
     ~ProcessInfo();
-    bool isActive();
+    bool isAlive();
     void checkAlive();
+    bool isModified();
 
 public:
     std::string modName;
     int healthCheckPort;
 
 private:
-    bool activeFlag;
+    bool aliveFlag;
+    bool preAliveFlag;
 };

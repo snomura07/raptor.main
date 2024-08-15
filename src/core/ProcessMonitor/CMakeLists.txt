@@ -19,6 +19,7 @@ target_link_libraries(
     RaptorBase
     MasterConfig
     ZmqWrapper
+    InfoChat
 )
 
 INSTALL(

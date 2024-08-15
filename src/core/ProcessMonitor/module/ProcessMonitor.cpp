@@ -3,6 +3,7 @@
 #include <nlohmann/json.hpp>
 #include <print.hpp>
 #include <msleep.hpp>
+#include <str.hpp>
 #include "ProcessMonitor.h"
 
 ProcessMonitor::ProcessMonitor()
@@ -33,9 +34,20 @@ bool ProcessMonitor::run()
     while(isRunning){
         for (const auto& pair : processMap) {
             pair.second->checkAlive();
-            print("Key:", pair.first, "=>", pair.second->isActive());
-        }
+            // 表示
+            // print("Key:", pair.first, "=>", pair.second->isAlive());
 
+            if(pair.second->isModified()){
+                if(pair.second->isAlive()){
+                    // wakeup
+                    infoChat.sendInfoMsg(strJoin(pair.first, " が起動しました。"));
+                }
+                else{
+                    // dead
+                    infoChat.sendErrorMsg(strJoin(pair.first, " が停止しました。"));
+                }
+            }
+        }
         print();
         msleep(1000);
     }

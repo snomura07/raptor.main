@@ -6,7 +6,8 @@
 
 ProcessInfo::ProcessInfo(std::string jsonPath):
     healthCheckPort(0),
-    activeFlag(false)
+    aliveFlag(false),
+    preAliveFlag(false)
 {
     std::ifstream jsonFile(jsonPath);
     if (jsonFile.is_open()) {
@@ -29,16 +30,23 @@ void ProcessInfo::checkAlive()
     zmq.sendMessage("check");
 
     std::string rmsg = "";
-    auto res = zmq.pollMessage(rmsg, 10);
+    auto res         = zmq.pollMessage(rmsg, 100);
+    preAliveFlag     = aliveFlag;
+
     if(res < 0){
-        activeFlag = false;
+        aliveFlag = false;
     }
     else{
-        activeFlag = true;
+        aliveFlag = true;
     }
 }
 
-bool ProcessInfo::isActive()
+bool ProcessInfo::isAlive()
 {
-    return activeFlag;
+    return aliveFlag;
+}
+
+bool ProcessInfo::isModified()
+{
+    return aliveFlag != preAliveFlag;
 }

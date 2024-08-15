@@ -27,7 +27,9 @@ services:
     command: >
       bash -c "
         qemu-arm -L /usr/arm-linux-gnueabi /home/nomura/bin/ProxyServer &
+        qemu-arm -L /usr/arm-linux-gnueabi /home/nomura/bin/ProcessMonitor &
         qemu-arm -L /usr/arm-linux-gnueabi /home/nomura/bin/ImageDirKeeper &
+        qemu-arm -L /usr/arm-linux-gnueabi /home/nomura/bin/Counter &
         wait
         bash
       "

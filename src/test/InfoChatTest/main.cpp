@@ -8,7 +8,7 @@ int main()
 {
     InfoChat infoChat;
     print(infoChat.sendInfoMsg("hfsfa"));
-    print(infoChat.sendInfoMsg("ｇｇっがが"));
+    print(infoChat.sendErrorMsg("ｇｇっがが"));
 
     return 0;
 }

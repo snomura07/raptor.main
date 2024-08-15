@@ -19,3 +19,14 @@ std::string InfoChat::sendInfoMsg(std::string msg)
 
     return apiClient.post("/send", jsonFmt);
 }
+
+std::string InfoChat::sendErrorMsg(std::string msg)
+{
+    std::string jsonFmt = strJoin(
+        R"({"message": ")",
+        msg,
+        R"(", "type": "error"})"
+    );
+
+    return apiClient.post("/send", jsonFmt);
+}

@@ -23,7 +23,6 @@ std::string ApiClient::post(std::string path, std::string msg)
     } else {
         return "Request failed";
     }
-
 }
 
 std::string ApiClient::get(std::string path, std::string msg)

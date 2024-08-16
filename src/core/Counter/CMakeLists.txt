@@ -19,6 +19,7 @@ target_link_libraries(
     Logger
     MasterConfig
     protobuf-CounterMsg
+    InfoChat
 )
 
 INSTALL(

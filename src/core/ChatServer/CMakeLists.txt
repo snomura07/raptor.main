@@ -1,4 +1,4 @@
-project(ImageDirKeeper)
+project(ChatServer)
 
 add_executable(
     ${PROJECT_NAME}
@@ -15,9 +15,7 @@ target_link_libraries(
     PRIVATE
     pthread
     RaptorBase
-    Logger
     MasterConfig
-    InfoChat
 )
 
 INSTALL(

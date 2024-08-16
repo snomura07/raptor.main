@@ -9,23 +9,23 @@ Counter::Counter():
     count(0)
 {
     config.read();
-std::cout << config.master.subPort << " " << config.master.configPath << std::endl;
+
     // base用の設定
-    modName  = config.modName;
-    commPort = config.healthCheckcPort;
-    runKeepAliveServer();
-    showActivatedSign();
-    initLogger();
+    RaptorBase::modName  = config.modName;
+    RaptorBase::commPort = config.healthCheckcPort;
+    RaptorBase::runKeepAliveServer();
+    RaptorBase::showActivatedSign();
+    RaptorBase::initLogger();
 }
 
 Counter::~Counter()
 {
-    logger.writeInfoLog("finish!");
+    RaptorBase::logger.writeInfoLog("finish!");
 }
 
 bool Counter::run()
 {
-    logger.writeInfoLog("start!");
+    RaptorBase::logger.writeInfoLog("start!");
 
     bool isRunning = true;
     ZmqWrapper zmq;

@@ -13,11 +13,11 @@ ImageSaver::ImageSaver()
     config.read();
 
     // base用の設定
-    modName  = config.modName;
-    commPort = config.healthCheckcPort;
-    runKeepAliveServer();
-    showActivatedSign();
-    initLogger();
+    RaptorBase::modName  = config.modName;
+    RaptorBase::commPort = config.healthCheckcPort;
+    RaptorBase::runKeepAliveServer();
+    RaptorBase::showActivatedSign();
+    RaptorBase::initLogger();
 }
 
 ImageSaver::~ImageSaver(){}

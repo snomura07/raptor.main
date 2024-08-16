@@ -17,6 +17,7 @@ target_link_libraries(
     pthread
     ZmqWrapper
     Logger
+    InfoChat
 )
 
 INSTALL(

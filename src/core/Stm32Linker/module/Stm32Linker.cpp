@@ -7,11 +7,10 @@ Stm32Linker::Stm32Linker()
     config.read();
 
     // base用の設定
-    modName  = config.modName;
-    commPort = config.healthCheckcPort;
-    runKeepAliveServer();
-
-    showActivatedSign();
+    RaptorBase::modName  = config.modName;
+    RaptorBase::commPort = config.healthCheckcPort;
+    RaptorBase::runKeepAliveServer();
+    RaptorBase::showActivatedSign();
 }
 
 Stm32Linker::~Stm32Linker(){}

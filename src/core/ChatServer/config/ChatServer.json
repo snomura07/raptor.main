@@ -1,0 +1,4 @@
+{
+    "modName" : "ChatServer",
+    "healthCheckPort" : 5597
+}

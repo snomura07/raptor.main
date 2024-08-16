@@ -19,6 +19,7 @@ target_link_libraries(
     RaptorBase
     Gpio
     MasterConfig
+    InfoChat
 )
 
 

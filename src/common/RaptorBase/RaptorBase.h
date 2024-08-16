@@ -5,12 +5,14 @@
 #include <thread>
 #include <ZmqWrapper/ZmqWrapper.h>
 #include <Logger/Logger.h>
+#include <InfoChat/InfoChat.h>
 
 class RaptorBase {
 protected:
     std::string modName;
     int commPort;
     Logger logger;
+    InfoChat infoChat;
 
 public:
     RaptorBase();

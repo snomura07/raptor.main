@@ -12,5 +12,8 @@
     "api":{
         "host" : "chat",
         "port" : 5000
+    },
+    "chat":{
+        "publishTopic":"CHATSERVER"
     }
 }

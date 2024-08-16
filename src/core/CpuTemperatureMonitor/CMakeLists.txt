@@ -19,6 +19,7 @@ target_link_libraries(
     ZmqWrapper
     MasterConfig
     protobuf-CpuTemperatureMsg
+    InfoChat
 )
 
 

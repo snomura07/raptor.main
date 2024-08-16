@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
-#include "******.h"
+#include "ChatServer.h"
 
-******::******()
+ChatServer::ChatServer()
 {
     config.read();
 
@@ -14,12 +14,12 @@
     RaptorBase::initLogger();
 }
 
-******::~******()
+ChatServer::~ChatServer()
 {
     RaptorBase::logger.writeInfoLog("finish!");
 }
 
-bool ******::run()
+bool ChatServer::run()
 {
     bool isRunning = true;
     while(isRunning){

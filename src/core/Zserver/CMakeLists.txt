@@ -22,6 +22,7 @@ target_link_libraries(
     ZmqWrapper
     MasterConfig
     protobuf-ZserverMsg
+    InfoChat
     ${OpenCV_LIBS}
 )
 

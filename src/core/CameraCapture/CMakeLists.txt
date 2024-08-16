@@ -22,6 +22,7 @@ target_link_libraries(
     protobuf-CamMsg
     Logger
     MasterConfig
+    InfoChat
 )
 
 INSTALL(

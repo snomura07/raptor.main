@@ -11,9 +11,9 @@ CpuTemperatureMonitor::CpuTemperatureMonitor()
     config.read();
 
     // base用の設定
-    modName  = config.modName;
-    commPort = config.healthCheckcPort;
-    runKeepAliveServer();
+    RaptorBase::modName  = config.modName;
+    RaptorBase::commPort = config.healthCheckcPort;
+    RaptorBase::runKeepAliveServer();
 
     // 開発環境では仮の温度ファイルを読み込む
     if(isDevEnv()){

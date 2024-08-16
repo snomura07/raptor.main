@@ -1,5 +1,5 @@
 #ifndef INCLUDED_INFOCHAT
-#define INCLUDED_INFOCHATT
+#define INCLUDED_INFOCHAT
 #include <string>
 #include <MasterConfig/MasterConfig.h>
 #include <ApiClient/ApiClient.h>

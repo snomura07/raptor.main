@@ -26,7 +26,7 @@ public:
     std::string logPath;
     std::string apiHost;
     int apiPort;
-    std::string chatPublishTopic;
+    std::string chatTopic;
 
 private:
     nlohmann::json jsonData;

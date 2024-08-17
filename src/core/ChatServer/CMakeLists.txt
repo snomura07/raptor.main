@@ -16,6 +16,10 @@ target_link_libraries(
     pthread
     RaptorBase
     MasterConfig
+    ZmqWrapper
+    ApiClient
+    Logger
+    protobuf-ChatServerMsg
 )
 
 INSTALL(

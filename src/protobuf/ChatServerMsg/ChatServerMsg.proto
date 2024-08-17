@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package raptor.protobuf;
+
+message ChatServerMsg {
+  enum ChatType {
+    INFO = 0;
+    ERROR = 1;
+  }
+
+  string viewName1 = 1;
+  string msg = 2;
+  ChatType type = 3;
+}

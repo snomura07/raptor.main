@@ -6,8 +6,7 @@
 AppConfig::AppConfig():
     jsonPath("/usr/local/config/ChatServer.json"),
     modName(""),
-    healthCheckcPort(0),
-    publishTopic("")
+    healthCheckcPort(0)
 {}
 AppConfig::~AppConfig(){}
 
@@ -20,7 +19,6 @@ void AppConfig::read(){
         jsonFile >> jsonData;
         modName          = jsonData["modName"];
         healthCheckcPort = jsonData["healthCheckPort"];
-        publishTopic     = jsonData["publishTopic"];
     }
     else{
         std::cerr << "file open error" << std::endl;

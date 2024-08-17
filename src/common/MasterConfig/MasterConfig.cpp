@@ -15,6 +15,7 @@ MasterConfig::MasterConfig():
     logPath("/usr/local/log/"),
     apiHost(""),
     apiPort(0),
+    chatTopic(""),
     mapFmt()
 {}
 
@@ -26,29 +27,29 @@ void MasterConfig::read(){
 
     if (jsonFile.is_open()) {
         jsonFile >> jsonData;
-        localhost        = jsonData["localhost"];
-        raptorIp         = jsonData["raptorIp"];
-        subPort          = jsonData["subPort"];
-        pubPort          = jsonData["pubPort"];
-        configPath       = jsonData["path"]["config"];
-        imagePath        = jsonData["path"]["image"];
-        cameraPath       = jsonData["path"]["camera"];
-        logPath          = jsonData["path"]["log"];
-        apiHost          = jsonData["api"]["host"];
-        apiPort          = jsonData["api"]["port"];
-        chatPublishTopic = jsonData["chat"]["publishTopic"];
+        localhost  = jsonData["localhost"];
+        raptorIp   = jsonData["raptorIp"];
+        subPort    = jsonData["subPort"];
+        pubPort    = jsonData["pubPort"];
+        configPath = jsonData["path"]["config"];
+        imagePath  = jsonData["path"]["image"];
+        cameraPath = jsonData["path"]["camera"];
+        logPath    = jsonData["path"]["log"];
+        apiHost    = jsonData["api"]["host"];
+        apiPort    = jsonData["api"]["port"];
+        chatTopic  = jsonData["chat"]["topic"];
 
-        mapFmt["localhost"]        = localhost;
-        mapFmt["raptorIp"]         = raptorIp;
-        mapFmt["subPort"]          = subPort;
-        mapFmt["pubPort"]          = pubPort;
-        mapFmt["configPath"]       = configPath;
-        mapFmt["imagePath"]        = imagePath;
-        mapFmt["cameraPath"]       = cameraPath;
-        mapFmt["logPath"]          = logPath;
-        mapFmt["apiHost"]          = apiHost;
-        mapFmt["apiPort"]          = apiPort;
-        mapFmt["chatPublishTopic"] = chatPublishTopic;
+        mapFmt["localhost"]  = localhost;
+        mapFmt["raptorIp"]   = raptorIp;
+        mapFmt["subPort"]    = subPort;
+        mapFmt["pubPort"]    = pubPort;
+        mapFmt["configPath"] = configPath;
+        mapFmt["imagePath"]  = imagePath;
+        mapFmt["cameraPath"] = cameraPath;
+        mapFmt["logPath"]    = logPath;
+        mapFmt["apiHost"]    = apiHost;
+        mapFmt["apiPort"]    = apiPort;
+        mapFmt["chatTopic"]  = chatTopic;
     }
     else{
         std::cerr << "file open error" << std::endl;

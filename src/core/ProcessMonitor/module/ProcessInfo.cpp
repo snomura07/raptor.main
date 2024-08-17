@@ -19,17 +19,16 @@ ProcessInfo::ProcessInfo(std::string jsonPath):
     else{
         std::cerr << "file open error" << std::endl;
     }
+
+    zmq.registerSession("127.0.0.1", healthCheckPort, ZmqWrapper::zmqPatternEnum::REQUEST, "HELTHCHECK");
 }
 
 ProcessInfo::~ProcessInfo(){}
 
 void ProcessInfo::checkAlive()
 {
-    ZmqWrapper zmq;
-    zmq.registerSession("127.0.0.1", healthCheckPort, ZmqWrapper::zmqPatternEnum::REQUEST, "HELTHCHECK");
-    zmq.sendMessage("check");
-
     std::string rmsg = "";
+    zmq.sendMessage("check");
     auto res         = zmq.pollMessage(rmsg, 100);
     preAliveFlag     = aliveFlag;
 

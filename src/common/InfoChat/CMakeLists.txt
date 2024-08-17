@@ -16,7 +16,8 @@ target_link_libraries(
     PRIVATE
     pthread
     MasterConfig
-    ApiClient
+    ZmqWrapper
+    protobuf-ChatServerMsg
 )
 
 INSTALL(

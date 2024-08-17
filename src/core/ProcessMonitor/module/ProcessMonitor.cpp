@@ -40,11 +40,11 @@ bool ProcessMonitor::run()
             if(pair.second->isModified()){
                 if(pair.second->isAlive()){
                     // wakeup
-                    infoChat.sendInfoMsg(strJoin(pair.first, " が起動しました。"));
+                    infoChat.sendInfoMsg(config.modName, strJoin(pair.first, " が起動しました。"));
                 }
                 else{
                     // dead
-                    infoChat.sendErrorMsg(strJoin(pair.first, " が停止しました。"));
+                    infoChat.sendErrorMsg(config.modName, strJoin(pair.first, " が停止しました。"));
                 }
             }
         }

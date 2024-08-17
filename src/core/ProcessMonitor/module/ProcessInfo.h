@@ -15,6 +15,7 @@ public:
     int healthCheckPort;
 
 private:
+    ZmqWrapper zmq;
     bool aliveFlag;
     bool preAliveFlag;
 };

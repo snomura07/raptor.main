@@ -6,6 +6,7 @@ class ProcessInfo{
 public:
     ProcessInfo(std::string jsonPath);
     ~ProcessInfo();
+    void init();
     bool isAlive();
     void checkAlive();
     bool isModified();

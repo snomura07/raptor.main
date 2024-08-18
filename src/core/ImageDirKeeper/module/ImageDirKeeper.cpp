@@ -26,10 +26,10 @@ void ImageDirKeeper::run()
     while(1){
         scanFiles(config.master.cameraPath);
         removeOldFiles();
-        for (const auto& file : files) {
-            gprint(file.name, "=>", file.size, "B / ", file.timestamp);
-        }
-        print("\n");
+        // for (const auto& file : files) {
+        //     gprint(file.name, "=>", file.size, "B / ", file.timestamp);
+        // }
+        // print("\n");
         msleep(1000);
     }
 }

@@ -28,6 +28,7 @@ bool ProcessMonitor::run()
     for (const auto& confPath : confSummary.jsonList) {
         ProcessInfo process(confPath);
         processMap[process.modName] = std::make_shared<ProcessInfo>(process);
+        processMap[process.modName]->init();
     }
 
     bool isRunning = true;
@@ -48,7 +49,7 @@ bool ProcessMonitor::run()
                 }
             }
         }
-        print();
+        // print();
         msleep(1000);
     }
 

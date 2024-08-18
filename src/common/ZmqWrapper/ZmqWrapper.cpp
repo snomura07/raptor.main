@@ -113,7 +113,7 @@ int ZmqWrapper::sendMessage(std::string msg)
     int len = zmq_send(this->socket, taggedMsg.c_str(), taggedMsg.size(), 0);
 
     if (len == -1) {
-        std::cerr << "Failed to send message." << std::endl;
+        // std::cerr << "Failed to send message." << std::endl;
         return -1;
     }
 

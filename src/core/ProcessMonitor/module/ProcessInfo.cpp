@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <nlohmann/json.hpp>
+#include <ZmqWrapper/ZmqWrapper.h>
 #include <print.hpp>
 #include "ProcessInfo.h"
 
@@ -20,10 +21,15 @@ ProcessInfo::ProcessInfo(std::string jsonPath):
         std::cerr << "file open error" << std::endl;
     }
 
-    zmq.registerSession("127.0.0.1", healthCheckPort, ZmqWrapper::zmqPatternEnum::REQUEST, "HELTHCHECK");
+    print(modName, healthCheckPort);
 }
 
 ProcessInfo::~ProcessInfo(){}
+
+void ProcessInfo::init()
+{
+    zmq.registerSession("127.0.0.1", healthCheckPort, ZmqWrapper::zmqPatternEnum::REQUEST, "HELTHCHECK");
+}
 
 void ProcessInfo::checkAlive()
 {

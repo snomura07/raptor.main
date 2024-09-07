@@ -6,16 +6,22 @@
 #include "../config/AppConfig.h"
 #include "ConfSummary.h"
 #include "ProcessInfo.h"
+#include "Launcher.h"
 
-class ProcessMonitor : public RaptorBase{
+class Kernel : public RaptorBase{
 public:
-    ProcessMonitor();
-    ~ProcessMonitor();
-    bool run();
+    Kernel();
+    ~Kernel();
+    bool launchProcess();
+
+    bool healthCheck();
+    // プロセスの起動、ヘルスチェック
+    // CPU, メモリなど資源管理
 
 private:
     InfoChat infoChat;
     AppConfig config;
     ConfSummary confSummary;
+    Launcher launcher;
     std::unordered_map<std::string, std::shared_ptr<ProcessInfo>> processMap;
 };

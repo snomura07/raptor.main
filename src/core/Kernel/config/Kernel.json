@@ -1,0 +1,14 @@
+{
+    "modName" : "Kernel",
+    "healthCheckPort" : 5596,
+    "LaunchProcesses":[
+        {"mod":"Counter",               "launch":true},
+        {"mod":"Stm32Linker",           "launch":false},
+        {"mod":"CpuTemperatureMonitor", "launch":false},
+        {"mod":"CameraCapture",         "launch":false},
+        {"mod":"ImageSaver",            "launch":false},
+        {"mod":"ImageDirKeeper",        "launch":true},
+        {"mod":"ChatServer",            "launch":true}
+    ]
+
+}

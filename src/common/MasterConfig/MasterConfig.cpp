@@ -13,6 +13,7 @@ MasterConfig::MasterConfig():
     imagePath("/usr/local/image/"),
     cameraPath("/usr/local/image/camera/"),
     logPath("/usr/local/log/"),
+    binPath("/usr/local/bin/"),
     apiHost(""),
     apiPort(0),
     chatTopic(""),
@@ -35,6 +36,7 @@ void MasterConfig::read(){
         imagePath  = jsonData["path"]["image"];
         cameraPath = jsonData["path"]["camera"];
         logPath    = jsonData["path"]["log"];
+        binPath    = jsonData["path"]["bin"];
         apiHost    = jsonData["api"]["host"];
         apiPort    = jsonData["api"]["port"];
         chatTopic  = jsonData["chat"]["topic"];
@@ -47,6 +49,7 @@ void MasterConfig::read(){
         mapFmt["imagePath"]  = imagePath;
         mapFmt["cameraPath"] = cameraPath;
         mapFmt["logPath"]    = logPath;
+        mapFmt["binPath"]    = binPath;
         mapFmt["apiHost"]    = apiHost;
         mapFmt["apiPort"]    = apiPort;
         mapFmt["chatTopic"]  = chatTopic;

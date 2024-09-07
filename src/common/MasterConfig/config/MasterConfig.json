@@ -7,7 +7,8 @@
         "config" : "/usr/local/config/",
         "image"  : "/usr/local/image/",
         "camera" : "/usr/local/image/camera/",
-        "log"    : "/usr/local/log/"
+        "log"    : "/usr/local/log/",
+        "bin"    : "/home/nomura/bin/"
     },
     "api":{
         "host" : "chat",

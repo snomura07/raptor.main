@@ -4,9 +4,9 @@
 #include <print.hpp>
 #include <msleep.hpp>
 #include <str.hpp>
-#include "ProcessMonitor.h"
+#include "Kernel.h"
 
-ProcessMonitor::ProcessMonitor()
+Kernel::Kernel()
 {
     config.read();
 
@@ -18,17 +18,36 @@ ProcessMonitor::ProcessMonitor()
     RaptorBase::initLogger();
 }
 
-ProcessMonitor::~ProcessMonitor()
+Kernel::~Kernel()
 {
+    launcher.killAll();
+
     RaptorBase::logger.writeInfoLog("finish!");
 }
 
-bool ProcessMonitor::run()
+bool Kernel::launchProcess()
+{
+    for (const auto& target : config.LaunchProcesses) {
+        std::string binPath = config.master.binPath + target.mod;
+        launcher.launch(binPath);
+    }
+
+    return true;
+}
+
+bool Kernel::healthCheck()
 {
     for (const auto& confPath : confSummary.jsonList) {
         ProcessInfo process(confPath);
-        processMap[process.modName] = std::make_shared<ProcessInfo>(process);
-        processMap[process.modName]->init();
+        auto it = std::find_if(config.LaunchProcesses.begin(), config.LaunchProcesses.end(),
+                            [&process](const AppConfig::Process& p) {
+                                return p.mod == process.modName;
+                            });
+
+        if (it != config.LaunchProcesses.end()) {
+            processMap[process.modName] = std::make_shared<ProcessInfo>(process);
+            processMap[process.modName]->init();
+        }
     }
 
     bool isRunning = true;

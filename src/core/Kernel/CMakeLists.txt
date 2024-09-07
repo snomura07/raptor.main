@@ -1,4 +1,4 @@
-project(ProcessMonitor)
+project(Kernel)
 
 add_executable(
     ${PROJECT_NAME}
@@ -6,6 +6,7 @@ add_executable(
     module/${PROJECT_NAME}.cpp
     module/ConfSummary.cpp
     module/ProcessInfo.cpp
+    module/Launcher.cpp
     runner/${PROJECT_NAME}Runner.cpp
 )
 target_include_directories(

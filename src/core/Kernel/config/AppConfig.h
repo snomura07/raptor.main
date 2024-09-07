@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 #include <nlohmann/json.hpp>
 #include <MasterConfig/MasterConfig.h>
 
@@ -10,9 +11,15 @@ public:
     void dump();
 
 public:
+    struct Process{
+        std::string mod;
+        bool launch;
+    };
+
     std::string modName;
     int healthCheckcPort;
     MasterConfig master;
+    std::vector<Process> LaunchProcesses;
 
 private:
     nlohmann::json jsonData;

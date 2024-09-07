@@ -24,6 +24,7 @@ public:
     std::string imagePath;
     std::string cameraPath;
     std::string logPath;
+    std::string binPath;
     std::string apiHost;
     int apiPort;
     std::string chatTopic;

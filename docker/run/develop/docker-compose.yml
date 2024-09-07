@@ -12,8 +12,8 @@ services:
     volumes:
       - ../../../src:/home/nomura/src
       - ../../../build:/home/nomura/build
-      - ../../../bin:/home/nomura/bin
-      - ../../../lib:/home/nomura/lib
+      - ../../../bin:/usr/local/bin:rw
+      - ../../../lib:/usr/local/lib:rw
       - ../../../script:/home/nomura/script
       - ../../../resource/thermal_zone0:/home/nomura/thermal_zone0
       - ../../../resource/image:/usr/local/image:rw
@@ -26,8 +26,8 @@ services:
     # command: bash
     command: >
       bash -c "
-        qemu-arm -L /usr/arm-linux-gnueabi /home/nomura/bin/ProxyServer &
-        qemu-arm -L /usr/arm-linux-gnueabi /home/nomura/bin/Kernel &
+        qemu-arm -L /usr/arm-linux-gnueabi /usr/local/bin/ProxyServer &
+        qemu-arm -L /usr/arm-linux-gnueabi /usr/local/bin/Kernel &
         wait
         bash
       "

@@ -16,8 +16,8 @@ services:
     volumes:
       - ../../../src:/home/pi/src
       - ../../../build:/home/pi/build
-      - ../../../bin:/home/pi/bin
-      - ../../../lib:/home/pi/lib
+      - ../../../bin:/usr/local/bin
+      - ../../../lib:/usr/local/lib
       - ../../../script:/home/pi/script
       - ../../../resource/image:/usr/local/image:rw
       - ../../../config:/usr/local/config:rw
@@ -30,7 +30,7 @@ services:
       bash -c "
       chmod -R a+w /usr/local/log;
       chmod -R a+rw /dev/video0;
-      /home/pi/bin/ProxyServer
+      /usr/local/bin/ProxyServer
       bash"
     ports:
       - 5555:5555

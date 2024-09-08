@@ -11,9 +11,9 @@ using json = nlohmann::json;
 
 int main(int argc, char **argv)
 {
-    std::ifstream inputFile("/usr/local/config/ConfSummary");
+    std::ifstream inputFile("/opt/raptor/config/ConfSummary");
     if (!inputFile.is_open()) {
-        std::cerr << "Could not open the file: /usr/local/config/ConfSummary" << std::endl;
+        std::cerr << "Could not open the file: /opt/raptor/config/ConfSummary" << std::endl;
         return 1;
     }
 

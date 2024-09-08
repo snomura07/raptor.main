@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 
 AppConfig::AppConfig():
-    jsonPath("/usr/local/config/ImageSaver.json"),
+    jsonPath("/opt/raptor/config/ImageSaver.json"),
     modName(""),
     healthCheckcPort(0),
     subscribeTopic(""),

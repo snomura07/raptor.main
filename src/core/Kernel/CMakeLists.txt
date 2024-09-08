@@ -21,6 +21,7 @@ target_link_libraries(
     MasterConfig
     ZmqWrapper
     InfoChat
+    Env
 )
 
 INSTALL(
@@ -31,5 +32,5 @@ INSTALL(
 
 INSTALL(
     FILES ${CMAKE_CURRENT_SOURCE_DIR}/config/${PROJECT_NAME}.json
-    DESTINATION /usr/local/config
+    DESTINATION /opt/raptor/config
 )

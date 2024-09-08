@@ -12,13 +12,13 @@ services:
     volumes:
       - ../../../src:/home/nomura/src
       - ../../../build:/home/nomura/build
-      - ../../../bin:/usr/local/bin:rw
-      - ../../../lib:/usr/local/lib:rw
+      - ../../../bin:/opt/raptor/bin:rw
+      - ../../../lib:/opt/raptor/lib:rw
       - ../../../script:/home/nomura/script
       - ../../../resource/thermal_zone0:/home/nomura/thermal_zone0
-      - ../../../resource/image:/usr/local/image:rw
-      - ../../../config:/usr/local/config:rw
-      - ../../../log:/usr/local/log:rw
+      - ../../../resource/image:/opt/raptor/image:rw
+      - ../../../config:/opt/raptor/config:rw
+      - ../../../log:/opt/raptor/log:rw
       - ../../../resource/msgs:/var/opt/msgs:rw
 
       - /tmp/.X11-unix:/tmp/.X11-unix  # X11ソケットを共有
@@ -26,8 +26,8 @@ services:
     # command: bash
     command: >
       bash -c "
-        qemu-arm -L /usr/arm-linux-gnueabi /usr/local/bin/ProxyServer &
-        qemu-arm -L /usr/arm-linux-gnueabi /usr/local/bin/Kernel &
+        qemu-arm -L /usr/arm-linux-gnueabi /opt/raptor/bin/ProxyServer &
+        qemu-arm -L /usr/arm-linux-gnueabi /opt/raptor/bin/Kernel &
         wait
         bash
       "

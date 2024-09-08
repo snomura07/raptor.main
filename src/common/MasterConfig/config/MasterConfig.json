@@ -4,11 +4,11 @@
     "subPort"   : 5555,
     "pubPort"   : 5556,
     "path":{
-        "config" : "/usr/local/config/",
-        "image"  : "/usr/local/image/",
-        "camera" : "/usr/local/image/camera/",
-        "log"    : "/usr/local/log/",
-        "bin"    : "/usr/local/bin/"
+        "config" : "/opt/raptor/config/",
+        "image"  : "/opt/raptor/image/",
+        "camera" : "/opt/raptor/image/camera/",
+        "log"    : "/opt/raptor/log/",
+        "bin"    : "/opt/raptor/bin/"
     },
     "api":{
         "host" : "chat",

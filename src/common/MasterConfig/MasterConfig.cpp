@@ -4,16 +4,16 @@
 #include <nlohmann/json.hpp>
 
 MasterConfig::MasterConfig():
-    jsonPath("/usr/local/config/MasterConfig.json"),
+    jsonPath("/opt/raptor/config/MasterConfig.json"),
     localhost(""),
     raptorIp(""),
     subPort(0),
     pubPort(0),
-    configPath("/usr/local/config/"),
-    imagePath("/usr/local/image/"),
-    cameraPath("/usr/local/image/camera/"),
-    logPath("/usr/local/log/"),
-    binPath("/usr/local/bin/"),
+    configPath("/opt/raptor/config/"),
+    imagePath("/opt/raptor/image/"),
+    cameraPath("/opt/raptor/image/camera/"),
+    logPath("/opt/raptor/log/"),
+    binPath("/opt/raptor/bin/"),
     apiHost(""),
     apiPort(0),
     chatTopic(""),

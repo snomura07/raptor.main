@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 
 AppConfig::AppConfig():
-    jsonPath("/usr/local/config/Kernel.json"),
+    jsonPath("/opt/raptor/config/Kernel.json"),
     modName(""),
     healthCheckcPort(0)
 {}

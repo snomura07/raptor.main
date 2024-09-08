@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 
 AppConfig::AppConfig():
-    jsonPath("/usr/local/config/ChatServer.json"),
+    jsonPath("/opt/raptor/config/ChatServer.json"),
     modName(""),
     healthCheckcPort(0)
 {}

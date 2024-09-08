@@ -14,4 +14,5 @@ public:
 
 private:
     std::map<std::string, pid_t> programs;
+    bool isDevelop;
 };

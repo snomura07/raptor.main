@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 
 AppConfig::AppConfig():
-    jsonPath("/usr/local/config/Stm32Linker.json"),
+    jsonPath("/opt/raptor/config/Stm32Linker.json"),
     modName(""),
     healthCheckcPort(0),
     publishTopic("")

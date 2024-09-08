@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 
 AppConfig::AppConfig():
-    jsonPath("/usr/local/config/Counter.json"),
+    jsonPath("/opt/raptor/config/Counter.json"),
     modName(""),
     healthCheckcPort(0),
     publishTopic("")

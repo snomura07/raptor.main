@@ -3,40 +3,42 @@ FROM balenalib/rpi-raspbian:bullseye
 # for timezone
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update
-RUN apt install -y --fix-missing \
-    cmake \
-    git \
-    wget \
-    nano \
-    python3-pip \
-    curl \
-    sudo \
-    unzip \
-    libtool \
-    autoconf \
-    automake \
-    pkg-config \
-    libgtk2.0-dev \
-    build-essential \
-    libatlas-base-dev \
-    gfortran \
-    python3-dev \
-    libtbb2 \
-    libtbb-dev \
-    libdc1394-22-dev \
-    libjpeg-dev \
-    libpng-dev \
-    libtiff-dev \
-    libavcodec-dev \
-    libavformat-dev \
-    libswscale-dev \
-    libv4l-dev \
-    libxvidcore-dev \
-    libx264-dev \
-    libgtk2.0-dev \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt update && \
+    until apt install -y --fix-missing \
+        cmake \
+        git \
+        wget \
+        nano \
+        python3-pip \
+        curl \
+        sudo \
+        unzip \
+        libtool \
+        autoconf \
+        automake \
+        pkg-config \
+        libgtk2.0-dev \
+        build-essential \
+        libatlas-base-dev \
+        gfortran \
+        python3-dev \
+        libtbb2 \
+        libtbb-dev \
+        libdc1394-22-dev \
+        libjpeg-dev \
+        libpng-dev \
+        libtiff-dev \
+        libavcodec-dev \
+        libavformat-dev \
+        libswscale-dev \
+        libv4l-dev \
+        libxvidcore-dev \
+        libx264-dev \
+        libgtk2.0-dev; do \
 
+    echo "Retrying due to network issue..."; \
+    done && \
+    rm -rf /var/lib/apt/lists/*
 
 # ホスト用Protobuf v3.5.1のインストール
 WORKDIR /tmp

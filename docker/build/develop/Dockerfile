@@ -13,7 +13,7 @@ USER nomura
 WORKDIR /home/nomura
 
 # Add LD_LIBRARY_PATH to point to the cross-compiled libraries
-ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=/opt/raptor/lib:$LD_LIBRARY_PATH
 ENV LD_LIBRARY_PATH=/usr/arm-linux-gnueabi/lib:$LD_LIBRARY_PATH
 RUN echo "alias ll='ls -alF'" >> .bashrc
 RUN echo 'exec(){ qemu-arm -L /usr/arm-linux-gnueabi $@; }' >> .bashrc

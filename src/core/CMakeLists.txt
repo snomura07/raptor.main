@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-set(CONF_SUMMARY /usr/local/config/ConfSummary)
+set(CONF_SUMMARY /opt/raptor/config/ConfSummary)
 if(EXISTS ${CONF_SUMMARY})
     file(REMOVE ${CONF_SUMMARY})
 endif()

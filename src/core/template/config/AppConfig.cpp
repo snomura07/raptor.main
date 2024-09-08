@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 
 AppConfig::AppConfig():
-    jsonPath("/usr/local/config/******.json"),
+    jsonPath("/opt/raptor/config/******.json"),
     modName(""),
     healthCheckcPort(0),
     publishTopic("")

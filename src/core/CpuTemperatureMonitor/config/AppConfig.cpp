@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 
 AppConfig::AppConfig():
-    jsonPath("/usr/local/config/CpuTemperatureMonitor.json"),
+    jsonPath("/opt/raptor/config/CpuTemperatureMonitor.json"),
     modName(""),
     healthCheckcPort(0),
     publishTopic("")

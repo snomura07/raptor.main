@@ -17,7 +17,7 @@ set(OpenCV_DIR /usr/arm-linux-gnueabi/lib/cmake/opencv4)
 set(INCLUDE_DIRS /usr/local/include/)
 
 # install prefix
-set(CMAKE_INSTALL_PREFIX /usr/local/)
+set(CMAKE_INSTALL_PREFIX /opt/raptor/)
 
 # script path
 set(SCRIPT_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../script/)

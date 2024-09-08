@@ -2,8 +2,13 @@
 #include <unistd.h>    // fork, execvp, kill
 #include <sys/wait.h>  // waitpid
 #include <signal.h>    // kill関数用
+#include <Env/Env.h>
 
-Launcher::Launcher(){}
+Launcher::Launcher()
+{
+    isDevelop = isDevEnv();
+}
+
 Launcher::~Launcher(){}
 
 void Launcher::launch(const std::string& fileName)
@@ -14,8 +19,14 @@ void Launcher::launch(const std::string& fileName)
     if (pid == -1) {
         std::cerr << "Failed to fork for program: " << fileName << std::endl;
     } else if (pid == 0) {
-        char *args[] = {(char *)"qemu-arm", (char *)"-L", (char *)"/usr/arm-linux-gnueabi", (char *)fileName.c_str(), (char *)NULL};
-        execvp(args[0], args);
+        if(isDevelop){
+            char *args[] = {(char *)"qemu-arm", (char *)"-L", (char *)"/usr/arm-linux-gnueabi", (char *)fileName.c_str(), (char *)NULL};
+            execvp(args[0], args);
+        }
+        else{
+            char *args[] = {(char *)fileName.c_str(), (char *)NULL};
+            execvp(args[0], args);
+        }
 
         std::cerr << "Failed to execute program: " << fileName << std::endl;
         exit(1);

@@ -5,7 +5,7 @@
 #include <print.hpp>
 
 AppConfig::AppConfig():
-    jsonPath("/usr/local/config/CameraCapture.json"),
+    jsonPath("/opt/raptor/config/CameraCapture.json"),
     modName(""),
     healthCheckcPort(0),
     publishTopic("")

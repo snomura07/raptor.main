@@ -6,7 +6,7 @@ using json = nlohmann::json;
 
 int main() {
     // JSONファイルのパス
-    std::string json_file_path = "/usr/local/config/example.json";
+    std::string json_file_path = "/opt/raptor/config/example.json";
 
     // JSONファイルを開く
     std::ifstream json_file(json_file_path);

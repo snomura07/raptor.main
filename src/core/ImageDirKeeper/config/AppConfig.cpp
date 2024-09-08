@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 
 AppConfig::AppConfig():
-    jsonPath("/usr/local/config/ImageDirKeeper.json"),
+    jsonPath("/opt/raptor/config/ImageDirKeeper.json"),
     modName(""),
     healthCheckcPort(0),
     sizeThre(0)

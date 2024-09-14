@@ -5,6 +5,21 @@
 using json = nlohmann::json;
 
 int main() {
+    // JSON形式の文字列
+    std::string json_string = R"({"main_command":"gpio/setio/high","optional_value":[16,17,18]})";
+    json j2 = json::parse(json_string);
+    std::cout << "JSONデータ: " << j2.dump() << std::endl;
+    std::string main_command = j2["main_command"];
+    std::vector<int> optional_value = j2["optional_value"].get<std::vector<int>>();
+    std::cout << "メインコマンド: " << main_command << std::endl;
+    std::cout << "オプション値: ";
+    for (int val : optional_value) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl;
+
+
+
     // JSONファイルのパス
     std::string json_file_path = "/opt/raptor/config/example.json";
 

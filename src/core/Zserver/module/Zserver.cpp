@@ -3,9 +3,10 @@
 #include <vector>
 #include <ZmqWrapper/ZmqWrapper.h>
 #include <ZserverMsg/ZserverMsg.pb.h>
+#include <print.hpp>
 #include "Zserver.h"
 #include "Gateway.h"
-
+#include "Zdata.h"
 
 Zserver::Zserver(int port)
 {
@@ -23,15 +24,24 @@ bool Zserver::run()
     std::string request = "";
     zmq.pollMessage(request, -1);
 
-    raptor::protobuf::ZserverMsg zserverMsg;
-    zserverMsg.ParseFromString(request);
-    std::string path = zserverMsg.path();
-    std::vector<int> params(zserverMsg.params().begin(), zserverMsg.params().end());
+    Zdata zdata(request);
+    print("main command: ", zdata.mainCommand);
+    print("opt: ");
+    for (const auto& value : zdata.optValue) {
+        print(value);
+    }
+    print("");
 
-    std::cout << path << " " << (params.size() > 0 ? params.front() : -1) << std::endl;
+    // raptor::protobuf::ZserverMsg zserverMsg;
+    // zserverMsg.ParseFromString(request);
+    // std::string path = zserverMsg.path();
+    // std::vector<int> params(zserverMsg.params().begin(), zserverMsg.params().end());
 
-    std::string rmsg = gateway.routeRequest(path, params);
-    zmq.sendMessage(rmsg);
+    // std::cout << path << " " << (params.size() > 0 ? params.front() : -1) << std::endl;
+
+    // std::string rmsg = gateway.routeRequest(path, params);
+    // zmq.sendMessage(rmsg);
+    zmq.sendMessage("command accept!");
   }
 
   return isRunning;

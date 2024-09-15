@@ -5,6 +5,7 @@ add_executable(
     module/${PROJECT_NAME}.cpp
     module/Gateway.cpp
     module/Router.cpp
+    module/Zdata.cpp
     controller/GpioController.cpp
     controller/CameraController.cpp
     runner/${PROJECT_NAME}Runner.cpp
@@ -32,6 +33,7 @@ add_executable(
     module/${PROJECT_NAME}.cpp
     module/Gateway.cpp
     module/Router.cpp
+    module/Zdata.cpp
     controller/GpioController.cpp
     controller/CameraController.cpp
     runner/ZclientRunner.cpp

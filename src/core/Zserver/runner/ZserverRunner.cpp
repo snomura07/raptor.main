@@ -3,6 +3,6 @@
 
 int main()
 {
-    Zserver zserver(5557);
+    Zserver zserver(5001);
     zserver.run();
 }

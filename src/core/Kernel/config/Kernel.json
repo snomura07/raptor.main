@@ -8,7 +8,8 @@
         {"mod":"CameraCapture",         "launch":false},
         {"mod":"ImageSaver",            "launch":false},
         {"mod":"ImageDirKeeper",        "launch":true},
-        {"mod":"ChatServer",            "launch":true}
+        {"mod":"ChatServer",            "launch":true},
+        {"mod":"Zserver",               "launch":true}
     ]
 
 }

@@ -7,6 +7,7 @@ add_executable(
     module/ConfSummary.cpp
     module/ProcessInfo.cpp
     module/Launcher.cpp
+    module/ProcessMonitor.cpp
     runner/${PROJECT_NAME}Runner.cpp
 )
 target_include_directories(

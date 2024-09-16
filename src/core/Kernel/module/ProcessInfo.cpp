@@ -20,8 +20,6 @@ ProcessInfo::ProcessInfo(std::string jsonPath):
     else{
         std::cerr << "file open error" << std::endl;
     }
-
-    // print(modName, healthCheckPort);
 }
 
 ProcessInfo::~ProcessInfo(){}

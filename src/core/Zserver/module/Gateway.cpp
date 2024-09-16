@@ -24,7 +24,6 @@ std::string Gateway::routeRequest(
     router.setRequestPath(mainCommand);
     if(router.get("test")){
         rmsg = "Zserver running now!";
-        std::cout << rmsg << std::endl;
     }
     else if(router.get("hello")){
         rmsg = helloController.sayHello();

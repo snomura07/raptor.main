@@ -1,3 +1,6 @@
+#ifndef INCLUDED_KERNEL_APPCONF
+#define INCLUDED_KERNEL_APPCONF
+
 #include <string>
 #include <vector>
 #include <nlohmann/json.hpp>
@@ -25,3 +28,5 @@ private:
     nlohmann::json jsonData;
     std::string jsonPath;
 };
+
+#endif

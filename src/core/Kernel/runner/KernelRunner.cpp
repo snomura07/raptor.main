@@ -4,7 +4,6 @@
 int main(int argc, char *argv[])
 {
     Kernel kernel;
-    kernel.launchProcess();
-    kernel.healthCheck();
+    kernel.run();
     return 0;
 }

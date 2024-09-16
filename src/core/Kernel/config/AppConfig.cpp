@@ -24,9 +24,9 @@ void AppConfig::read(){
             Process process;
             process.mod    = processJson["mod"];
             process.launch = processJson["launch"];
-            if(process.launch == true){
+            // if(process.launch == true){
                 LaunchProcesses.push_back(process);
-            }
+            // }
         }
     }
     else{

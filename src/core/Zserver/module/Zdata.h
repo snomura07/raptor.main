@@ -14,7 +14,8 @@ public:
 
 public:
     std::string mainCommand;
-    std::vector<int> optValue;
+    std::vector<int> optValues;
+    std::vector<std::string> optStrings;
 
 private:
     nlohmann::json JsonData;

@@ -16,15 +16,4 @@ public:
   ZmqWrapper zmq;
 };
 
-class Zclient
-{
-public:
-  Zclient(int port);
-  ~Zclient();
-
-  std::string run(std::string path, std::vector<int> params);
-
-  ZmqWrapper zmq;
-};
-
 #endif

@@ -1,9 +1,0 @@
-// example.proto
-syntax = "proto3";
-
-package raptor.protobuf;
-
-message ZserverMsg {
-  string path = 1;
-  repeated int32 params = 2;
-}

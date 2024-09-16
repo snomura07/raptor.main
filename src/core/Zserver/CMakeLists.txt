@@ -8,6 +8,8 @@ add_executable(
     module/Zdata.cpp
     controller/GpioController.cpp
     controller/CameraController.cpp
+    controller/HelloController.cpp
+    controller/ConfigController.cpp
     runner/${PROJECT_NAME}Runner.cpp
 )
 target_include_directories(
@@ -22,40 +24,12 @@ target_link_libraries(
     Camera
     ZmqWrapper
     MasterConfig
-    protobuf-ZserverMsg
     InfoChat
-    ${OpenCV_LIBS}
-)
-
-#######################################
-add_executable(
-    Zclient
-    module/${PROJECT_NAME}.cpp
-    module/Gateway.cpp
-    module/Router.cpp
-    module/Zdata.cpp
-    controller/GpioController.cpp
-    controller/CameraController.cpp
-    runner/ZclientRunner.cpp
-)
-target_include_directories(
-    Zclient
-    PRIVATE
-)
-target_link_libraries(
-    Zclient
-    PRIVATE
-    pthread
-    Gpio
-    Camera
-    ZmqWrapper
-    protobuf-ZserverMsg
     ${OpenCV_LIBS}
 )
 
 INSTALL(
     TARGETS
     ${PROJECT_NAME}
-    Zclient
     RUNTIME DESTINATION bin
 )

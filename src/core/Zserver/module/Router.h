@@ -8,9 +8,11 @@ class Router
 public:
     Router();
     ~Router();
-    void setRequestPath(std::string requestPath);
+    void setRequestPath(std::string path);
     bool get(std::string routePath);
-    bool get(std::string routePath, std::vector<int> params, bool paramRequired);
+
+    template<typename T>
+    bool get(std::string routePath, std::vector<T> params, bool paramRequired);
 
 private:
     std::string requestPath;

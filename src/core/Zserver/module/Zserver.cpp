@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include <ZmqWrapper/ZmqWrapper.h>
-#include <ZserverMsg/ZserverMsg.pb.h>
 #include <print.hpp>
 #include "Zserver.h"
 #include "Gateway.h"
@@ -26,49 +25,19 @@ bool Zserver::run()
 
     Zdata zdata(request);
     print("main command: ", zdata.mainCommand);
-    print("opt: ");
-    for (const auto& value : zdata.optValue) {
-        print(value);
+    print("optVal: ");
+    for (const auto& value : zdata.optValues) {
+        print("->", value);
+    }
+    print("optStr: ");
+    for (const auto& value : zdata.optStrings) {
+        print("->", value);
     }
     print("");
 
-    // raptor::protobuf::ZserverMsg zserverMsg;
-    // zserverMsg.ParseFromString(request);
-    // std::string path = zserverMsg.path();
-    // std::vector<int> params(zserverMsg.params().begin(), zserverMsg.params().end());
-
-    // std::cout << path << " " << (params.size() > 0 ? params.front() : -1) << std::endl;
-
-    // std::string rmsg = gateway.routeRequest(path, params);
-    // zmq.sendMessage(rmsg);
-    zmq.sendMessage("command accept!");
+    std::string rmsg = gateway.routeRequest(zdata.mainCommand, zdata.optValues, zdata.optStrings);
+    zmq.sendMessage(rmsg);
   }
 
   return isRunning;
-}
-
-
-Zclient::Zclient(int port)
-{
-  zmq.registerSession("127.0.0.1", port, ZmqWrapper::zmqPatternEnum::REQUEST, "ZSERVER");
-}
-
-Zclient::~Zclient(){}
-
-std::string Zclient::run(std::string path, std::vector<int> params)
-{
-  raptor::protobuf::ZserverMsg zserverMsg;
-  zserverMsg.set_path(path);
-  for (int param : params) {
-    zserverMsg.add_params(param);
-  }
-  std::string serializedMsg;
-  zserverMsg.SerializeToString(&serializedMsg);
-  zmq.sendMessage(serializedMsg);
-
-  std::string rmsg = "";
-  auto res = zmq.pollMessage(rmsg, -1);
-  std::cout << "received: " << rmsg << std::endl;
-
-  return rmsg;
 }

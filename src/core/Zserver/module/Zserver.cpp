@@ -7,9 +7,23 @@
 #include "Gateway.h"
 #include "Zdata.h"
 
-Zserver::Zserver(int port)
+Zserver::Zserver()
 {
-  zmq.registerSession("*", port, ZmqWrapper::zmqPatternEnum::REPLY, "ZSERVER");
+  config.read();
+
+  // base用の設定
+  RaptorBase::modName  = config.modName;
+  RaptorBase::commPort = config.healthCheckcPort;
+  RaptorBase::runKeepAliveServer();
+  RaptorBase::showActivatedSign();
+  RaptorBase::initLogger();
+
+  zmq.registerSession(
+      "*", 
+      config.master.zserverPort,
+      ZmqWrapper::zmqPatternEnum::REPLY, 
+      config.master.zserverTopic
+  );
 }
 
 Zserver::~Zserver(){}

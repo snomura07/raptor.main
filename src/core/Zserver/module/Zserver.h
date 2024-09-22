@@ -4,16 +4,23 @@
 #include <string>
 #include <vector>
 #include <ZmqWrapper/ZmqWrapper.h>
+#include <RaptorBase/RaptorBase.h>
+#include "../config/AppConfig.h"
 
-class Zserver
+class Zserver : public RaptorBase
 {
 public:
-  Zserver(int port);
+  Zserver();
   ~Zserver();
 
   bool run();
 
+public:
   ZmqWrapper zmq;
+
+private:
+  AppConfig config;
+
 };
 
 #endif

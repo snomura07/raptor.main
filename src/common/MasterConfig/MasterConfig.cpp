@@ -17,6 +17,9 @@ MasterConfig::MasterConfig():
     apiHost(""),
     apiPort(0),
     chatTopic(""),
+    zserverTopic(""),
+    zserverPort(0),
+    processMonitorTopic(""),
     mapFmt()
 {}
 
@@ -28,31 +31,37 @@ void MasterConfig::read(){
 
     if (jsonFile.is_open()) {
         jsonFile >> jsonData;
-        localhost  = jsonData["localhost"];
-        raptorIp   = jsonData["raptorIp"];
-        subPort    = jsonData["subPort"];
-        pubPort    = jsonData["pubPort"];
-        configPath = jsonData["path"]["config"];
-        imagePath  = jsonData["path"]["image"];
-        cameraPath = jsonData["path"]["camera"];
-        logPath    = jsonData["path"]["log"];
-        binPath    = jsonData["path"]["bin"];
-        apiHost    = jsonData["api"]["host"];
-        apiPort    = jsonData["api"]["port"];
-        chatTopic  = jsonData["chat"]["topic"];
+        localhost            = jsonData["localhost"];
+        raptorIp             = jsonData["raptorIp"];
+        subPort              = jsonData["subPort"];
+        pubPort              = jsonData["pubPort"];
+        configPath           = jsonData["path"]["config"];
+        imagePath            = jsonData["path"]["image"];
+        cameraPath           = jsonData["path"]["camera"];
+        logPath              = jsonData["path"]["log"];
+        binPath              = jsonData["path"]["bin"];
+        apiHost              = jsonData["api"]["host"];
+        apiPort              = jsonData["api"]["port"];
+        chatTopic            = jsonData["chat"]["topic"];
+        zserverTopic         = jsonData["zserver"]["topic"];
+        zserverPort          = jsonData["zserver"]["port"];
+        processMonitorTopic  = jsonData["processMonitor"]["topic"];
 
-        mapFmt["localhost"]  = localhost;
-        mapFmt["raptorIp"]   = raptorIp;
-        mapFmt["subPort"]    = subPort;
-        mapFmt["pubPort"]    = pubPort;
-        mapFmt["configPath"] = configPath;
-        mapFmt["imagePath"]  = imagePath;
-        mapFmt["cameraPath"] = cameraPath;
-        mapFmt["logPath"]    = logPath;
-        mapFmt["binPath"]    = binPath;
-        mapFmt["apiHost"]    = apiHost;
-        mapFmt["apiPort"]    = apiPort;
-        mapFmt["chatTopic"]  = chatTopic;
+        mapFmt["localhost"]           = localhost;
+        mapFmt["raptorIp"]            = raptorIp;
+        mapFmt["subPort"]             = subPort;
+        mapFmt["pubPort"]             = pubPort;
+        mapFmt["configPath"]          = configPath;
+        mapFmt["imagePath"]           = imagePath;
+        mapFmt["cameraPath"]          = cameraPath;
+        mapFmt["logPath"]             = logPath;
+        mapFmt["binPath"]             = binPath;
+        mapFmt["apiHost"]             = apiHost;
+        mapFmt["apiPort"]             = apiPort;
+        mapFmt["chatTopic"]           = chatTopic;
+        mapFmt["zserverTopic"]        = zserverTopic;
+        mapFmt["zserverPort"]         = zserverPort;
+        mapFmt["processMonitorTopic"] = processMonitorTopic;
     }
     else{
         std::cerr << "file open error" << std::endl;

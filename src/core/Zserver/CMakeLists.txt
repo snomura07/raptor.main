@@ -11,6 +11,7 @@ add_executable(
     controller/HelloController.cpp
     controller/ConfigController.cpp
     runner/${PROJECT_NAME}Runner.cpp
+    config/AppConfig.cpp
 )
 target_include_directories(
     ${PROJECT_NAME}
@@ -25,6 +26,7 @@ target_link_libraries(
     ZmqWrapper
     MasterConfig
     InfoChat
+    RaptorBase
     ${OpenCV_LIBS}
 )
 
@@ -32,4 +34,13 @@ INSTALL(
     TARGETS
     ${PROJECT_NAME}
     RUNTIME DESTINATION bin
+)
+
+INSTALL(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/config/${PROJECT_NAME}.json
+    DESTINATION /opt/raptor/config
+)
+
+execute_process(
+    COMMAND sh -c "echo /opt/raptor/config/${PROJECT_NAME}.json >> ${CONF_SUMMARY}"
 )

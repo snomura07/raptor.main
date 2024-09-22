@@ -1,7 +1,7 @@
 {
     "modName" : "Kernel",
     "healthCheckPort" : 5596,
-    "LaunchProcesses":[
+    "launchProcesses":[
         {"mod":"Counter",               "launch":true},
         {"mod":"Stm32Linker",           "launch":false},
         {"mod":"CpuTemperatureMonitor", "launch":false},
@@ -11,5 +11,4 @@
         {"mod":"ChatServer",            "launch":true},
         {"mod":"Zserver",               "launch":true}
     ]
-
 }

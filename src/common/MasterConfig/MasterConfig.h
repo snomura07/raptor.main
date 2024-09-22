@@ -28,6 +28,9 @@ public:
     std::string apiHost;
     int apiPort;
     std::string chatTopic;
+    std::string zserverTopic;
+    int zserverPort;
+    std::string processMonitorTopic;
 
 private:
     nlohmann::json jsonData;

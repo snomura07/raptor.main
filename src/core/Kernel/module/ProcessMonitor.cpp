@@ -2,6 +2,8 @@
 #include <print.hpp>
 #include <msleep.hpp>
 #include <str.hpp>
+#include <ZmqWrapper/ZmqWrapper.h>
+#include <ProcessMonitorMsg/ProcessMonitorMsg.pb.h>
 
 ProcessMonitor::ProcessMonitor()
 {
@@ -11,6 +13,14 @@ ProcessMonitor::~ProcessMonitor(){}
 
 void ProcessMonitor::healthCheck()
 {
+    ZmqWrapper zmq;
+    zmq.registerSession(
+        config.master.localhost, 
+        config.master.pubPort,
+        ZmqWrapper::zmqPatternEnum::PUBLISH, 
+        config.master.processMonitorTopic
+    );
+
     for (const auto& confPath : confSummary.jsonList) {
         ProcessInfo process(confPath);
         processMap[process.modName] = std::make_shared<ProcessInfo>(process);
@@ -43,10 +53,12 @@ void ProcessMonitor::healthCheck()
             }
         }
         std::string statusJson = processStatus.dump(4);
-        print("プロセス状態:\n", statusJson);
+        raptor::protobuf::ProcessMonitorMsg processStatusMsg;
+        processStatusMsg.set_status(statusJson);
+        std::string serializedStatus;
+        processStatusMsg.SerializeToString(&serializedStatus);
+        zmq.sendMessage(serializedStatus);
 
-
-        // print("");
         msleep(1000);
     }
 }

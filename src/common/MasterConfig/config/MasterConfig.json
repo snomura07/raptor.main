@@ -16,5 +16,13 @@
     },
     "chat":{
         "topic":"CHATSERVER"
+    },
+    "zserver":{
+        "host" : "*",
+        "topic":"ZSERVER",
+        "port" : 5001
+    },
+    "processMonitor":{
+        "topic":"PROCESS_MONITOR"
     }
 }

@@ -1,0 +1,8 @@
+// example.proto
+syntax = "proto3";
+
+package raptor.protobuf;
+
+message ProcessMonitorMsg {
+  string status = 1;
+}

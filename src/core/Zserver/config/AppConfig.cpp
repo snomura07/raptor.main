@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 
 AppConfig::AppConfig():
-    jsonPath("/opt/raptor/config/Kernel.json"),
+    jsonPath("/opt/raptor/config/Zserver.json"),
     modName(""),
     healthCheckcPort(0)
 {}
@@ -12,20 +12,13 @@ AppConfig::~AppConfig(){}
 
 void AppConfig::read(){
     master.read();
-    jsonPath = master.configPath + "Kernel.json";
+    jsonPath = master.configPath + "Zserver.json";
 
     std::ifstream jsonFile(jsonPath);
     if (jsonFile.is_open()) {
         jsonFile >> jsonData;
         modName          = jsonData["modName"];
         healthCheckcPort = jsonData["healthCheckPort"];
-
-        for (const auto& processJson : jsonData["launchProcesses"]) {
-            Process process;
-            process.mod    = processJson["mod"];
-            process.launch = processJson["launch"];
-            LaunchProcesses.push_back(process);
-        }
     }
     else{
         std::cerr << "file open error" << std::endl;

@@ -2,18 +2,21 @@
   hosts: pi
   become: yes
 
+  vars:
+    syncDest: /opt/raptor/
+
   tasks:
     - name: Synchronize bin
       synchronize:
         src: /home/snomura/workspace/raptor/raptor.main/bin
-        dest: /home/pi/
+        dest: "{{ syncDest }}"
         checksum: yes
         times: no
 
     - name: Synchronize lib
       synchronize:
         src: /home/snomura/workspace/raptor/raptor.main/lib
-        dest: /home/pi/
+        dest: "{{ syncDest }}"
         checksum: yes
         times: no
       become: yes
@@ -21,28 +24,14 @@
     - name: Synchronize config
       synchronize:
         src: /home/snomura/workspace/raptor/raptor.main/config
-        dest: /home/pi/
-        checksum: yes
-        times: no
-      become: yes
-
-    - name: Ensure destination docker run exists
-      file:
-        path: /home/pi/docker/run
-        state: directory
-        mode: '0755'
-
-    - name: Synchronize docker run
-      synchronize:
-        src: /home/snomura/workspace/raptor/raptor.main/docker/run/release
-        dest: /home/pi/docker/run/
+        dest: "{{ syncDest }}"
         checksum: yes
         times: no
       become: yes
 
     - name: Replace environment in env file
       ansible.builtin.replace:
-        path: /home/pi/config/env
+        dest: "{{ syncDest }}/config/env"
         regexp: '^ENV=.*$'
         replace: 'ENV=raspberrypi'
       become: yes

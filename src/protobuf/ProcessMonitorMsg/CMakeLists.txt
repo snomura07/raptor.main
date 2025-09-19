@@ -16,8 +16,7 @@ get_filename_component(file_path ${target} DIRECTORY)
 
 add_custom_command(
     OUTPUT ${file_path}/${base_name}.pb.cc ${file_path}/${base_name}.pb.h
-    COMMAND qemu-arm -L /usr/arm-linux-gnueabi /usr/arm-linux-gnueabi/bin/protoc --cpp_out=${PROTO_DIR} -I${PROTO_DIR} ${file_path}/${base_name}.proto &&
-            ${SCRIPT_DIRS}/GetProtoVarName.bash ${target} /var/opt/msgs/${base_name}
+    COMMAND qemu-arm -L /usr/arm-linux-gnueabi /usr/arm-linux-gnueabi/bin/protoc --cpp_out=${PROTO_DIR} -I${PROTO_DIR} ${file_path}/${base_name}.proto
     COMMENT "Generating ${base_name}.pb.cc, ${base_name}.pb.h from ${base_name}.proto"
     VERBATIM
 )

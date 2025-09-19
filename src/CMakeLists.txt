@@ -37,4 +37,4 @@ include_directories(
 add_subdirectory(core)
 add_subdirectory(common)
 add_subdirectory(protobuf)
-# add_subdirectory(test)
+add_subdirectory(test)

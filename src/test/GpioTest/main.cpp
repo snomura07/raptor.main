@@ -9,8 +9,8 @@ int main() {
         return 0;
     }
 
-    gpio.chModeOutput(17);
-    gpio.setHigh(17);
+    gpio.chModeOutput(23);
+    gpio.setHigh(23);
 
     return 0;
 }

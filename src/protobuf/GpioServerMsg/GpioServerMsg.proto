@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package raptor.protobuf;
+
+message GpioServerMsg {
+  enum CtrlType {
+    CH_OUTPUT = 0;
+    CH_INPUT  = 1;
+    SET_HIGH  = 2;
+    SET_LOW   = 3;
+  }
+
+  CtrlType type = 1;
+  int32 port    = 2;
+}

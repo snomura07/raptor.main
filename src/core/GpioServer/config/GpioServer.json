@@ -1,0 +1,5 @@
+{
+    "modName" : "GpioServer",
+    "healthCheckPort" : 5598,
+    "subscribeTopic":"GpioServer"
+}

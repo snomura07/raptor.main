@@ -149,3 +149,10 @@ git submodule update --init --recursive
 make
 make install
 ```
+
+## 実行方法@コンテナ内
+```
+qemu-arm -L /usr/arm-linux-gnueabi /opt/raptor/bin/Zserver
+or
+exec /opt/raptor/bin/Zserver ※alias登録済み
+```

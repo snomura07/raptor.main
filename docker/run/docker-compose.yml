@@ -27,7 +27,6 @@ services:
     command: >
       bash -c "
         qemu-arm -L /usr/arm-linux-gnueabi /opt/raptor/bin/ProxyServer &
-        qemu-arm -L /usr/arm-linux-gnueabi /opt/raptor/bin/Kernel &
         wait
         bash
       "

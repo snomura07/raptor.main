@@ -6,7 +6,7 @@
 AppConfig::AppConfig():
     jsonPath("/opt/raptor/config/Counter.json"),
     modName(""),
-    healthCheckcPort(0),
+    healthCheckPort(0),
     publishTopic("")
 {}
 AppConfig::~AppConfig(){}
@@ -18,9 +18,9 @@ void AppConfig::read(){
     std::ifstream jsonFile(jsonPath);
     if (jsonFile.is_open()) {
         jsonFile >> jsonData;
-        modName          = jsonData["modName"];
-        healthCheckcPort = jsonData["healthCheckPort"];
-        publishTopic     = jsonData["publishTopic"];
+        modName         = jsonData["modName"];
+        healthCheckPort = jsonData["healthCheckPort"];
+        publishTopic    = jsonData["publishTopic"];
     }
     else{
         std::cerr << "file open error" << std::endl;

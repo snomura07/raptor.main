@@ -1,4 +1,4 @@
-project(RaptorBase)
+project(ShutdownGate)
 
 add_library(
     ${PROJECT_NAME}
@@ -15,10 +15,8 @@ target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
     pthread
+    MasterConfig
     ZmqWrapper
-    Logger
-    InfoChat
-    protobuf-MasterLineMsg
 )
 
 INSTALL(

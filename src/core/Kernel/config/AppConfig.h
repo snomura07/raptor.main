@@ -20,7 +20,7 @@ public:
     };
 
     std::string modName;
-    int healthCheckcPort;
+    int healthCheckPort;
     MasterConfig master;
     std::vector<Process> LaunchProcesses;
 

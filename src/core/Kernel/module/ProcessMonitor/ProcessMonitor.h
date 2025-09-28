@@ -1,8 +1,8 @@
 
 #include <InfoChat/InfoChat.h>
-#include "ConfSummary.h"
-#include "ProcessInfo.h"
-#include "../config/AppConfig.h"
+#include "../ConfSummary/ConfSummary.h"
+#include "../ProcessInfo/ProcessInfo.h"
+#include "../../config/AppConfig.h"
 
 class ProcessMonitor{
 public:

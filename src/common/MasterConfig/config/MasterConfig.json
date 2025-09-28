@@ -24,5 +24,8 @@
     },
     "processMonitor":{
         "topic":"PROCESS_MONITOR"
+    },
+    "shutdown":{
+        "topic":"SHUTDOWN"
     }
 }

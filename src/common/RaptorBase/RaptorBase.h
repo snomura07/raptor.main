@@ -13,13 +13,16 @@ protected:
     int commPort;
     Logger logger;
     InfoChat infoChat;
+    bool shutdownCommandReceived;
 
 public:
     RaptorBase();
     ~RaptorBase();
+    void init(std::string modName_, int commPort_);
     bool runKeepAliveServer();
     void showActivatedSign();
     void initLogger();
+    bool isRunning();
 
 private:
     ZmqWrapper zmq;

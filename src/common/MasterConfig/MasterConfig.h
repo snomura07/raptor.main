@@ -31,6 +31,7 @@ public:
     std::string zserverTopic;
     int zserverPort;
     std::string processMonitorTopic;
+    std::string shutdownTopic;
 
 private:
     nlohmann::json jsonData;

@@ -11,11 +11,7 @@ Counter::Counter():
     config.read();
 
     // base用の設定
-    RaptorBase::modName  = config.modName;
-    RaptorBase::commPort = config.healthCheckcPort;
-    RaptorBase::runKeepAliveServer();
-    RaptorBase::showActivatedSign();
-    RaptorBase::initLogger();
+    RaptorBase::init(config.modName, config.healthCheckPort);
 }
 
 Counter::~Counter()
@@ -27,11 +23,11 @@ bool Counter::run()
 {
     RaptorBase::logger.writeInfoLog("start!");
 
-    bool isRunning = true;
+    // bool isRunning = true;
     ZmqWrapper zmq;
     zmq.registerSession("127.0.0.1", 5556, ZmqWrapper::zmqPatternEnum::PUBLISH, config.publishTopic);
 
-    while(isRunning){
+    while(isRunning()){
         count++;
 
         raptor::protobuf::CounterMsg counterMsg;
@@ -45,5 +41,5 @@ bool Counter::run()
         msleep(1000);
     }
 
-    return isRunning;
+    return true;
 }

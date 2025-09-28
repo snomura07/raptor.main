@@ -2,6 +2,7 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <ZmqWrapper/ZmqWrapper.h>
+#include <MasterLineMsg/MasterLineMsg.pb.h>
 #include <print.hpp>
 #include "ProcessInfo.h"
 
@@ -22,7 +23,8 @@ ProcessInfo::ProcessInfo(std::string jsonPath):
     }
 }
 
-ProcessInfo::~ProcessInfo(){}
+ProcessInfo::~ProcessInfo(){
+}
 
 void ProcessInfo::init()
 {
@@ -31,10 +33,14 @@ void ProcessInfo::init()
 
 void ProcessInfo::checkAlive()
 {
-    std::string rmsg = "";
-    zmq.sendMessage("check");
-    auto res         = zmq.pollMessage(rmsg, 100);
-    preAliveFlag     = aliveFlag;
+    std::string smsg = "";
+    raptor::protobuf::MasterLineMsg masterLineMsg;
+    masterLineMsg.set_type(raptor::protobuf::MasterLineMsg::HEALTH_CHECK);
+    masterLineMsg.SerializeToString(&smsg);
+    zmq.sendMessage(smsg);
+
+    auto res     = zmq.pollMessage(smsg, 100);
+    preAliveFlag = aliveFlag;
 
     if(res < 0){
         aliveFlag = false;
@@ -52,4 +58,23 @@ bool ProcessInfo::isAlive()
 bool ProcessInfo::isModified()
 {
     return aliveFlag != preAliveFlag;
+}
+
+void ProcessInfo::shutdown()
+{
+    std::string smsg = "";
+    raptor::protobuf::MasterLineMsg masterLineMsg;
+    masterLineMsg.set_type(raptor::protobuf::MasterLineMsg::SHUTDOWN_REQUEST);
+    masterLineMsg.SerializeToString(&smsg);
+    zmq.sendMessage(smsg);
+
+    auto res     = zmq.pollMessage(smsg, 100);
+    preAliveFlag = aliveFlag;
+
+    if(res < 0){
+        aliveFlag = false;
+    }
+    else{
+        aliveFlag = true;
+    }
 }

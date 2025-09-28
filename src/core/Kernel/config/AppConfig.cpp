@@ -6,7 +6,7 @@
 AppConfig::AppConfig():
     jsonPath("/opt/raptor/config/Kernel.json"),
     modName(""),
-    healthCheckcPort(0)
+    healthCheckPort(0)
 {}
 AppConfig::~AppConfig(){}
 
@@ -17,8 +17,8 @@ void AppConfig::read(){
     std::ifstream jsonFile(jsonPath);
     if (jsonFile.is_open()) {
         jsonFile >> jsonData;
-        modName          = jsonData["modName"];
-        healthCheckcPort = jsonData["healthCheckPort"];
+        modName         = jsonData["modName"];
+        healthCheckPort = jsonData["healthCheckPort"];
 
         for (const auto& processJson : jsonData["launchProcesses"]) {
             Process process;

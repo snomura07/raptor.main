@@ -1,9 +1,8 @@
-project(RaptorBase)
+project(ShutdownTest)
 
-add_library(
+add_executable(
     ${PROJECT_NAME}
-    STATIC
-    ${PROJECT_NAME}.cpp
+    main.cpp
 )
 
 target_include_directories(
@@ -16,13 +15,12 @@ target_link_libraries(
     PRIVATE
     pthread
     ZmqWrapper
-    Logger
-    InfoChat
-    protobuf-MasterLineMsg
+    MasterConfig
+    ShutdownGate
 )
 
 INSTALL(
     TARGETS
     ${PROJECT_NAME}
-    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin/test
 )

@@ -10,6 +10,7 @@ public:
     bool isAlive();
     void checkAlive();
     bool isModified();
+    void shutdown();
 
 public:
     std::string modName;

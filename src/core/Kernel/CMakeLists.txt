@@ -3,11 +3,10 @@ project(Kernel)
 add_executable(
     ${PROJECT_NAME}
     config/AppConfig.cpp
-    module/${PROJECT_NAME}.cpp
-    module/ConfSummary.cpp
-    module/ProcessInfo.cpp
-    module/Launcher.cpp
-    module/ProcessMonitor.cpp
+    module/${PROJECT_NAME}/${PROJECT_NAME}.cpp
+    module/ConfSummary/ConfSummary.cpp
+    module/ProcessInfo/ProcessInfo.cpp
+    module/Launcher/Launcher.cpp
     runner/${PROJECT_NAME}Runner.cpp
 )
 target_include_directories(
@@ -23,7 +22,9 @@ target_link_libraries(
     ZmqWrapper
     InfoChat
     Env
+    ShutdownGate
     protobuf-ProcessMonitorMsg
+    protobuf-MasterLineMsg
 )
 
 INSTALL(

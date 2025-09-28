@@ -20,6 +20,7 @@ MasterConfig::MasterConfig():
     zserverTopic(""),
     zserverPort(0),
     processMonitorTopic(""),
+    shutdownTopic(""),
     mapFmt()
 {}
 
@@ -46,6 +47,7 @@ void MasterConfig::read(){
         zserverTopic         = jsonData["zserver"]["topic"];
         zserverPort          = jsonData["zserver"]["port"];
         processMonitorTopic  = jsonData["processMonitor"]["topic"];
+        shutdownTopic        = jsonData["shutdown"]["topic"];
 
         mapFmt["localhost"]           = localhost;
         mapFmt["raptorIp"]            = raptorIp;
@@ -62,6 +64,7 @@ void MasterConfig::read(){
         mapFmt["zserverTopic"]        = zserverTopic;
         mapFmt["zserverPort"]         = zserverPort;
         mapFmt["processMonitorTopic"] = processMonitorTopic;
+        mapFmt["shutdownTopic"]       = shutdownTopic;
     }
     else{
         std::cerr << "file open error" << std::endl;

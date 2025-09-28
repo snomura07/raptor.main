@@ -5,17 +5,21 @@
 #include <zmq.h>
 #include "ZmqWrapper.h"
 
-ZmqWrapper::ZmqWrapper(){}
+ZmqWrapper::ZmqWrapper(): context(nullptr), socket(nullptr){}
 
 ZmqWrapper::~ZmqWrapper()
 {
-    int linger = 0;
-    zmq_setsockopt(this->socket, ZMQ_LINGER, &linger, sizeof(linger));
-    zmq_close(this->socket);
-    this->socket = nullptr;
+    if (this->socket) {
+        int linger = 0;
+        zmq_setsockopt(this->socket, ZMQ_LINGER, &linger, sizeof(linger));
+        zmq_close(this->socket);
+        this->socket = nullptr;
+    }
 
-    zmq_ctx_destroy(this->context);
-    this->context = nullptr;
+    if (this->context) {
+        zmq_ctx_destroy(this->context);
+        this->context = nullptr;
+    }
 }
 
 void ZmqWrapper::registerSession(std::string ip, int port, zmqPatternEnum pattern, std::string topic)

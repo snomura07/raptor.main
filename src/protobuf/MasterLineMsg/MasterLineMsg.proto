@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package raptor.protobuf;
+
+message MasterLineMsg {
+  enum CtrlType {
+    HEALTH_CHECK     = 0;
+    SHUTDOWN_REQUEST = 1;
+  }
+
+  CtrlType type = 1;
+}

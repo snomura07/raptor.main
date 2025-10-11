@@ -13,11 +13,6 @@ Kernel::Kernel()
 
     // base用の設定
     RaptorBase::init(config.modName, config.healthCheckPort);
-    // RaptorBase::modName  = config.modName;
-    // RaptorBase::commPort = config.healthCheckcPort;
-    // RaptorBase::runKeepAliveServer();
-    // RaptorBase::showActivatedSign();
-    // RaptorBase::initLogger();
 
     // launch対象のモジュールをリスト化
     for (const auto& confPath : confSummary.jsonList) {
@@ -45,8 +40,7 @@ bool Kernel::run()
     {
         healthCheckProcess();
 
-        if(!shutdownGate.isSignalReceived() &&
-            checkShutdownCommand()){
+        if(checkShutdownCommand()){
             logger.writeInfoLog("shutdown command received");
             shutdownProcess();
         }
@@ -63,6 +57,11 @@ bool Kernel::launchProcess()
             std::string binPath = strJoin(config.master.binPath, target.mod);
             print("Launching process: " + binPath);
             launcher.launch(binPath);
+
+            auto it = processMap.find(target.mod);
+            if (it != processMap.end()) {
+                it->second->state = ProcessInfo::RUNNING;
+            }
         }
     }
 
@@ -97,6 +96,10 @@ bool Kernel::healthCheckProcess()
 
 bool Kernel::checkShutdownCommand()
 {
+    if(shutdownGate.isSignalReceived()){
+        return false;
+    }
+
     return shutdownGate.checkSignal();
 }
 

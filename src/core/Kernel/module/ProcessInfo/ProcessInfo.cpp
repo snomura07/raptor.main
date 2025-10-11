@@ -9,7 +9,8 @@
 ProcessInfo::ProcessInfo(std::string jsonPath):
     healthCheckPort(0),
     aliveFlag(false),
-    preAliveFlag(false)
+    preAliveFlag(false),
+    state(STOPPED)
 {
     std::ifstream jsonFile(jsonPath);
     if (jsonFile.is_open()) {

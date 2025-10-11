@@ -4,6 +4,12 @@
 
 class ProcessInfo{
 public:
+    enum State{
+        RUNNING,
+        STOPPED
+    };
+
+public:
     ProcessInfo(std::string jsonPath);
     ~ProcessInfo();
     void init();
@@ -15,9 +21,11 @@ public:
 public:
     std::string modName;
     int healthCheckPort;
+    State state;
 
 private:
     ZmqWrapper zmq;
     bool aliveFlag;
     bool preAliveFlag;
+
 };

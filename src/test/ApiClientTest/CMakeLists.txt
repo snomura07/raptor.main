@@ -14,6 +14,7 @@ target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
     ApiClient
+    ${OPENSSL_LIBS}
 )
 
 INSTALL(

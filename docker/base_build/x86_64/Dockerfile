@@ -108,5 +108,19 @@ RUN wget https://github.com/opencv/opencv/archive/4.7.0.zip -O /tmp/opencv.zip &
     make -j$(nproc) && \
     make install
 
-    # ライブラリパスの設定
+# OpenSSL (for HTTPS)
+# OpenSSLビルド前に環境変数をクリア
+ENV CC=gcc \
+    CXX=g++ \
+    AR=ar \
+    RANLIB=ranlib
+RUN git clone --depth 1 --branch openssl-3.0.7 https://github.com/openssl/openssl.git && \
+    cd openssl && \
+    ./Configure linux-armv4 no-asm no-shared \
+    --prefix=/usr/arm-linux-gnueabi/openssl \
+    --cross-compile-prefix=arm-linux-gnueabi- \
+ && make -j$(nproc) \
+ && make install_sw
+
+# ライブラリパスの設定
 RUN ldconfig

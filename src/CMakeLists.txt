@@ -22,6 +22,14 @@ set(CMAKE_INSTALL_PREFIX /opt/raptor/)
 # script path
 set(SCRIPT_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../script/)
 
+# OpenSSL
+set(OPENSSL_ROOT /usr/arm-linux-gnueabi/openssl)
+include_directories(${OPENSSL_ROOT}/include)
+link_directories(${OPENSSL_ROOT}/lib)
+
+# cpp-httplib support
+add_compile_definitions(CPPHTTPLIB_OPENSSL_SUPPORT)
+
 # common include directories
 find_package(OpenCV REQUIRED)
 include_directories(
@@ -33,6 +41,9 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/third_party/cpp-httplib
     ${OpenCV_INCLUDE_DIRS}
 )
+
+# OpenSSL ライブラリを共通変数に
+set(OPENSSL_LIBS ssl crypto dl pthread atomic CACHE INTERNAL "OpenSSL libraries")
 
 add_subdirectory(core)
 add_subdirectory(common)

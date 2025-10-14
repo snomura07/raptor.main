@@ -25,6 +25,32 @@ std::string ApiClient::post(std::string path, std::string msg)
     }
 }
 
+std::string ApiClient::post(std::string endpoint, std::string path, std::string msg)
+{
+    httplib::SSLClient cli(endpoint.c_str());
+    // CA証明書のパスを明示
+    cli.set_ca_cert_path("/etc/ssl/certs/ca-certificates.crt");
+    cli.enable_server_certificate_verification(true);
+
+    cli.set_connection_timeout(5, 0);
+    cli.set_read_timeout(5, 0);
+
+    httplib::Headers headers = {
+        { "Content-Type", "application/json" }
+    };
+
+    auto res = cli.Post(path.c_str(), headers, msg, "application/json");
+
+    // レスポンス処理
+    if (res && res->status == 200) {
+        return res->body;
+    } else if (res) {
+        return "Error: HTTP " + std::to_string(res->status);
+    } else {
+        return "Error: Connection failed";
+    }
+}
+
 std::string ApiClient::get(std::string path, std::string msg)
 {
     return "";

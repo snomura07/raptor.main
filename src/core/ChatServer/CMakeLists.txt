@@ -20,6 +20,7 @@ target_link_libraries(
     ApiClient
     Logger
     protobuf-ChatServerMsg
+    ${OPENSSL_LIBS}
 )
 
 INSTALL(

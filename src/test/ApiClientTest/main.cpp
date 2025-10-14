@@ -8,11 +8,9 @@ int main()
 {
     ApiClient apiClient;
 
-    std::string json_data = R"({"message": "これはINFOメッセージです", "type": "info"})";
+    std::string json_data = R"({"process_name":"ApiClientTest", "status":"Stopped"})";
 
-    print(apiClient.post("/send", json_data));
-
-    print(strJoin("http://","localhost",":",500));
+    print(apiClient.post("prpjme5ltk.execute-api.ap-northeast-1.amazonaws.com", "/dev/set_log", json_data));
 
     return 0;
 }

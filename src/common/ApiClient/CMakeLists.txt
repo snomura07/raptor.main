@@ -16,6 +16,7 @@ target_link_libraries(
     PRIVATE
     pthread
     MasterConfig
+    ${OPENSSL_LIBS}
 )
 
 INSTALL(
